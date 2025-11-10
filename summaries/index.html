@@ -44,74 +44,164 @@
             opacity: 0.95;
         }
 
-        .content {
-            padding: 40px;
-        }
-
-        .summary-list {
-            list-style: none;
-        }
-
-        .summary-item {
-            margin-bottom: 15px;
-        }
-
-        .summary-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 25px;
-            background: #f8f9fa;
+        .search-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
-            color: #2c3e50;
+            font-weight: 600;
             transition: all 0.3s;
-            border-left: 4px solid #667eea;
+            font-size: 1em;
         }
 
-        .summary-link:hover {
-            background: #667eea;
-            color: white;
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        .search-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
-        .summary-date {
-            font-size: 1.3em;
+        .content {
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .archive-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .archive-title {
+            font-size: 1.5em;
+            color: #667eea;
             font-weight: 600;
         }
 
-        .summary-meta {
-            font-size: 0.9em;
-            opacity: 0.8;
+        .archive-count {
+            color: #888;
+            font-size: 1em;
+        }
+
+        .summary-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .summary-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .summary-card:hover {
+            background: white;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .summary-card.hidden {
+            display: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .card-date {
+            flex: 1;
+        }
+
+        .card-date-main {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .card-date-day {
+            color: #888;
+            font-size: 0.95em;
         }
 
         .latest-badge {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 5px 15px;
+            padding: 6px 15px;
             border-radius: 20px;
             font-size: 0.85em;
             font-weight: 600;
         }
 
-        .stats {
-            background: #f0f4ff;
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            text-align: center;
+        .card-stats {
+            display: flex;
+            gap: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
         }
 
-        .stats h2 {
+        .card-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             color: #667eea;
-            margin-bottom: 10px;
+            font-weight: 500;
         }
 
-        .stats-number {
-            font-size: 3em;
-            font-weight: bold;
-            color: #667eea;
+        .card-stat-number {
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .card-stat-label {
+            font-size: 0.9em;
+            color: #888;
         }
 
         footer {
@@ -123,47 +213,119 @@
         }
 
         @media (max-width: 768px) {
-            .summary-link {
+            .archive-header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 10px;
             }
 
-            .summary-meta {
-                margin-top: 10px;
+            .card-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .card-stats {
+                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
+        <header style="position: relative;">
+            <a href="search.html" class="search-button">🔍 Search All Articles</a>
             <h1>Energy Digest</h1>
             <p>Daily Summary of Power & Energy Systems News</p>
         </header>
 
         <div class="content">
-            <div class="stats">
-                <h2>Total Summaries</h2>
-                <div class="stats-number">1</div>
+            <div class="search-container">
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search archive by date..."
+                        autocomplete="off"
+                    >
+                    <span class="search-icon">🔍</span>
+                </div>
             </div>
 
-            <ul class="summary-list">
-                <li class="summary-item">
-                    <a href="energy_digest_2025-11-10.html" class="summary-link">
-                        <div>
-                            <div class="summary-date">November 10, 2025</div>
-                            <div class="summary-meta">Monday</div>
+            <div class="archive-header">
+                <div class="archive-title">All Digests</div>
+                <div class="archive-count" id="digestCount">2 digests</div>
+            </div>
+
+            <div class="summary-grid">
+                <a href="energy_digest_2025-11-10.html" class="summary-card" data-date="november 10, 2025" data-day="monday">
+                    <div class="card-header">
+                        <div class="card-date">
+                            <div class="card-date-main">November 10, 2025</div>
+                            <div class="card-date-day">Monday</div>
                         </div>
                         <span class="latest-badge">Latest</span>
-                    </a>
-                </li>
-            </ul>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-number">25</span>
+                            <span class="card-stat-label">Articles</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="search.html" class="summary-card" data-date="search" data-day="">
+                    <div class="card-header">
+                        <div class="card-date">
+                            <div class="card-date-main">search</div>
+                            <div class="card-date-day"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-number">0</span>
+                            <span class="card-stat-label">Articles</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: November 10, 2025 at 12:50 AM</p>
+            <p style="margin-top: 10px;">Last updated: November 10, 2025 at 08:50 AM</p>
         </footer>
     </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const digestCount = document.getElementById('digestCount');
+        const cards = document.querySelectorAll('.summary-card');
+        const totalDigests = cards.length;
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const date = card.getAttribute('data-date');
+                const day = card.getAttribute('data-day');
+
+                if (searchTerm === '' || date.includes(searchTerm) || day.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if (searchTerm === '') {
+                digestCount.textContent = totalDigests + (totalDigests === 1 ? ' digest' : ' digests');
+            } else {
+                digestCount.textContent = visibleCount + (visibleCount === 1 ? ' digest' : ' digests') + ' found';
+            }
+        });
+    </script>
 </body>
 </html>
