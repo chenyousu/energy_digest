@@ -323,8 +323,8 @@
         let allArticles = [];
         let activeSourceFilter = 'all';
 
-        // Load search index
-        fetch('search_index.json')
+        // Load search index (with cache-busting to always get latest data)
+        fetch('search_index.json?v=' + Date.now())
             .then(response => response.json())
             .then(data => {
                 allArticles = data.articles || [];
