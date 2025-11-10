@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "title": "Navigating the Complexities Associated with Utility-Scale Solar Projects",
+      "link": "https://www.powermag.com/navigating-the-complexities-associated-with-utility-scale-solar-projects/",
+      "published": "November 10, 2025",
+      "published_iso": "2025-11-10T18:49:29",
+      "summary": "Here is the analysis of the article:\n\n \nUtility-scale solar power remains a viable option for meeting increasing electricity demand in the US market due to its relatively low cost and quick time-to-market. Despite recent changes in law reducing future tax credits, solar power's advantages make it an attractive solution for utilities seeking to diversify their energy sources. As the world's third-largest renewable energy source, utility-scale solar projects have the potential to significantly contribute to the US market.",
+      "source": "Power Magazine",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
       "title": "Made-In-The-US Flow Battery Technology Is Heading Overseas",
       "link": "https://cleantechnica.com/2025/11/10/made-in-the-us-flow-battery-technology-is-heading-overseas/",
       "published": "November 10, 2025",
@@ -100,11 +111,11 @@
       "key_takeaways": []
     },
     {
-      "title": "How network diversity protects utility operations in an evolving landscape",
-      "link": "https://www.utilitydive.com/spons/how-network-diversity-protects-utility-operations-in-an-evolving-landscape/805056/",
+      "title": "Future-proofing utility communications: The case for multi-carrier SIMs",
+      "link": "https://www.utilitydive.com/spons/future-proofing-utility-communications-the-case-for-multi-carrier-sims/803941/",
       "published": "November 10, 2025",
       "published_iso": "2025-11-10T05:00:00",
-      "summary": "A comprehensive network diversity is crucial for utilities to ensure reliable grid communications and protect long-term investments as networks evolve. This diversity helps utilities navigate the complexities of an evolving landscape, where new technologies and infrastructure are constantly being introduced. By prioritizing network diversity, utilities can safeguard their operations against potential disruptions.",
+      "summary": "Here is the analysis:\n\n\nThe article discusses the importance of future-proofing utility communications by utilizing multi-carrier SIMs. This allows for greater flexibility and reliability in smart metering systems, enabling utilities to cut costs and improve overall performance. By adopting a multi-carrier approach, utilities can better adapt to changing technologies and regulatory requirements.",
       "source": "Utility Dive",
       "digest_date": "2025-11-10",
       "digest_file": "energy_digest_2025-11-10.html",
@@ -122,11 +133,11 @@
       "key_takeaways": []
     },
     {
-      "title": "Future-proofing utility communications: The case for multi-carrier SIMs",
-      "link": "https://www.utilitydive.com/spons/future-proofing-utility-communications-the-case-for-multi-carrier-sims/803941/",
+      "title": "How network diversity protects utility operations in an evolving landscape",
+      "link": "https://www.utilitydive.com/spons/how-network-diversity-protects-utility-operations-in-an-evolving-landscape/805056/",
       "published": "November 10, 2025",
       "published_iso": "2025-11-10T05:00:00",
-      "summary": "Here is the analysis:\n\n\nThe article discusses the importance of future-proofing utility communications by utilizing multi-carrier SIMs. This allows for greater flexibility and reliability in smart metering systems, enabling utilities to cut costs and improve overall performance. By adopting a multi-carrier approach, utilities can better adapt to changing technologies and regulatory requirements.",
+      "summary": "A comprehensive network diversity is crucial for utilities to ensure reliable grid communications and protect long-term investments as networks evolve. This diversity helps utilities navigate the complexities of an evolving landscape, where new technologies and infrastructure are constantly being introduced. By prioritizing network diversity, utilities can safeguard their operations against potential disruptions.",
       "source": "Utility Dive",
       "digest_date": "2025-11-10",
       "digest_file": "energy_digest_2025-11-10.html",
@@ -573,5 +584,5 @@
       "key_takeaways": []
     }
   ],
-  "last_updated": "2025-11-10T13:00:49.129502"
+  "last_updated": "2025-11-10T18:00:29.952873"
 }
