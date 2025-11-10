@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Energy Digest</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-section {
+            padding: 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 60px 20px 20px;
+            font-size: 1.2em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            color: #999;
+        }
+
+        .search-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .search-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-stat strong {
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 8px 16px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .filter-button:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .filter-button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .results-section {
+            padding: 40px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            font-size: 1.1em;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .no-results-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .article-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .article-card:hover {
+            background: white;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .article-card.hidden {
+            display: none;
+        }
+
+        .article-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .article-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .article-meta-label {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .article-summary {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .article-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .article-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        .article-link:hover {
+            color: #764ba2;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+
+            .search-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header style="position: relative;">
+            <a href="index.html" class="back-link">← Back to Archive</a>
+            <h1>Search Articles</h1>
+            <p>Search across all Energy Digest articles</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search by keyword, source, or topic..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="search-stats">
+                <div class="search-stat">
+                    <strong id="totalCount">0</strong>
+                    <span>total articles</span>
+                </div>
+                <div class="search-stat">
+                    <strong id="resultCount">0</strong>
+                    <span>matching results</span>
+                </div>
+                <div class="search-stat" id="lastUpdated">
+                    <span>Loading...</span>
+                </div>
+            </div>
+
+            <div class="filters" id="sourceFilters">
+                <!-- Source filters will be added dynamically -->
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="loading">Loading articles...</div>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+        </footer>
+    </div>
+
+    <script>
+        let allArticles = [];
+        let activeSourceFilter = 'all';
+
+        // Load search index
+        fetch('search_index.json')
+            .then(response => response.json())
+            .then(data => {
+                allArticles = data.articles || [];
+                
+                // Update stats
+                document.getElementById('totalCount').textContent = allArticles.length;
+                document.getElementById('resultCount').textContent = allArticles.length;
+                
+                // Update last updated
+                if (data.last_updated) {
+                    const lastUpdate = new Date(data.last_updated);
+                    document.getElementById('lastUpdated').innerHTML = 
+                        `<span>Last updated: ${lastUpdate.toLocaleString()}</span>`;
+                }
+
+                // Generate source filters
+                generateSourceFilters();
+
+                // Display all articles initially
+                displayResults(allArticles);
+            })
+            .catch(error => {
+                document.getElementById('resultsSection').innerHTML = 
+                    '<div class="no-results"><div class="no-results-icon">⚠️</div><p>Error loading search index</p></div>';
+            });
+
+        function generateSourceFilters() {
+            const sources = [...new Set(allArticles.map(a => a.source))].sort();
+            const filtersContainer = document.getElementById('sourceFilters');
+
+            // Add "All" filter
+            const allButton = document.createElement('button');
+            allButton.className = 'filter-button active';
+            allButton.textContent = 'All Sources';
+            allButton.onclick = () => filterBySource('all');
+            filtersContainer.appendChild(allButton);
+
+            // Add source filters
+            sources.forEach(source => {
+                const button = document.createElement('button');
+                button.className = 'filter-button';
+                button.textContent = source;
+                button.onclick = () => filterBySource(source);
+                filtersContainer.appendChild(button);
+            });
+        }
+
+        function filterBySource(source) {
+            activeSourceFilter = source;
+
+            // Update button states
+            document.querySelectorAll('.filter-button').forEach(btn => {
+                btn.classList.remove('active');
+                if ((source === 'all' && btn.textContent === 'All Sources') ||
+                    (source !== 'all' && btn.textContent === source)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Re-run search with current query
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            let filtered = allArticles;
+
+            // Filter by source
+            if (activeSourceFilter !== 'all') {
+                filtered = filtered.filter(a => a.source === activeSourceFilter);
+            }
+
+            // Filter by search term
+            if (searchTerm) {
+                filtered = filtered.filter(article => {
+                    const title = article.title.toLowerCase();
+                    const summary = article.summary.toLowerCase();
+                    const source = article.source.toLowerCase();
+
+                    return title.includes(searchTerm) ||
+                           summary.includes(searchTerm) ||
+                           source.includes(searchTerm);
+                });
+            }
+
+            document.getElementById('resultCount').textContent = filtered.length;
+            displayResults(filtered, searchTerm);
+        }
+
+        function displayResults(articles, searchTerm = '') {
+            const resultsSection = document.getElementById('resultsSection');
+
+            if (articles.length === 0) {
+                resultsSection.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <p>No articles found${searchTerm ? ' matching "' + searchTerm + '"' : ''}</p>
+                    </div>`;
+                return;
+            }
+
+            let html = '';
+            articles.forEach(article => {
+                const takeaways = article.key_takeaways && article.key_takeaways.length > 0
+                    ? `<div style="margin-top: 10px; color: #667eea; font-size: 0.9em;">• ${article.key_takeaways.join(' • ')}</div>`
+                    : '';
+
+                html += `
+                    <div class="article-card">
+                        <div class="article-title">
+                            <a href="${article.link}" target="_blank">${article.title}</a>
+                        </div>
+                        <div class="article-meta">
+                            <div class="article-meta-item">
+                                <span class="article-meta-label">Source:</span>
+                                <span>${article.source}</span>
+                            </div>
+                            <div class="article-meta-item">
+                                <span class="article-meta-label">Published:</span>
+                                <span>${article.published}</span>
+                            </div>
+                        </div>
+                        <div class="article-summary">${article.summary}</div>
+                        ${takeaways}
+                        <div class="article-actions">
+                            <a href="${article.link}" class="article-link" target="_blank">Read Full Article →</a>
+                            <a href="${article.digest_file}" class="article-link">View in Digest →</a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            resultsSection.innerHTML = html;
+        }
+
+        // Search as user types
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(performSearch, 300);
+        });
+    </script>
+</body>
+</html>
