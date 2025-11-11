@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "title": "Large Utility Automates Underground System, Sees Reliability and Restoration Time Improvements",
+      "link": "https://www.powermag.com/large-utility-automates-underground-system-sees-reliability-and-restoration-time-improvements/",
+      "published": "November 10, 2025",
+      "published_iso": "2025-11-10T23:07:32",
+      "summary": "Ameren Missouri, a large investor-owned utility, faced reliability challenges in its St. Louis-area service due to aging manual switchgear and growing customer base. To address this issue, the utility automated an underground system, resulting in improved reliability and reduced restoration times.",
+      "source": "Power Magazine",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
       "title": "Navigating the Complexities Associated with Utility-Scale Solar Projects",
       "link": "https://www.powermag.com/navigating-the-complexities-associated-with-utility-scale-solar-projects/",
       "published": "November 10, 2025",
@@ -584,5 +595,5 @@
       "key_takeaways": []
     }
   ],
-  "last_updated": "2025-11-10T18:00:29.952873"
+  "last_updated": "2025-11-10T20:33:10.230378"
 }
