@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
@@ -180,6 +184,23 @@
             display: none;
         }
 
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
         .highlight {
             background-color: #fff3cd;
             padding: 2px 4px;
@@ -343,7 +364,7 @@
             <h1>Energy Digest</h1>
             <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
             <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
-            <div class="meta">Last Updated: November 10, 2025 at 09:34 PM</div>
+            <div class="meta">Last Updated: November 10, 2025 at 10:43 PM</div>
         </header>
 
         <div class="search-container">
@@ -362,29 +383,157 @@
 
         <div class="stats">
             <div class="stat">
-                <div class="stat-number" id="newsCount">41</div>
+                <div class="stat-number" id="newsCount">45</div>
                 <div class="stat-label">News & Articles</div>
             </div>
             <div class="stat">
-                <div class="stat-number" id="researchCount">5</div>
+                <div class="stat-number" id="researchCount">9</div>
                 <div class="stat-label">Research Papers</div>
             </div>
         </div>
 
         <div class="tabs">
             <button class="tab-button active" onclick="openTab(event, 'news')">
-                News & Articles (41)
+                News & Articles (45)
             </button>
             <button class="tab-button" onclick="openTab(event, 'research')">
-                Research Papers (5)
+                Research Papers (9)
             </button>
         </div>
 
         <div id="news" class="tab-content active">
 
-            <article class="article">
+            <article class="article" id="4f3a8455">
                 <div class="article-header">
                     <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.renewableenergyworld.com/news/new-kansas-rules-set-guidelines-for-data-centers-big-power-users-to-protect-smaller-customers/" target="_blank">New Kansas rules set guidelines for data centers, big power users to protect smaller customers</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Renewable Energy World</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Kansas Corporation Commission has approved a new large-load tariff for businesses using over 75 megawatts of electricity, aiming to protect smaller customers from the financial burden of big power users. This rule change will likely impact data centers and other major power consumers in the state. The goal is to ensure that larger energy users contribute more to the costs of the grid.
+                    </div>
+                </div>
+
+                <a href="https://www.renewableenergyworld.com/news/new-kansas-rules-set-guidelines-for-data-centers-big-power-users-to-protect-smaller-customers/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>A new large-load tariff has been approved for businesses using over 75 megawatts of electricity, effectively creating a tiered pricing structure.</li>
+                        <li>The rule change aims to reduce the financial burden on smaller customers by making larger power users pay a higher rate for their energy consumption.</li>
+                        <li>Data centers and other major power consumers in Kansas are likely to be affected by this new tariff, which will require them to take steps to manage their energy costs.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="ef0c8f6f">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.powermag.com/nuclear-natural-gas-power-generation-planned-for-massive-new-mexico-data-center-site/" target="_blank">Nuclear, Natural Gas Power Generation Planned for Massive New Mexico Data Center Site</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Power Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 07, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        A Texas-based developer has entered into a land option purchase agreement for a massive data center site in New Mexico, with plans to power the facility with over 2 GW of natural gas-fired generation capacity and 5 GW or more of nuclear power.
+                    </div>
+                </div>
+
+                <a href="https://www.powermag.com/nuclear-natural-gas-power-generation-planned-for-massive-new-mexico-data-center-site/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The data center site in New Mexico will be powered by a combination of natural gas-fired generation capacity (over 2 GW) and nuclear power (at least 5 GW).</li>
+                        <li>The project aims to provide clean energy for the facility, which will serve as a hub for next-generation digital infrastructure and integrated power assets.</li>
+                        <li>The scale of the nuclear power component suggests that it could be one of the largest nuclear facilities in the United States.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="8643c05c">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.utilitydive.com/news/kansas-michigan-data-center-large-load-evergy-consumers/805115/" target="_blank">Kansas, Michigan regulators approve large load rules for Evergy, Consumers Energy</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Utility Dive</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article reports on the approval of large load rules for two major utilities, Evergy and Consumers Energy, by regulators in Kansas and Michigan. These rules aim to ensure that existing utility customers do not bear costs related to interconnecting data centers and manufacturers. Additionally, proposed legislation in Delaware seeks to achieve a similar goal.
+                    </div>
+                </div>
+
+                <a href="https://www.utilitydive.com/news/kansas-michigan-data-center-large-load-evergy-consumers/805115/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Regulators in Kansas and Michigan have approved large load rules for Evergy and Consumers Energy, which will help mitigate costs associated with interconnecting data centers and manufacturers.</li>
+                        <li>These regulations aim to protect existing utility customers from absorbing the costs of new infrastructure requirements.</li>
+                        <li>Proposed legislation in Delaware seeks to achieve a similar goal, indicating a broader effort to address these issues across multiple jurisdictions.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="08adf8d5">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.utilitydive.com/news/vistra-data-centers-ercot-pjm-earnings/804953/" target="_blank">Vistra CEO says excess capacity in PJM, ERCOT can accommodate flexible loads</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Utility Dive</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Vistra CEO Jim Burke suggests that the excess capacity in PJM and ERCOT can accommodate flexible loads, particularly from data centers and other large load customers. These customers can use on-site backup generation during "super peak" hours to manage their energy usage. This strategy aims to optimize energy distribution and reduce strain on the grid.
+                    </div>
+                </div>
+
+                <a href="https://www.utilitydive.com/news/vistra-data-centers-ercot-pjm-earnings/804953/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Excess capacity in PJM and ERCOT can be utilized to accommodate flexible loads, such as data centers, by using on-site backup generation.</li>
+                        <li>Data centers and other large load customers can use demand response strategies during "super peak" hours to manage their energy usage.</li>
+                        <li>This approach aims to optimize energy distribution and reduce strain on the grid, making it a potential solution for managing peak demand.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="79c17d9d">
+                <div class="article-header">
+                    <div class="article-number">5</div>
                     <div class="article-title">
                         <h2><a href="https://spectrum.ieee.org/evs-keep-homes-lit" target="_blank">Menifee’s EV-Powered Homes: A New Era in Energy Independence</a></h2>
                     </div>
@@ -414,9 +563,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="908c4fbc">
                 <div class="article-header">
-                    <div class="article-number">2</div>
+                    <div class="article-number">6</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/building-trust-through-action-how-social-license-will-shape-the-future-of-energy-storage/" target="_blank">Building trust through action: How social license will shape the future of energy storage</a></h2>
                     </div>
@@ -446,9 +595,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="565f236a">
                 <div class="article-header">
-                    <div class="article-number">3</div>
+                    <div class="article-number">7</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/samsung-sdi-ramps-ess-battery-manufacturing-in-us-to-30gwh-tesla-deal-talks-reported/" target="_blank">Samsung SDI ramps ESS battery manufacturing in US to 30GWh, Tesla deal talks reported</a></h2>
                     </div>
@@ -478,9 +627,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="68ab544e">
                 <div class="article-header">
-                    <div class="article-number">4</div>
+                    <div class="article-number">8</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/collaboration-not-isolation-indias-path-to-becoming-a-global-energy-storage-supply-hub/" target="_blank">‘Collaboration, not isolation’: India’s path to becoming a global energy storage supply hub</a></h2>
                     </div>
@@ -510,9 +659,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="ffa827ea">
                 <div class="article-header">
-                    <div class="article-number">5</div>
+                    <div class="article-number">9</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/cold-beer-hot-bricks-heineken-signs-deals-for-100mwh-thermal-energy-storage-system/" target="_blank">Cold beer, hot bricks: Heineken signs deals for 100MWh thermal energy storage system</a></h2>
                     </div>
@@ -542,9 +691,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="1c7aed05">
                 <div class="article-header">
-                    <div class="article-number">6</div>
+                    <div class="article-number">10</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/australias-home-battery-rebate-processes-8000-applications-weekly-as-storage-capacity-surges/" target="_blank">Australia’s home battery rebate processes ‘8,000 applications weekly’ as storage capacity surges</a></h2>
                     </div>
@@ -574,9 +723,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="07d94981">
                 <div class="article-header">
-                    <div class="article-number">7</div>
+                    <div class="article-number">11</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/you-need-to-be-co-located-with-battery-storage-wartsila-sees-dc-coupling-as-essential-for-australias-solar-future/" target="_blank">‘You need to be co-located with battery storage’: Wärtsilä sees DC-coupling as essential for Australia’s solar future</a></h2>
                     </div>
@@ -606,9 +755,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="11296982">
                 <div class="article-header">
-                    <div class="article-number">8</div>
+                    <div class="article-number">12</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/agl-seeks-federal-approval-for-2000mwh-battery-storage-system-in-queensland-australia/" target="_blank">AGL seeks federal approval for 2,000MWh battery storage system in Queensland, Australia</a></h2>
                     </div>
@@ -638,9 +787,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="f373e88d">
                 <div class="article-header">
-                    <div class="article-number">9</div>
+                    <div class="article-number">13</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/osaka-gas-and-sonnedix-prepare-japans-largest-renewable-battery-storage-facility/" target="_blank">Osaka Gas and Sonnedix prepare Japan’s ‘largest renewable battery storage facility’</a></h2>
                     </div>
@@ -670,9 +819,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="b118a958">
                 <div class="article-header">
-                    <div class="article-number">10</div>
+                    <div class="article-number">14</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/canadian-lg-energy-solution-and-stellantis-joint-venture-to-produce-lfp-cells-for-bess/" target="_blank">Canadian LG Energy Solution and Stellantis joint venture to produce LFP cells for BESS</a></h2>
                     </div>
@@ -702,9 +851,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="6af7cd13">
                 <div class="article-header">
-                    <div class="article-number">11</div>
+                    <div class="article-number">15</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/xcel-energy-plans-600mw-us-midwests-largest-bess-project-in-minnesota/" target="_blank">Xcel Energy plans 600MW ‘US Midwest’s largest BESS project’ in Minnesota</a></h2>
                     </div>
@@ -734,9 +883,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="1b7213df">
                 <div class="article-header">
-                    <div class="article-number">12</div>
+                    <div class="article-number">16</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/aggressive-pricing-and-emerging-ci-models-reshape-indias-energy-storage-outlook/" target="_blank">Aggressive pricing and emerging C&I models reshape India’s energy storage outlook</a></h2>
                     </div>
@@ -766,9 +915,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="2b7926e2">
                 <div class="article-header">
-                    <div class="article-number">13</div>
+                    <div class="article-number">17</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/akaysha-energy-bags-au460-million-for-1244mwh-bess-in-victoria-australia/" target="_blank">Akaysha Energy bags AU$460 million for 1,244MWh BESS in Victoria, Australia</a></h2>
                     </div>
@@ -798,9 +947,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="5b522034">
                 <div class="article-header">
-                    <div class="article-number">14</div>
+                    <div class="article-number">18</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/gotion-high-tech-clou-electronics-eve-battery-and-kstar-show-strong-performance-in-q3/" target="_blank">Gotion High-Tech, Clou Electronics, Eve Battery and Kstar show strong performance in Q3</a></h2>
                     </div>
@@ -830,9 +979,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="7852ff54">
                 <div class="article-header">
-                    <div class="article-number">15</div>
+                    <div class="article-number">19</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/brightnight-and-cordelio-reach-financial-close-for-1200mwh-arizona-bess/" target="_blank">BrightNight and Cordelio reach financial close for 1,200MWh Arizona BESS</a></h2>
                     </div>
@@ -862,9 +1011,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="6f6de3bc">
                 <div class="article-header">
-                    <div class="article-number">16</div>
+                    <div class="article-number">20</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/gridstors-440mwh-texas-bess-begins-operations/" target="_blank">GridStor’s 440MWh Texas BESS begins operations</a></h2>
                     </div>
@@ -894,9 +1043,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="70868580">
                 <div class="article-header">
-                    <div class="article-number">17</div>
+                    <div class="article-number">21</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/trina-storage-signs-5gwh-battery-storage-supply-agreement-with-pacific-green-energy/" target="_blank">Trina Storage signs 5GWh battery storage supply agreement with Pacific Green Energy</a></h2>
                     </div>
@@ -926,9 +1075,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="a1026880">
                 <div class="article-header">
-                    <div class="article-number">18</div>
+                    <div class="article-number">22</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/plus-power-secures-us160-million-for-new-england-bess-projects/" target="_blank">Plus Power secures US$160 million for New England BESS projects</a></h2>
                     </div>
@@ -958,9 +1107,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="8fad9abd">
                 <div class="article-header">
-                    <div class="article-number">19</div>
+                    <div class="article-number">23</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/agl-divests-19-9-tilt-renewables-stake-to-fund-battery-storage-expansion/" target="_blank">AGL divests 19.9% Tilt Renewables stake to fund battery storage expansion</a></h2>
                     </div>
@@ -990,9 +1139,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="c1a0e8a7">
                 <div class="article-header">
-                    <div class="article-number">20</div>
+                    <div class="article-number">24</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/hd-renewable-energy-secures-20-year-offtake-for-330mwh-templers-bess-in-south-australia/" target="_blank">HD Renewable Energy secures 20-year offtake for 330MWh Templers BESS in South Australia</a></h2>
                     </div>
@@ -1022,9 +1171,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="ef46a81a">
                 <div class="article-header">
-                    <div class="article-number">21</div>
+                    <div class="article-number">25</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/us-roundup-fullmark-california-portfolio-habitat-orsted-texas-optimisation-flow-battery-player-quino-secures-funding/" target="_blank">US ROUNDUP: Fullmark California portfolio, Habitat-Ørsted Texas optimisation, flow battery player Quino secures funding</a></h2>
                     </div>
@@ -1054,9 +1203,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="8fc3eaa3">
                 <div class="article-header">
-                    <div class="article-number">22</div>
+                    <div class="article-number">26</div>
                     <div class="article-title">
                         <h2><a href="https://cleantechnica.com/2025/11/07/sheep-will-frolic-in-massive-new-solar-power-plant-in-texas/" target="_blank">Sheep Will Frolic In Massive New Solar Power Plant In Texas</a></h2>
                     </div>
@@ -1086,9 +1235,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="7c2051c7">
                 <div class="article-header">
-                    <div class="article-number">23</div>
+                    <div class="article-number">27</div>
                     <div class="article-title">
                         <h2><a href="https://cleantechnica.com/2025/11/09/renewable-energy-infrastructure-resilience-tested-as-a-supertyphoon-approaches-the-philippines/" target="_blank">Renewable Energy Infrastructure Resilience Tested as a Supertyphoon Approaches the Philippines</a></h2>
                     </div>
@@ -1118,9 +1267,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="4a1179b2">
                 <div class="article-header">
-                    <div class="article-number">24</div>
+                    <div class="article-number">28</div>
                     <div class="article-title">
                         <h2><a href="https://cleantechnica.com/2025/11/10/with-its-nickel-advantage-can-the-philippines-become-an-ev-battery-powerhouse/" target="_blank">With Its Nickel Advantage, Can The Philippines Become An EV Battery Powerhouse?</a></h2>
                     </div>
@@ -1150,9 +1299,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="9341b690">
                 <div class="article-header">
-                    <div class="article-number">25</div>
+                    <div class="article-number">29</div>
                     <div class="article-title">
                         <h2><a href="https://cleantechnica.com/2025/11/10/made-in-the-us-flow-battery-technology-is-heading-overseas/" target="_blank">Made-In-The-US Flow Battery Technology Is Heading Overseas</a></h2>
                     </div>
@@ -1182,9 +1331,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="266790bb">
                 <div class="article-header">
-                    <div class="article-number">26</div>
+                    <div class="article-number">30</div>
                     <div class="article-title">
                         <h2><a href="https://www.renewableenergyworld.com/power-grid/outage-management/case-study-undergrounding-distribution-circuits-for-long-term-cost-savings/" target="_blank">Case study: Undergrounding distribution circuits for long-term cost savings</a></h2>
                     </div>
@@ -1214,9 +1363,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="e7d0cb6d">
                 <div class="article-header">
-                    <div class="article-number">27</div>
+                    <div class="article-number">31</div>
                     <div class="article-title">
                         <h2><a href="https://www.pv-magazine.com/2025/11/07/fluence-to-supply-leags-4-gwh-battery-project-europes-largest-in-germany/" target="_blank">Fluence to supply Leag’s 4 GWh battery project, Europe’s largest, in Germany</a></h2>
                     </div>
@@ -1246,9 +1395,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="afed2636">
                 <div class="article-header">
-                    <div class="article-number">28</div>
+                    <div class="article-number">32</div>
                     <div class="article-title">
                         <h2><a href="https://www.pv-magazine.com/2025/11/07/vilion-releases-new-ci-battery-energy-storage-system/" target="_blank">Vilion releases new C&I battery energy storage system</a></h2>
                     </div>
@@ -1278,9 +1427,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="204aa264">
                 <div class="article-header">
-                    <div class="article-number">29</div>
+                    <div class="article-number">33</div>
                     <div class="article-title">
                         <h2><a href="https://www.pv-magazine.com/2025/11/07/lg-chem-sinopec-to-jointly-develop-sodium-ion-battery-materials/" target="_blank">LG Chem, Sinopec to jointly develop sodium-ion battery materials</a></h2>
                     </div>
@@ -1310,9 +1459,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="d1eae555">
                 <div class="article-header">
-                    <div class="article-number">30</div>
+                    <div class="article-number">34</div>
                     <div class="article-title">
                         <h2><a href="https://www.pv-magazine.com/2025/11/10/indias-kosol-energie-unveils-730-w-solar-panel-enters-storage-sector/" target="_blank">India’s Kosol Energie presents 730 W solar panel, enters storage sector</a></h2>
                     </div>
@@ -1342,9 +1491,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="5ef35086">
                 <div class="article-header">
-                    <div class="article-number">31</div>
+                    <div class="article-number">35</div>
                     <div class="article-title">
                         <h2><a href="https://www.pv-magazine.com/2025/11/10/eft-energy-solutions-introduces-modular-battery-system-for-european-ci-market/" target="_blank">EFT Energy Solutions unveils modular battery for European C&I market</a></h2>
                     </div>
@@ -1374,9 +1523,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="9135da1e">
                 <div class="article-header">
-                    <div class="article-number">32</div>
+                    <div class="article-number">36</div>
                     <div class="article-title">
                         <h2><a href="https://www.pv-magazine.com/2025/11/10/catastrophic-failure-at-waratah-super-battery-in-australia/" target="_blank">‘Catastrophic failure’ at Waratah Super Battery in Australia</a></h2>
                     </div>
@@ -1406,9 +1555,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="7a715410">
                 <div class="article-header">
-                    <div class="article-number">33</div>
+                    <div class="article-number">37</div>
                     <div class="article-title">
                         <h2><a href="https://www.powermag.com/bechtel-will-build-major-solar-and-storage-project-in-texas/" target="_blank">Bechtel Will Build Major Solar and Storage Project in Texas</a></h2>
                     </div>
@@ -1438,9 +1587,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="af2dd9ca">
                 <div class="article-header">
-                    <div class="article-number">34</div>
+                    <div class="article-number">38</div>
                     <div class="article-title">
                         <h2><a href="https://www.powermag.com/leag-fluence-building-europes-largest-battery-energy-storage-project/" target="_blank">LEAG, Fluence Building Europe’s Largest Battery Energy Storage Project</a></h2>
                     </div>
@@ -1470,9 +1619,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="bc40fbe0">
                 <div class="article-header">
-                    <div class="article-number">35</div>
+                    <div class="article-number">39</div>
                     <div class="article-title">
                         <h2><a href="https://www.powermag.com/navigating-the-complexities-associated-with-utility-scale-solar-projects/" target="_blank">Navigating the Complexities Associated with Utility-Scale Solar Projects</a></h2>
                     </div>
@@ -1502,9 +1651,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="9a85afd6">
                 <div class="article-header">
-                    <div class="article-number">36</div>
+                    <div class="article-number">40</div>
                     <div class="article-title">
                         <h2><a href="https://www.powermag.com/large-utility-automates-underground-system-sees-reliability-and-restoration-time-improvements/" target="_blank">Large Utility Automates Underground System, Sees Reliability and Restoration Time Improvements</a></h2>
                     </div>
@@ -1534,9 +1683,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="fae124da">
                 <div class="article-header">
-                    <div class="article-number">37</div>
+                    <div class="article-number">41</div>
                     <div class="article-title">
                         <h2><a href="https://www.utilitydive.com/news/spp-to-develop-765-kv-regional-backbone/804981/" target="_blank">Southwest Power Pool to develop 765-kV regional transmission ‘backbone’</a></h2>
                     </div>
@@ -1566,9 +1715,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="e317c872">
                 <div class="article-header">
-                    <div class="article-number">38</div>
+                    <div class="article-number">42</div>
                     <div class="article-title">
                         <h2><a href="https://www.utilitydive.com/spons/future-proofing-utility-communications-the-case-for-multi-carrier-sims/803941/" target="_blank">Future-proofing utility communications: The case for multi-carrier SIMs</a></h2>
                     </div>
@@ -1598,9 +1747,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="e2a492ec">
                 <div class="article-header">
-                    <div class="article-number">39</div>
+                    <div class="article-number">43</div>
                     <div class="article-title">
                         <h2><a href="https://www.utilitydive.com/spons/why-conductor-strength-matters-for-grid-reliability/804458/" target="_blank">Why conductor strength matters for grid reliability</a></h2>
                     </div>
@@ -1630,9 +1779,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="9c06f8fc">
                 <div class="article-header">
-                    <div class="article-number">40</div>
+                    <div class="article-number">44</div>
                     <div class="article-title">
                         <h2><a href="https://www.utilitydive.com/spons/how-network-diversity-protects-utility-operations-in-an-evolving-landscape/805056/" target="_blank">How network diversity protects utility operations in an evolving landscape</a></h2>
                     </div>
@@ -1662,9 +1811,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="43176a84">
                 <div class="article-header">
-                    <div class="article-number">41</div>
+                    <div class="article-number">45</div>
                     <div class="article-title">
                         <h2><a href="https://www.utilitydive.com/news/after-rate-case-con-edison-q3-electric-revenues-up-106-on-flat-sales/805107/" target="_blank">After rate case, Con Edison Q3 electric revenues up 10.6% on flat sales</a></h2>
                     </div>
@@ -1700,9 +1849,137 @@
                 Technical papers from ArXiv - for readers interested in academic research
             </p>
 
-            <article class="article">
+            <article class="article" id="0da4236a">
                 <div class="article-header">
                     <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.06989v1" target="_blank">Capacity Estimation of Lithium-ion Batteries Using Invariance Property in Open Circuit Voltage Relationship</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article proposes a novel capacity estimation method for lithium-ion batteries, leveraging the invariance property in open-circuit voltage (OCV) versus state of charge relationship across aging cycles. The method requires only one cycle of OCV test data and allows for estimating capacity from partial charge or discharge data, making it more efficient and cost-effective than conventional methods. Simulation results demonstrate the method's efficacy in accurately estimating battery capacity.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.06989v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The proposed method estimates battery capacity by solving an OCV alignment problem using OCV and discharge capacity data from a single aging cycle.</li>
+                        <li>The method leverages the invariance property of OCV versus state of charge relationship, allowing for efficient estimation of capacity without requiring extensive training datasets or full cycle testing.</li>
+                        <li>Simulation results show that the proposed method achieves high accuracy in capacity estimation, with a mean absolute relative error of 0.85% across 12 samples from 344 aging cycles.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="c670c2ac">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">2</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.07052v1" target="_blank">Real-Time Co-Simulation for DC Microgrid Energy Management with Communication Delays</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the need for resilient and efficient energy management systems (EMS) in DC microgrids, which are becoming increasingly prominent due to their benefits in renewable energy integration. A novel real-time cyber-physical system testbed has been proposed to evaluate EMS performance under realistic communication delays, capturing the interplay between power system dynamics, control, and network behavior.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.07052v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The growing integration of renewable energy sources (RESs) in modern power systems requires resilient and efficient microgrid solutions.</li>
+                        <li>Traditional EMS algorithms often assume ideal communication conditions or use simplified network models, neglecting the impact of realistic communication delays on performance.</li>
+                        <li>A novel real-time cyber-physical system testbed has been developed to evaluate EMS performance under realistic communication delays, allowing for a comprehensive understanding of power system dynamics, control, and network behavior.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="b708e34d">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">3</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.07159v1" target="_blank">Characterisation and Quantification of Data Centre Flexibility for Power System Support</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article presents an integrated model to investigate the flexibility potential of data centers in providing power system support, particularly with high variable renewable energy. The study aims to quantify and utilize this flexibility by optimizing data center operations and accounting for various factors such as IT workload shifting, UPS energy storage, and cooling dynamics. The results provide a clear temporal structure and asymmetry in flexibility provision.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.07159v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The article introduces an integrated model that optimizes data center operations to establish a cost-optimal baseline operation, which accounts for IT scheduling, UPS operation, and cooling dynamics.</li>
+                        <li>The study reveals a notable asymmetry in flexibility provision, with upward flexibility (electricity load reduction) driven by deferring IT workload, and downward flexibility (electricity load increase) relying on increasing power consumption of the cooling system and charging the UPS.</li>
+                        <li>The framework provides quantified flexibility magnitude and duration that can be investigated for use in services such as reserve, frequency response, and price-responsive demand.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="2e10f7d0">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">4</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.07323v1" target="_blank">Beyond Prime Farmland: Solar Siting Tradeoffs for Cost-Effective Decarbonization</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article examines the trade-offs between costs and technical potential of different land types for solar photovoltaics in the Eastern U.S. It finds that greenfield sites, particularly prime agricultural lands, offer the lowest levelized costs for meeting capacity targets, while contaminated lands have limited technical potential and impose a cost premium. Rooftop PV comes at consistently higher costs compared to greenfield sites.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.07323v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Greenfield sites, especially prime agricultural lands, are the most cost-effective option for utility-scale solar photovoltaics in the Eastern U.S., offering levelized costs of $39-$57/MWh.</li>
+                        <li>Contaminated lands, often prioritized in policy to reduce land use conflict, have limited technical potential and impose a cost premium of 14-33% relative to greenfield sites.</li>
+                        <li>Rooftop PV provides enough technical potential for meeting capacity targets but comes at consistently higher costs, with minimum levelized costs (LCOEs) of around $70/MWh or more.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="bedd1d6b">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">5</div>
                     <div class="article-title">
                         <h2><a href="http://arxiv.org/abs/2511.04644v1" target="_blank">Control Affine Hybrid Power Plant Subsystem Modeling for Supervisory Control Design</a></h2>
                     </div>
@@ -1732,9 +2009,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="96f5d2a4">
                 <div class="article-header">
-                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">2</div>
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">6</div>
                     <div class="article-title">
                         <h2><a href="http://arxiv.org/abs/2511.04917v1" target="_blank">Computationally Efficient Spline-Based Modeling of DER Dynamics for Voltage Stability in Active Distribution Networks</a></h2>
                     </div>
@@ -1764,9 +2041,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="e1051d61">
                 <div class="article-header">
-                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">3</div>
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">7</div>
                     <div class="article-title">
                         <h2><a href="http://arxiv.org/abs/2511.04940v1" target="_blank">Strategic Decision-Making Under Uncertainty through Bi-Level Game Theory and Distributionally Robust Optimization</a></h2>
                     </div>
@@ -1796,9 +2073,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="8c6968e7">
                 <div class="article-header">
-                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">4</div>
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">8</div>
                     <div class="article-title">
                         <h2><a href="http://arxiv.org/abs/2511.05216v1" target="_blank">Neural Operators for Power Systems: A Physics-Informed Framework for Modeling Power System Components</a></h2>
                     </div>
@@ -1828,9 +2105,9 @@
                 </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="418118d0">
                 <div class="article-header">
-                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">5</div>
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">9</div>
                     <div class="article-title">
                         <h2><a href="http://arxiv.org/abs/2511.05391v1" target="_blank">Coherency Control in Power Systems</a></h2>
                     </div>
@@ -1962,6 +2239,41 @@ The article proposes a coherency control strategy for Inverter-Based Resources (
             document.getElementById('researchCount').textContent = visibleResearch;
         }}
 
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {{
+            if (window.location.hash) {{
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {{
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {{
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {{
+                            correspondingButton.classList.add('active');
+                        }}
+                    }}
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {{
+                        targetArticle.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+                    }}, 100);
+                }}
+            }}
+        }}
+
         // Set up search listener
         document.addEventListener('DOMContentLoaded', function() {{
             const searchInput = document.getElementById('searchInput');
@@ -1980,7 +2292,13 @@ The article proposes a coherency control strategy for Inverter-Based Resources (
                     performSearch();
                 }}
             }});
+
+            // Handle hash navigation on page load
+            navigateToArticle();
         }});
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
     </script>
 </body>
 </html>

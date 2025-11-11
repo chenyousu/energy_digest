@@ -44,37 +44,55 @@
             opacity: 0.95;
         }
 
-        .search-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
+        .search-toggle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 12px 24px;
+            border: none;
             border-radius: 8px;
-            text-decoration: none;
+            cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
             font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        .search-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .search-toggle:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
-        .content {
-            padding: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .search-container {
+        .search-panel {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
             margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+            display: none;
         }
 
-        .search-box {
+        .search-panel.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-input-box {
             position: relative;
+            margin-bottom: 15px;
         }
 
         .search-input {
@@ -99,6 +117,88 @@
             transform: translateY(-50%);
             color: #999;
             font-size: 1.2em;
+        }
+
+        .search-results {
+            margin-top: 20px;
+        }
+
+        .search-result-item {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-result-item:hover {
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .search-result-meta {
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .search-stats {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .no-search-results {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .date-filter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-filter-label {
+            color: #888;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .date-input {
+            padding: 8px 12px;
+            font-size: 0.9em;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+
+        .date-input:hover {
+            border-color: #999;
         }
 
         .archive-header {
@@ -216,7 +316,22 @@
             .archive-header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 15px;
+            }
+
+            .archive-header > div:last-child {
+                flex-direction: column;
+                align-items: flex-start;
                 gap: 10px;
+                width: 100%;
+            }
+
+            .date-filter {
+                width: 100%;
+            }
+
+            .date-input {
+                flex: 1;
             }
 
             .card-header {
@@ -232,29 +347,51 @@
 </head>
 <body>
     <div class="container">
-        <header style="position: relative;">
-            <a href="search.html" class="search-button">🔍 Search All Articles</a>
+        <header>
             <h1>Energy Digest</h1>
-            <p>Daily Summary of Power & Energy Systems News</p>
+            <p>Daily Summaries & Key Takeaways of Power & Energy Updates</p>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2 | 15+ Sources | Updated 3x Daily</p>
         </header>
 
         <div class="content">
-            <div class="search-container">
-                <div class="search-box">
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #667eea;">
+                <p style="color: #555; font-size: 0.95em; line-height: 1.6;">
+                    Automated digest of power & energy systems news and research papers from 15+ trusted sources,
+                    including IEEE, Energy Storage News, PV Magazine, and ArXiv. Updated at 8 AM, 1 PM, and 6 PM EST.
+                </p>
+            </div>
+
+            <button class="search-toggle" onclick="toggleSearch()">
+                <span>🔍</span>
+                <span>Search All Articles</span>
+            </button>
+
+            <div class="search-panel" id="searchPanel">
+                <div class="search-input-box">
                     <input
                         type="text"
                         id="searchInput"
                         class="search-input"
-                        placeholder="Search archive by date..."
+                        placeholder="Search by keyword, source, or topic..."
                         autocomplete="off"
                     >
                     <span class="search-icon">🔍</span>
                 </div>
+                <div class="search-stats" id="searchStats">
+                    Loading search index...
+                </div>
+                <div class="search-results" id="searchResults"></div>
             </div>
 
             <div class="archive-header">
                 <div class="archive-title">All Digests</div>
-                <div class="archive-count" id="digestCount">1 digest</div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="date-filter">
+                        <span class="date-filter-label">Filter by date:</span>
+                        <input type="date" id="dateInput" class="date-input">
+                    </div>
+                    <div class="archive-count" id="digestCount">1 digest</div>
+                </div>
             </div>
 
             <div class="summary-grid">
@@ -268,8 +405,12 @@
                     </div>
                     <div class="card-stats">
                         <div class="card-stat">
-                            <span class="card-stat-number">46</span>
-                            <span class="card-stat-label">Articles</span>
+                            <span class="card-stat-number">41</span>
+                            <span class="card-stat-label">News</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-number">5</span>
+                            <span class="card-stat-label">Research</span>
                         </div>
                     </div>
                 </a>
@@ -278,37 +419,143 @@
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: November 10, 2025 at 09:34 PM</p>
+            <p style="margin-top: 10px;">Last updated: November 10, 2025 at 10:42 PM</p>
         </footer>
     </div>
 
     <script>
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const digestCount = document.getElementById('digestCount');
+        let allArticles = [];
+        let searchPanelOpen = false;
+
+        // Toggle search panel
+        function toggleSearch() {
+            const panel = document.getElementById('searchPanel');
+            searchPanelOpen = !searchPanelOpen;
+
+            if (searchPanelOpen) {
+                panel.classList.add('active');
+                document.getElementById('searchInput').focus();
+                // Load search index if not already loaded
+                if (allArticles.length === 0) {
+                    loadSearchIndex();
+                }
+            } else {
+                panel.classList.remove('active');
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResults').innerHTML = '';
+            }
+        }
+
+        // Load search index
+        function loadSearchIndex() {
+            fetch('search_index.json?v=' + Date.now())
+                .then(response => response.json())
+                .then(data => {
+                    allArticles = data.articles || [];
+                    document.getElementById('searchStats').textContent =
+                        `Search ${allArticles.length} articles across all digests`;
+                })
+                .catch(error => {
+                    document.getElementById('searchStats').innerHTML =
+                        '<span style="color: #e74c3c;">Error loading search index. Please refresh the page.</span>';
+                });
+        }
+
+        // Perform search
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const resultsDiv = document.getElementById('searchResults');
+
+            if (!searchTerm) {
+                resultsDiv.innerHTML = '';
+                document.getElementById('searchStats').textContent =
+                    `Search ${allArticles.length} articles across all digests`;
+                return;
+            }
+
+            const filtered = allArticles.filter(article => {
+                const title = article.title.toLowerCase();
+                const summary = article.summary.toLowerCase();
+                const source = article.source.toLowerCase();
+
+                return title.includes(searchTerm) ||
+                       summary.includes(searchTerm) ||
+                       source.includes(searchTerm);
+            });
+
+            if (filtered.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="no-search-results">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🔍</div>
+                        <div>No articles found matching "${searchTerm}"</div>
+                    </div>`;
+                document.getElementById('searchStats').textContent = 'No results found';
+                return;
+            }
+
+            document.getElementById('searchStats').textContent =
+                `Found ${filtered.length} article${filtered.length !== 1 ? 's' : ''} matching "${searchTerm}"`;
+
+            let html = '';
+            filtered.slice(0, 10).forEach(article => {
+                // Build link to specific article in digest using anchor
+                const digestLink = article.article_id
+                    ? `${article.digest_file}#${article.article_id}`
+                    : article.digest_file;
+
+                html += `
+                    <div class="search-result-item" onclick="window.location.href='${digestLink}'">
+                        <div class="search-result-title">${article.title}</div>
+                        <div class="search-result-meta">
+                            ${article.source} • ${article.published} •
+                            <a href="${article.link}" target="_blank" onclick="event.stopPropagation();" style="color: #667eea;">Read original →</a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (filtered.length > 10) {
+                html += `<div style="text-align: center; padding: 15px; color: #888;">Showing top 10 of ${filtered.length} results</div>`;
+            }
+
+            resultsDiv.innerHTML = html;
+        }
+
+        // Search as user types
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(performSearch, 300);
+        });
+
+        // Date picker functionality
+        const dateInput = document.getElementById('dateInput');
         const cards = document.querySelectorAll('.summary-card');
-        const totalDigests = cards.length;
 
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            let visibleCount = 0;
+        dateInput.addEventListener('change', function() {
+            const selectedDate = this.value; // Format: YYYY-MM-DD
 
+            if (!selectedDate) return;
+
+            // Convert to "month day, year" format to match card data
+            const date = new Date(selectedDate + 'T00:00:00');
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = date.toLocaleDateString('en-US', options).toLowerCase();
+
+            // Find matching digest
+            let found = false;
             cards.forEach(card => {
-                const date = card.getAttribute('data-date');
-                const day = card.getAttribute('data-day');
-
-                if (searchTerm === '' || date.includes(searchTerm) || day.includes(searchTerm)) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
+                const cardDate = card.getAttribute('data-date');
+                if (cardDate === formattedDate) {
+                    // Navigate to that digest
+                    window.location.href = card.getAttribute('href');
+                    found = true;
                 }
             });
 
-            if (searchTerm === '') {
-                digestCount.textContent = totalDigests + (totalDigests === 1 ? ' digest' : ' digests');
-            } else {
-                digestCount.textContent = visibleCount + (visibleCount === 1 ? ' digest' : ' digests') + ' found';
+            if (!found) {
+                alert('No digest found for ' + date.toLocaleDateString('en-US', options) + '. Please select a different date.');
+                dateInput.value = '';
             }
         });
     </script>
