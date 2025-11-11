@@ -1,12 +1,67 @@
 {
   "articles": [
     {
+      "title": "With Its Nickel Advantage, Can The Philippines Become An EV Battery Powerhouse?",
+      "link": "https://cleantechnica.com/2025/11/10/with-its-nickel-advantage-can-the-philippines-become-an-ev-battery-powerhouse/",
+      "published": "November 10, 2025",
+      "published_iso": "2025-11-10T15:35:11",
+      "summary": "The Philippines has a significant opportunity to become an EV battery powerhouse due to its large nickel production, which is crucial for electric vehicle batteries. However, the country currently captures only a fraction of the value created by this mineral in the global supply chain. With growing demand for EVs, the Philippines may be able to capitalize on its niche advantage.",
+      "source": "CleanTechnica",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "US ROUNDUP: Fullmark California portfolio, Habitat-\u00d8rsted Texas optimisation, flow battery player Quino secures funding",
+      "link": "https://www.energy-storage.news/us-roundup-fullmark-california-portfolio-habitat-orsted-texas-optimisation-flow-battery-player-quino-secures-funding/",
+      "published": "November 10, 2025",
+      "published_iso": "2025-11-10T11:51:33",
+      "summary": "The article provides a roundup of battery energy storage system (BESS) projects and developments in the US, including Fullmark Energy's commercial operation of a 130MWh BESS, Habitat-\u00d8rsted's optimization of a 500MWh BESS for \u00d8rsted, and Quino Energy securing $10 million in Series A funding.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "HD Renewable Energy secures 20-year offtake for 330MWh Templers BESS in South Australia",
+      "link": "https://www.energy-storage.news/hd-renewable-energy-secures-20-year-offtake-for-330mwh-templers-bess-in-south-australia/",
+      "published": "November 10, 2025",
+      "published_iso": "2025-11-10T09:41:44",
+      "summary": "HD Renewable Energy (HDRE) has secured a 20-year power purchase agreement for the Templers Battery Project in South Australia, which is expected to provide 111MW of renewable energy. The project features a 330MWh battery energy storage system (BESS). This deal underscores the growing demand for renewable energy solutions in the region.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "AGL divests 19.9% Tilt Renewables stake to fund battery storage expansion",
+      "link": "https://www.energy-storage.news/agl-divests-19-9-tilt-renewables-stake-to-fund-battery-storage-expansion/",
+      "published": "November 10, 2025",
+      "published_iso": "2025-11-10T09:37:57",
+      "summary": "AGL Energy has agreed to divest 19.9% of its stake in Tilt Renewables, a renewable energy company, to raise AU$750 million (US$488 million) to fund the expansion of battery storage projects.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
       "title": "How Rising Wildfire Risks Are Rewiring the Future of Power Systems",
       "link": "https://www.rtoinsider.com/119200-how-rising-wildfire-risks-are-rewiring-the-future-of-power-systems/",
       "published": "November 09, 2025",
       "published_iso": "2025-11-09T20:01:07",
       "summary": "The article discusses the growing risks of wildfires in power systems, particularly in the United States. Rising wildfire threats are being attributed to various factors, including drought, climate change, and maintenance issues with transmission lines. The consequences of these fires can be devastating, as seen in recent cases such as the 2018 Camp Fire in California.",
       "source": "RTO Insider",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Renewable Energy Infrastructure Resilience Tested as a Supertyphoon Approaches the Philippines",
+      "link": "https://cleantechnica.com/2025/11/09/renewable-energy-infrastructure-resilience-tested-as-a-supertyphoon-approaches-the-philippines/",
+      "published": "November 09, 2025",
+      "published_iso": "2025-11-09T05:26:29",
+      "summary": "A supertyphoon, Super Typhoon Fung-Wong, is approaching the Philippines with forecasted sustained winds exceeding 185 kph, posing a significant test to the resilience of renewable energy infrastructure in the region. The approaching storm has implications for the country's energy transition efforts and the potential impact on power systems. The situation highlights the importance of preparedness and investment in renewable energy infrastructure.",
+      "source": "CleanTechnica",
       "digest_date": "2025-11-10",
       "digest_file": "energy_digest_2025-11-10.html",
       "key_takeaways": []
@@ -23,12 +78,45 @@
       "key_takeaways": []
     },
     {
+      "title": "Sheep Will Frolic In Massive New Solar Power Plant In Texas",
+      "link": "https://cleantechnica.com/2025/11/07/sheep-will-frolic-in-massive-new-solar-power-plant-in-texas/",
+      "published": "November 07, 2025",
+      "published_iso": "2025-11-07T15:13:55",
+      "summary": "Enel, an energy firm, has commissioned its largest solar power plant in the US, which incorporates a unique approach to land management. The solar power plant will feature sheep that will graze on vegetation and improve soil health. This innovative solution aims to minimize environmental impact while maximizing renewable energy production.",
+      "source": "CleanTechnica",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Plus Power secures US$160 million for New England BESS projects",
+      "link": "https://www.energy-storage.news/plus-power-secures-us160-million-for-new-england-bess-projects/",
+      "published": "November 07, 2025",
+      "published_iso": "2025-11-07T14:10:09",
+      "summary": "Plus Power has secured $160 million in tax equity investments from Morgan Stanley to support two battery energy storage system (BESS) projects in Massachusetts and Maine. The funding will help the developer-operator expand its renewable energy infrastructure in New England. This investment is part of a larger trend of increased investment in energy storage systems in the region.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
       "title": "Neural Operators for Power Systems: A Physics-Informed Framework for Modeling Power System Components",
       "link": "http://arxiv.org/abs/2511.05216v1",
       "published": "November 07, 2025",
       "published_iso": "2025-11-07T13:15:26",
       "summary": "Here is the analysis:\n\n The article proposes a neural-operator framework, called Physics-Informed DeepONets (PI-DeepONets), for surrogate modeling of power system components. This framework uses Deep Operator Networks to learn mappings from system states and time-varying inputs to full trajectories without step-by-step integration. PI-DeepONets achieve accurate predictions under diverse scenarios, providing a significant speedup compared to classical ODE solvers.",
       "source": "ArXiv",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Trina Storage signs 5GWh battery storage supply agreement with Pacific Green Energy",
+      "link": "https://www.energy-storage.news/trina-storage-signs-5gwh-battery-storage-supply-agreement-with-pacific-green-energy/",
+      "published": "November 07, 2025",
+      "published_iso": "2025-11-07T08:19:48",
+      "summary": "Trina Storage has signed a Memorandum of Understanding (MoU) with Pacific Green Energy Group to supply up to 5GWh of battery energy storage systems between 2026 and 2028, marking a significant partnership in the energy sector.",
+      "source": "Energy Storage News",
       "digest_date": "2025-11-10",
       "digest_file": "energy_digest_2025-11-10.html",
       "key_takeaways": []
@@ -73,6 +161,83 @@
       "published_iso": "2025-11-06T18:36:28",
       "summary": "The article presents a modeling and control design framework for hybrid power plants, specifically adapted from existing paradigms for wind farms, solar plants, and battery models. The proposed framework allows for control design at the supervisory level using a control affine form, incorporating nonlinear control techniques to ensure safe and stable operation. The utility of this framework is demonstrated through a test case involving various input signals.",
       "source": "ArXiv",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "GridStor\u2019s 440MWh Texas BESS begins operations",
+      "link": "https://www.energy-storage.news/gridstors-440mwh-texas-bess-begins-operations/",
+      "published": "November 06, 2025",
+      "published_iso": "2025-11-06T13:57:28",
+      "summary": "GridStor's 440MWh Hidden Lakes Reliability battery energy storage system (BESS) in Texas has begun operations, marking a significant milestone for the developer-operator. The project is designed to provide reliability and resilience to the grid by storing excess energy generated during periods of high solar production. With this operational BESS, GridStor aims to enhance the overall energy security of the region.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "BrightNight and Cordelio reach financial close for 1,200MWh Arizona BESS",
+      "link": "https://www.energy-storage.news/brightnight-and-cordelio-reach-financial-close-for-1200mwh-arizona-bess/",
+      "published": "November 06, 2025",
+      "published_iso": "2025-11-06T13:56:17",
+      "summary": "Here are the requested analysis:\n\n BrightNight and Cordelio Power have reached financial close for a 300MWac solar PV, 300MW/1,200MWh battery energy storage system in Yuma, Arizona, marking a significant milestone for the project. The project aims to provide renewable energy to the local grid and support the growth of clean energy in the region. Financial close is a crucial step towards project completion.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Gotion\u00a0High-Tech, Clou Electronics, Eve Battery and\u00a0Kstar\u00a0show strong performance in Q3",
+      "link": "https://www.energy-storage.news/gotion-high-tech-clou-electronics-eve-battery-and-kstar-show-strong-performance-in-q3/",
+      "published": "November 06, 2025",
+      "published_iso": "2025-11-06T09:21:01",
+      "summary": "The article reports on the strong performance of several high-tech companies in China, including Gotion High-Tech, Clou Electronics, Eve Battery, and Kstar, during Q3. The trade body notes that energy storage battery manufacturing capacity utilization rates in China are expected to remain high as China enters Q4 2025. This suggests a continued focus on the development and production of energy storage batteries.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Akaysha Energy bags AU$460 million for 1,244MWh BESS in Victoria, Australia",
+      "link": "https://www.energy-storage.news/akaysha-energy-bags-au460-million-for-1244mwh-bess-in-victoria-australia/",
+      "published": "November 06, 2025",
+      "published_iso": "2025-11-06T09:15:13",
+      "summary": "Akaysha Energy has secured AU$460 million in construction financing for its 311MW/1,244MWh battery energy storage system (BESS) in Victoria, Australia. The project is backed by BlackRock and aims to support the growing demand for renewable energy in the region. This investment demonstrates increasing investor confidence in Australia's energy storage market.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Aggressive pricing and emerging C&I models reshape India\u2019s energy storage outlook",
+      "link": "https://www.energy-storage.news/aggressive-pricing-and-emerging-ci-models-reshape-indias-energy-storage-outlook/",
+      "published": "November 05, 2025",
+      "published_iso": "2025-11-05T12:54:06",
+      "summary": "India's energy storage industry is undergoing a significant shift as aggressive pricing and emerging Commercial & Industrial (C&I) models are redefining the landscape for large-scale battery projects. The article suggests that developers, financiers, and policymakers are working together to create viable business models for this next wave of battery projects. This shift could have a substantial impact on the Indian energy storage industry.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Xcel Energy plans 600MW \u2018US Midwest\u2019s largest BESS project\u2019 in Minnesota",
+      "link": "https://www.energy-storage.news/xcel-energy-plans-600mw-us-midwests-largest-bess-project-in-minnesota/",
+      "published": "November 05, 2025",
+      "published_iso": "2025-11-05T12:23:51",
+      "summary": "Xcel Energy plans to build the largest battery energy system (BESS) facility in the US Midwest, located at the Sherco Energy Hub in central Minnesota. The project aims to support the region's growing demand for renewable energy and enhance grid resilience. This significant investment underscores the increasing importance of energy storage solutions in meeting the US' expanding power needs.",
+      "source": "Energy Storage News",
+      "digest_date": "2025-11-10",
+      "digest_file": "energy_digest_2025-11-10.html",
+      "key_takeaways": []
+    },
+    {
+      "title": "Canadian LG Energy Solution and Stellantis joint venture to produce LFP cells for BESS",
+      "link": "https://www.energy-storage.news/canadian-lg-energy-solution-and-stellantis-joint-venture-to-produce-lfp-cells-for-bess/",
+      "published": "November 05, 2025",
+      "published_iso": "2025-11-05T12:19:30",
+      "summary": "LG Energy Solution and Stellantis' joint venture, NextStar Energy, is expanding its production capacity to manufacture lithium-ion (Li-ion) battery cells for energy storage systems in Canada. This move aims to support the growing demand for renewable energy storage solutions in North America. The joint venture has established a large-scale Li-ion battery manufacturing plant, marking Canada's first major Li-ion battery facility.",
+      "source": "Energy Storage News",
       "digest_date": "2025-11-10",
       "digest_file": "energy_digest_2025-11-10.html",
       "key_takeaways": []
@@ -166,5 +331,5 @@
       "key_takeaways": []
     }
   ],
-  "last_updated": "2025-11-10T20:38:38.695271"
+  "last_updated": "2025-11-10T20:42:13.203500"
 }
