@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power & Energy Systems Daily Summary - November 16, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title {
+            flex: 1;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .metadata-value {
+            color: #666;
+        }
+
+        .relevance-score {
+            display: inline-block;
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .takeaways li:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .sources {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .sources h2 {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .sources ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sources li {
+            padding: 5px 0;
+            color: #666;
+        }
+
+        .sources strong {
+            color: #667eea;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 10px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .article-header {
+                flex-direction: column;
+            }
+
+            .article-number {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Power & Energy Systems Daily Summary</h1>
+            <div class="subtitle">Latest News and Research in Power Systems</div>
+            <div class="meta">Generated: November 16, 2025 at 08:00 AM</div>
+        </header>
+
+        <div class="content">
+            <p style="font-size: 1.1em; color: #666; margin-bottom: 30px; text-align: center;">
+                This report summarizes the top <strong>15</strong> most relevant articles
+                in power and energy systems from the past <strong>7</strong> days.
+            </p>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 40px; text-align: center;">
+                <div style="display: inline-block; margin: 0 20px;">
+                    <div style="font-size: 2em; font-weight: bold; color: #667eea;">📰 12</div>
+                    <div style="color: #666;">News & Articles</div>
+                </div>
+                <div style="display: inline-block; margin: 0 20px;">
+                    <div style="font-size: 2em; font-weight: bold; color: #667eea;">🔬 3</div>
+                    <div style="color: #666;">Research Papers</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 60px;">
+                <h2 style="color: #667eea; font-size: 2em; margin-bottom: 10px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">
+                    📰 News & Industry Articles
+                </h2>
+                <p style="color: #888; margin-bottom: 30px; font-style: italic;">Latest updates from the power and energy industry</p>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.renewableenergyworld.com/energy-business/policy-and-regulation/ohio-manufacturers-association-challenges-new-utility-billing-for-data-centers/" target="_blank">Ohio Manufacturers’ Association challenges new utility billing for data centers</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Renewable Energy World</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.60</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Ohio Manufacturers' Association is challenging a state supreme court decision that allows American Electric Power to charge data centers differently based on their usage patterns. This decision has significant implications for the data center industry in Ohio, as it may lead to increased costs and reduced competitiveness for companies operating in the state. The association argues that this differential billing system is unfair and seeks to reverse the ruling.
+                    </div>
+                </div>
+
+                <a href="https://www.renewableenergyworld.com/energy-business/policy-and-regulation/ohio-manufacturers-association-challenges-new-utility-billing-for-data-centers/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/13/south-korea-mandates-solar-systems-at-public-parking-lots-from-late-november/" target="_blank">South Korea mandates solar systems at public parking lots from late November</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">PV Magazine</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.60</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The South Korean government has mandated the installation of solar power systems at public parking lots larger than 1,000 square meters starting from late November. This policy aims to accelerate renewable energy adoption in urban areas and reduce reliance on fossil fuels. The move is part of a broader initiative to promote sustainable development.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/13/south-korea-mandates-solar-systems-at-public-parking-lots-from-late-november/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://cleantechnica.com/2025/11/15/one-of-the-largest-solar-power-installations-in-colombia-launched/" target="_blank">One Of The Largest Solar Power Installations In Colombia Just Launched</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">CleanTechnica</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 15, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Shangri-La solar project, launched by Atlas Renewable Energy in Colombia, is one of the largest solar power installations in the country, with a capacity of 201 MW. The project marks a significant milestone for renewable energy in Colombia and demonstrates the growing trend of investment in solar power globally. This launch highlights the potential for renewable energy to play a key role in reducing reliance on fossil fuels.
+                    </div>
+                </div>
+
+                <a href="https://cleantechnica.com/2025/11/15/one-of-the-largest-solar-power-installations-in-colombia-launched/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/us-epa-appoints-abtc-to-recycle-up-to-100000-li-ion-battery-modules-from-moss-landing-bess/" target="_blank">US EPA appoints ABTC to recycle up to 100,000 Li-ion battery modules from Moss Landing BESS</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Energy Storage News</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Here is the analysis:
+
+
+The US Environmental Protection Agency (EPA) has appointed American Battery Technology Company (ABTC) to recycle up to 100,000 Li-ion battery modules from the Moss Landing Energy Storage Facility in California. This project aims to reduce waste and recover critical minerals from spent batteries. ABTC's recycling capabilities will help close the loop for the lifecycle of lithium-ion batteries.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/us-epa-appoints-abtc-to-recycle-up-to-100000-li-ion-battery-modules-from-moss-landing-bess/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/acciona-energia-retrofits-1gwh-battery-storage-project-to-solar-pv-plant-in-chile/" target="_blank">Acciona Energia retrofits 1GWh battery storage project to solar PV plant in Chile</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Energy Storage News</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Acciona Energia is upgrading an existing solar PV plant in Chile by adding a large battery energy storage system (BESS) with a capacity of 1GWh. This upgrade aims to enhance the plant's overall efficiency and stability. The addition of BESS will enable the plant to better manage peak demand and optimize energy production.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/acciona-energia-retrofits-1gwh-battery-storage-project-to-solar-pv-plant-in-chile/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">6</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.utilitydive.com/news/reshoring-technology-diversification-energy-storage/805195/" target="_blank">Reshoring, technology diversification are reshaping the future of energy storage</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Utility Dive</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the importance of diversifying battery technologies in energy storage systems, offering a sustainable path to resilience and supply chain strength. Reshoring and technology diversification are key strategies being explored to achieve this goal. By expanding their tech portfolio, companies can reduce dependence on foreign suppliers and build more resilient energy storage systems.
+                    </div>
+                </div>
+
+                <a href="https://www.utilitydive.com/news/reshoring-technology-diversification-energy-storage/805195/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">7</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/71-of-americans-surveyed-support-energy-storage-but-vocal-minority-kill-or-delay-projects/" target="_blank">71% of Americans surveyed support energy storage, but ‘vocal minority’ kill or delay projects</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Energy Storage News</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 12, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        A recent survey of Americans has found that a significant majority (71%) support the development and implementation of energy storage systems. However, despite widespread public backing, the progress of energy storage projects is often hindered by vocal opposition from various stakeholders. Firetrace International's latest report highlights this paradox, revealing the complexities of implementing large-scale energy storage projects.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/71-of-americans-surveyed-support-energy-storage-but-vocal-minority-kill-or-delay-projects/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">8</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/us-roundup-fullmark-california-portfolio-habitat-orsted-texas-optimisation-flow-battery-player-quino-secures-funding/" target="_blank">US ROUNDUP: Fullmark California portfolio, Habitat-Ørsted Texas optimisation, flow battery player Quino secures funding</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Energy Storage News</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 10, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article provides an update on various battery energy storage system (BESS) projects in the US, including Fullmark Energy's commercial operation of a 130MWh BESS, Habitat's optimization of a 500MWh BESS for Ørsted, and Quino Energy securing funding to expand its operations.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/us-roundup-fullmark-california-portfolio-habitat-orsted-texas-optimisation-flow-battery-player-quino-secures-funding/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">9</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/hd-renewable-energy-secures-20-year-offtake-for-330mwh-templers-bess-in-south-australia/" target="_blank">HD Renewable Energy secures 20-year offtake for 330MWh Templers BESS in South Australia</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Energy Storage News</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 10, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        HD Renewable Energy has secured a 20-year power purchase agreement for the 111MW/330MWh Templers Battery Project in South Australia, marking a significant milestone for the 330 megawatt-hour (MWh) battery energy storage system (BESS). The project will provide reliable and renewable energy to Zen Energy's customers. This agreement demonstrates the growing demand for large-scale energy storage solutions in Australia.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/hd-renewable-energy-secures-20-year-offtake-for-330mwh-templers-bess-in-south-australia/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">10</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/us-sodium-ion-startup-peak-energy-deploying-720mwh-bess-for-jupiter-power-with-4gwh-under-reservation/" target="_blank">US sodium-ion startup Peak Energy deploying 720MWh BESS for Jupiter Power, with 4GWh under reservation</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Energy Storage News</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 14, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.40</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Peak Energy, a US sodium-ion startup, has entered into a multi-year phased agreement with developer Jupiter Power to supply up to 4.75GWh of Na-ion battery energy storage systems (BESS). The first phase will involve the deployment of a 720MWh BESS. This partnership demonstrates growing interest in sodium-ion technology for large-scale energy storage applications.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/us-sodium-ion-startup-peak-energy-deploying-720mwh-bess-for-jupiter-power-with-4gwh-under-reservation/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">11</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/14/what-can-south-korea-learn-from-indias-rapid-solar-deployment/" target="_blank">What can South Korea learn from India’s rapid solar deployment?</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">PV Magazine</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 14, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.40</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article highlights the success of India's Bhadla Solar Park, which achieved rapid solar deployment through clear siting policies and streamlined permitting processes. South Korean policy analyst Daun Kim suggests that South Korea can learn from India's approach as it pursues a 100 GW renewable energy target by 2030. By adopting similar strategies, South Korea may be able to accelerate its own renewable energy development.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/14/what-can-south-korea-learn-from-indias-rapid-solar-deployment/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">12</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/octopus-australia-reaches-financial-close-on-486mwh-dc-coupled-solar-plus-storage-site/" target="_blank">Octopus Australia reaches financial close on 486MWh DC-coupled solar-plus-storage site</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">Energy Storage News</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.40</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Octopus Australia has achieved financial close on a AU$900 million solar-plus-storage facility in New South Wales, which combines 300MW of solar generation with a 243MW/486MWh battery energy storage system. The project aims to provide renewable energy and stability for the national grid. This investment is part of Octopus's expansion plans to support Australia's growing renewable energy sector.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/octopus-australia-reaches-financial-close-on-486mwh-dc-coupled-solar-plus-storage-site/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+            </div>
+
+            <div style="margin-bottom: 40px;">
+                <h2 style="color: #764ba2; font-size: 2em; margin-bottom: 10px; border-bottom: 3px solid #764ba2; padding-bottom: 10px;">
+                    🔬 Research Papers
+                </h2>
+                <p style="color: #888; margin-bottom: 20px; font-style: italic;">
+                    Technical papers from ArXiv - for readers interested in academic research
+                </p>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.10467v1" target="_blank">Motivations and Actions of Human-Building Interactions from Environmental Momentary Assessments</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">ArXiv</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.60</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        This article explores the motivations and actions of human-building interactions in the context of demand response programs for residential electricity consumption. The study, which involved 20 households in Colorado and Massachusetts, used ecological momentary assessments to understand how comfort, routines, and other factors influence occupants' decisions to override demand response measures. The findings provide insight into the challenges of implementing effective demand response strategies.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.10467v1" class="btn-link" target="_blank">Read Full Paper →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">2</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.10401v1" target="_blank">Stability Analysis of a Nonlinear Distributed Control Framework for Current Sharing and Voltage Containment in DC Microgrids: The Fast Communication Scenario</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">ArXiv</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Here is the analysis of the power and energy systems article:
+
+**SUMMARY**
+The article presents a stability analysis of a nonlinear distributed control framework for current sharing and voltage containment in DC microgrids. The study explores the global exponential stability of the system using singular perturbation theory, which ensures safe and scalable operations. The findings are supported by a time-domain simulation case study.
+
+**KEY TAKEAWAYS**
+* The study proposes a control scheme that simultaneously achieves proportional current sharing and voltage containment in DC microgrids, ensuring stable and scalable operations.
+* The use of singular perturbation theory provides a global exponential stability result, which is achieved by imposing sufficient time-scale separation between the inner and outer loops of the nested control structure.
+* The proposed method has been tested using a time-domain simulation case study, demonstrating its effectiveness in achieving optimal steady-state performance under appropriate tuning.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.10401v1" class="btn-link" target="_blank">Read Full Paper →</a>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">3</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.10380v1" target="_blank">Large-Signal Stability Guarantees for a Scalable DC Microgrid with Nonlinear Distributed Control: The Slow Communication Scenario</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Source:</span>
+                        <span class="metadata-value">ArXiv</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Published:</span>
+                        <span class="metadata-value">November 13, 2025</span>
+                    </div>
+                    <div class="metadata-item">
+                        <span class="relevance-score">Relevance: 0.50</span>
+                    </div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        This article explores the large-signal stability guarantees of a distributed control framework for DC microgrids, which is designed to ensure safe and stable operations with scalable properties. The proposed control framework uses nonlinear nested control loops to achieve control objectives while relying on singular perturbation theory to prove global exponential stability. This study aims to provide a paradigm shift toward advanced control schemes for the integration of renewable energy sources into electrical grids.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.10380v1" class="btn-link" target="_blank">Read Full Paper →</a>
+            </article>
+            </div>
+
+            <div class="sources">
+                <h2>Sources</h2>
+                <p style="margin-bottom: 15px; color: #666;">This summary aggregated content from:</p>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: #667eea; margin-bottom: 10px;">📰 News & Articles</h3>
+                    <ul>
+                        <li><strong>CleanTechnica</strong> (1 article)</li>
+                        <li><strong>Energy Storage News</strong> (7 articles)</li>
+                        <li><strong>PV Magazine</strong> (2 articles)</li>
+                        <li><strong>Renewable Energy World</strong> (1 article)</li>
+                        <li><strong>Utility Dive</strong> (1 article)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="color: #764ba2; margin-bottom: 10px;">🔬 Research</h3>
+                    <ul>
+                        <li><strong>ArXiv</strong> (3 papers)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated by Power News Aggregator</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Automated daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
