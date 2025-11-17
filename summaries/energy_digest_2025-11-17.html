@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest - November 17, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .takeaways li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: November 17, 2025 at 08:00 AM</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">5</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">1</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (5)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (1)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="83f4e4a0">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/17/utility-scale-bess-to-drive-czechias-storage-market/" target="_blank">Utility-scale BESS to drive Czechia’s storage market</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 17, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Aurora Energy Research predicts that regulatory shifts in Czechia will create strong short-term revenue prospects for utility-scale battery storage. The country's battery storage capacity is expected to reach 6 GWh by the end of the decade, with a two-hour system projected to earn an internal rate of return above 15%. This growth is primarily driven by changes in regulations that are allowing for a major build-out of utility-scale battery energy storage systems (BESS).
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/17/utility-scale-bess-to-drive-czechias-storage-market/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Czechia's battery storage capacity is expected to reach 6 GWh by the end of the decade, up from around 2.3 GWh today.</li>
+                        <li>The country's current battery fleet is dominated by behind-the-meter installations, accounting for 98% of installed capacity in 2024.</li>
+                        <li>Regulatory changes are driving a major build-out of utility-scale BESS, with strong short-term revenue prospects anticipated.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="98ce1f8f">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/australia-to-launch-capacity-investment-scheme-tender-8-seeking-16gwh-energy-storage-in-the-nem/" target="_blank">Australia to launch Capacity Investment Scheme Tender 8 seeking 16GWh energy storage in the NEM</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 17, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Australia's DCCEEW is launching the Capacity Investment Scheme Tender 8, which will seek 16GWh of energy storage in the National Electricity Market (NEM). This tender aims to increase energy storage capacity and support the integration of renewable energy sources into the grid. The launch is expected later this month.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/australia-to-launch-capacity-investment-scheme-tender-8-seeking-16gwh-energy-storage-in-the-nem/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Australia's DCCEEW is launching a new energy storage tender, Tender 8, which seeks 16GWh of energy storage in the NEM.</li>
+                        <li>The Capacity Investment Scheme is designed to increase energy storage capacity and support the integration of renewable energy sources into the grid.</li>
+                        <li>The tender launch is expected later this month, indicating a timely investment in energy storage infrastructure to meet Australia's growing renewable energy demands.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="5643e30d">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/17/australia-grid-delays-pose-risk-to-renewable-energy-targets/" target="_blank">Australia grid delays pose risk to renewable energy targets</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 17, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Australian grid is facing delays in connecting renewable energy projects, which is threatening the country's clean-energy buildout and its goal of reaching net zero by 2050. According to a survey conducted by Intium, 20% of renewable energy developers waited two to three years for grid-connection approval, while delays have caused commercial operations to be disrupted and eroded investor confidence. This issue is considered nationally important and requires greater attention and public discussion.
+
+KEY TAKEAWAYs:
+
+• Long and unpredictable grid-connection timelines are posing a significant risk to Australia's renewable energy targets, with 20% of surveyed developers waiting two to three years for approval.
+• Delays in the grid connection process are causing commercial operations to be disrupted, eroding investor confidence, and adding pressure to future projects, with nearly 70% of businesses reporting missing financial close due to substantial cost overruns.
+• The survey identified change in technical requirements as a key risk, with 44% pointing to unclear and evolving standards that create a "domino effect" for project timelines, highlighting the need for greater clarity and consistency in grid connection processes.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/17/australia-grid-delays-pose-risk-to-renewable-energy-targets/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article" id="1a752029">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/17/in-puerto-rico-residential-solar-and-storage-growth-outpaces-utility-scale-developments/" target="_blank">In Puerto Rico, residential solar and storage growth outpaces utility-scale developments</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 17, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Puerto Rico has seen significant growth in residential solar and storage systems, with a total of 1.3 GW of residential solar and 185,000 residential batteries installed as of now. This growth is driven by the need for reliable energy sources after Hurricane Maria caused widespread power outages. Wood Mackenzie expects three more GWh of residential storage to be added by 2029.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/17/in-puerto-rico-residential-solar-and-storage-growth-outpaces-utility-scale-developments/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Puerto Rico has seen a significant surge in residential solar installations, with almost 90 MW added between July and September 2025, making it the second-best quarter ever for the US territory.</li>
+                        <li>The growth of residential solar in Puerto Rico is largely driven by the need for reliable energy sources after Hurricane Maria caused extensive power outages that led to loss of life.</li>
+                        <li>Wood Mackenzie expects a further expansion of residential storage systems, with three more GWh expected to be added to the existing 185,000 units by 2029.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="4a91f754">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.utilitydive.com/spons/planning-smarter-how-utilities-are-rewriting-the-next-decade-of-grid-relia/805515/" target="_blank">Planning smarter: How utilities are rewriting the next decade of grid reliability</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Utility Dive</div>
+                    <div><span class="metadata-label">Published:</span> November 17, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses how utilities are leveraging automation to improve grid reliability, despite limited resources. By increasing productivity and efficiency, utilities aim to increase the frequency of studies while keeping costs under control. This approach is expected to shape the future of grid management.
+                    </div>
+                </div>
+
+                <a href="https://www.utilitydive.com/spons/planning-smarter-how-utilities-are-rewriting-the-next-decade-of-grid-relia/805515/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Utilities are using automation to streamline data analysis, allowing for more comprehensive studies on grid reliability without incurring significant additional costs.</li>
+                        <li>Automation enables the reuse of existing resources, making it possible for utilities to conduct a greater number of studies than they could previously afford.</li>
+                        <li>By optimizing their operations through technology, utilities can improve grid resilience and enhance overall system performance.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+            <p style="margin-bottom: 30px; color: #666; font-style: italic;">
+                Technical papers from ArXiv - for readers interested in academic research
+            </p>
+
+            <article class="article" id="3d6ed70f">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.11567v1" target="_blank">Who Moved My Distribution? Conformal Prediction for Interactive Multi-Agent Systems</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 14, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the challenges of using conformal prediction for interactive multi-agent systems, where uncertainty-aware prediction is crucial for safe motion planning. The authors introduce an iterative conformal prediction framework that adapts to the changing behavior of surrounding agents, providing probabilistic safety guarantees and improving success rates in simulation scenarios.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.11567v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Most existing frameworks using conformal prediction assume non-interactive surrounding agents, which can lead to endogenous distribution shifts as uncertainty-aware agents change their behavior.</li>
+                        <li>The proposed method addresses this challenge by introducing an iterative conformal prediction framework that adapts to the evolving behavior of reactive, non-ego agents.</li>
+                        <li>The framework provides probabilistic safety guarantees and improves success rates in simulation scenarios, with an overall improvement of up to 9.6% compared to other conformal prediction-based baselines.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
+</body>
+</html>
