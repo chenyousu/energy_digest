@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power & Energy Systems Daily Summary - November 15, 2025</title>
+    <title>Energy Digest - November 16, 2025</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -21,7 +25,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
@@ -39,34 +43,168 @@
         header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            font-weight: 700;
         }
 
         header .subtitle {
             font-size: 1.1em;
             opacity: 0.95;
-            margin-bottom: 5px;
         }
 
         header .meta {
             font-size: 0.95em;
             opacity: 0.85;
+            margin-top: 10px;
         }
 
-        .content {
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
             padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .article {
             margin-bottom: 40px;
             padding-bottom: 40px;
             border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
         }
 
         .article:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
 
         .article-header {
@@ -90,15 +228,10 @@
             margin-right: 20px;
         }
 
-        .article-title {
-            flex: 1;
-        }
-
         .article-title h2 {
             font-size: 1.75em;
             color: #2c3e50;
             margin-bottom: 10px;
-            line-height: 1.3;
         }
 
         .article-title a {
@@ -119,29 +252,10 @@
             font-size: 0.95em;
         }
 
-        .metadata-item {
-            display: flex;
-            align-items: center;
-        }
-
         .metadata-label {
             font-weight: 600;
             color: #667eea;
             margin-right: 5px;
-        }
-
-        .metadata-value {
-            color: #666;
-        }
-
-        .relevance-score {
-            display: inline-block;
-            background: #f0f4ff;
-            color: #667eea;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9em;
         }
 
         .summary {
@@ -165,6 +279,7 @@
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #667eea;
+            margin-top: 15px;
         }
 
         .takeaways h3 {
@@ -175,7 +290,6 @@
 
         .takeaways ul {
             list-style: none;
-            padding-left: 0;
         }
 
         .takeaways li {
@@ -183,25 +297,23 @@
             padding-left: 25px;
             position: relative;
             color: #555;
-            line-height: 1.6;
         }
 
         .takeaways li:before {
-            content: "⚡";
+            content: "•";
             position: absolute;
             left: 0;
             color: #667eea;
-            font-size: 1.2em;
         }
 
         .btn-link {
             display: inline-block;
             color: #667eea;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 2px solid #667eea;
             border-radius: 6px;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: all 0.3s;
             font-weight: 500;
         }
@@ -211,31 +323,15 @@
             color: white;
         }
 
-        .sources {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 40px;
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
         }
 
-        .sources h2 {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .sources ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .sources li {
-            padding: 5px 0;
-            color: #666;
-        }
-
-        .sources strong {
-            color: #667eea;
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
         }
 
         footer {
@@ -247,24 +343,17 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            header h1 {
-                font-size: 2em;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
             .article-header {
                 flex-direction: column;
             }
 
-            .article-number {
-                margin-bottom: 15px;
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
@@ -272,320 +361,470 @@
 <body>
     <div class="container">
         <header>
-            <h1>⚡ Power & Energy Systems Daily Summary</h1>
-            <div class="subtitle">Latest News and Research in Power Systems</div>
-            <div class="meta">Generated: November 15, 2025 at 12:00 AM</div>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: November 16, 2025 at 09:26 PM</div>
         </header>
 
-        <div class="content">
-            <p style="font-size: 1.1em; color: #666; margin-bottom: 30px; text-align: center;">
-                This report summarizes the top <strong>8</strong> most relevant articles
-                in power and energy systems from the past <strong>7</strong> days.
-            </p>
-
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 40px; text-align: center;">
-                <div style="display: inline-block; margin: 0 20px;">
-                    <div style="font-size: 2em; font-weight: bold; color: #667eea;">📰 8</div>
-                    <div style="color: #666;">News & Articles</div>
-                </div>
-                <div style="display: inline-block; margin: 0 20px;">
-                    <div style="font-size: 2em; font-weight: bold; color: #667eea;">🔬 0</div>
-                    <div style="color: #666;">Research Papers</div>
-                </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
             </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
 
-            <div style="margin-bottom: 60px;">
-                <h2 style="color: #667eea; font-size: 2em; margin-bottom: 10px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">
-                    📰 News & Industry Articles
-                </h2>
-                <p style="color: #888; margin-bottom: 30px; font-style: italic;">Latest updates from the power and energy industry</p>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">8</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">0</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
 
-            <article class="article">
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (8)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (0)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="b4b92e34">
                 <div class="article-header">
                     <div class="article-number">1</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.utilitydive.com/news/reshoring-technology-diversification-energy-storage/805195/" target="_blank">Reshoring, technology diversification are reshaping the future of energy storage</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">Utility Dive</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.50</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        The article discusses the importance of diversifying battery technologies to achieve a sustainable path to energy storage resilience and supply chain strength. Reshoring and technology diversification are key strategies being adopted by companies to address these challenges. By expanding their portfolios, companies can reduce dependence on a single supplier and improve overall sustainability.
-                    </div>
-                </div>
-
-                <a href="https://www.utilitydive.com/news/reshoring-technology-diversification-energy-storage/805195/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">2</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.energy-storage.news/us-sodium-ion-startup-peak-energy-deploying-720mwh-bess-for-jupiter-power-with-4gwh-under-reservation/" target="_blank">US sodium-ion startup Peak Energy deploying 720MWh BESS for Jupiter Power, with 4GWh under reservation</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">Energy Storage News</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 14, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.40</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        Here is the analysis of the power and energy systems article:
-
-
-Peak Energy, a US sodium-ion startup, has partnered with Jupiter Power to supply up to 4.75GWh of Na-ion battery energy storage systems (BESS) over several years. The initial deployment will be for 720MWh of BESS capacity. This partnership aims to support the growing demand for renewable energy storage in the US.
-                    </div>
-                </div>
-
-                <a href="https://www.energy-storage.news/us-sodium-ion-startup-peak-energy-deploying-720mwh-bess-for-jupiter-power-with-4gwh-under-reservation/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">3</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.pv-magazine.com/2025/11/14/what-can-south-korea-learn-from-indias-rapid-solar-deployment/" target="_blank">What can South Korea learn from India’s rapid solar deployment?</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">PV Magazine</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 14, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.40</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        The article discusses the experience of India's Bhadla Solar Park in deploying solar energy at a rapid scale, and how its clear siting policies and streamlined permitting process can serve as a model for South Korea as it pursues its own renewable energy target. Daun Kim, a Korean policy analyst, highlights the importance of efficient regulations in supporting the growth of the solar industry. By studying India's approach, South Korea may be able to accelerate its own transition to renewable energy.
-                    </div>
-                </div>
-
-                <a href="https://www.pv-magazine.com/2025/11/14/what-can-south-korea-learn-from-indias-rapid-solar-deployment/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">4</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/octopus-australia-reaches-financial-close-on-486mwh-dc-coupled-solar-plus-storage-site/" target="_blank">Octopus Australia reaches financial close on 486MWh DC-coupled solar-plus-storage site</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">Energy Storage News</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.40</span>
-                    </div>
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 13, 2025</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Here is the analysis:
-
-
-Octopus Australia has achieved financial close on a AU$900 million solar-plus-storage facility in New South Wales, featuring 300MW of solar generation and a 243MW/486MWh battery energy storage system. The project combines DC-coupling technology to optimize energy output and efficiency. This investment is part of Octopus's commitment to renewable energy development in Australia.
+                        Octopus Australia has reached financial close on a AU$900 million DC-coupled solar-plus-storage facility in New South Wales, featuring 300MW of solar generation and a 243MW/486MWh battery energy storage system.
                     </div>
                 </div>
 
                 <a href="https://www.energy-storage.news/octopus-australia-reaches-financial-close-on-486mwh-dc-coupled-solar-plus-storage-site/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The project combines 300MW of solar generation with a 243MW/486MWh battery energy storage system, totaling 486MWh of capacity.</li>
+                        <li>The facility is considered DC-coupled, allowing for the direct connection of renewable energy sources to the grid without inverter conversion losses.</li>
+                        <li>This project represents a significant investment for Octopus Australia, with a total value of AU$900 million (US$587 million).</li>
+                    </ul>
+                </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="9a175a8b">
                 <div class="article-header">
-                    <div class="article-number">5</div>
+                    <div class="article-number">2</div>
                     <div class="article-title">
                         <h2><a href="https://www.energy-storage.news/ampyr-australia-acquires-2160mwh-grid-forming-bess-project-in-south-australia/" target="_blank">Ampyr Australia acquires 2,160MWh grid-forming BESS project in South Australia</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">Energy Storage News</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.40</span>
-                    </div>
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 13, 2025</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Ampyr Australia has acquired a 270MW grid-forming battery energy storage system (BESS) in South Australia from Green Gold Energy, renaming the facility the 'Northern Battery'. The acquisition marks a significant expansion of Ampyr's energy storage capabilities. The Northern Battery is expected to play a key role in supporting renewable energy integration and grid stability.
+                        Ampyr Australia has acquired a 270MW grid-forming battery energy storage system (BESS) in South Australia, renaming it the 'Northern Battery'. The project is valued at AU$800 million and is expected to provide 2,160MWh of energy storage. The acquisition marks a significant expansion for Ampyr Australia's energy storage capabilities.
                     </div>
                 </div>
 
                 <a href="https://www.energy-storage.news/ampyr-australia-acquires-2160mwh-grid-forming-bess-project-in-south-australia/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Ampyr Australia has acquired a 270MW grid-forming BESS project in South Australia, expanding its energy storage capabilities.</li>
+                        <li>The project, renamed the 'Northern Battery', is valued at AU$800 million and will provide 2,160MWh of energy storage.</li>
+                        <li>The acquisition demonstrates the growing importance of battery energy storage systems (BESS) in supporting renewable energy integration and grid stability.</li>
+                    </ul>
+                </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="8f71575d">
                 <div class="article-header">
-                    <div class="article-number">6</div>
+                    <div class="article-number">3</div>
                     <div class="article-title">
                         <h2><a href="https://www.rtoinsider.com/119767-transmission-delays-mean-higher-costs-customers-study/" target="_blank">Transmission Delays Mean Higher Costs for Customers, Study Finds</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">RTO Insider</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 16, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.30</span>
-                    </div>
+                    <div><span class="metadata-label">Source:</span> RTO Insider</div>
+                    <div><span class="metadata-label">Published:</span> November 16, 2025</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        A new study by Grid Strategies, commissioned by WIRES, has found that transmission delays can lead to higher costs for consumers across eight major portfolios in four different markets. The study analyzed the impact of delayed transmission projects on customers and quantified the costs associated with these delays. The findings highlight the importance of timely transmission project completion.
+                        A study by Grid Strategies has found that delaying transmission investments can result in significant losses for consumers, with estimates suggesting they could lose between $150 million and $370 million in net benefits per year of delay. The delays are attributed to factors such as siting and permitting issues, regulatory uncertainty, and supply chain problems. This highlights the need for faster transmission development to mitigate the impact on consumer affordability.
                     </div>
                 </div>
 
                 <a href="https://www.rtoinsider.com/119767-transmission-delays-mean-higher-costs-customers-study/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Delays in transmission investments can result in significant losses for consumers, ranging from $150 million to $370 million in net benefits per year of delay.</li>
+                        <li>The causes of these delays include siting and permitting issues, regulatory uncertainty, supply chain problems, and other factors that impact the timing of transmission project development.</li>
+                        <li>The study emphasizes the importance of addressing these challenges to ensure faster transmission development and minimize the negative impacts on consumer affordability.</li>
+                    </ul>
+                </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="97e3ff24">
                 <div class="article-header">
-                    <div class="article-number">7</div>
+                    <div class="article-number">4</div>
                     <div class="article-title">
                         <h2><a href="https://cleantechnica.com/2025/11/15/coal-killing-sodium-ion-energy-storage-is-coming-to-kill-your-coal-power-plants/" target="_blank">Coal-Killing Sodium-Ion Energy Storage Is Coming To Kill Your Coal Power Plants</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">CleanTechnica</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 15, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.30</span>
-                    </div>
+                    <div><span class="metadata-label">Source:</span> CleanTechnica</div>
+                    <div><span class="metadata-label">Published:</span> November 15, 2025</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        The article discusses how emerging sodium-ion energy storage technologies are threatening the viability of coal power plants, which were previously seen as a viable option for meeting energy demands. Sodium-ion batteries have been shown to be more efficient and cost-effective than traditional lithium-ion batteries, making them a promising alternative for wind and solar energy storage. As a result, coal power plants may struggle to compete with these newer, cleaner energy sources.
+                        The article suggests that new energy storage technologies, particularly sodium-ion batteries, are gaining traction and may disrupt the coal power industry. This technology has the potential to reduce the reliance on coal as a primary source of electricity generation. As a result, coal power plants may face significant challenges in their future operations.
                     </div>
                 </div>
 
                 <a href="https://cleantechnica.com/2025/11/15/coal-killing-sodium-ion-energy-storage-is-coming-to-kill-your-coal-power-plants/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Sodium-ion batteries have emerged as a promising alternative to traditional energy storage methods, making it difficult for coal power plants to compete.</li>
+                        <li>The development and deployment of sodium-ion batteries are expected to accelerate the shift away from coal-based power generation, posing a threat to the industry's survival.</li>
+                        <li>Coal power plants may need to adapt quickly to incorporate new energy storage technologies or risk becoming obsolete in the face of increasing competition.</li>
+                    </ul>
+                </div>
             </article>
 
-            <article class="article">
+            <article class="article" id="9a3d99c6">
                 <div class="article-header">
-                    <div class="article-number">8</div>
+                    <div class="article-number">5</div>
                     <div class="article-title">
                         <h2><a href="https://cleantechnica.com/2025/11/14/toyota-commissions-new-battery-factory-and-pledges-10-billion-investment-in-us/" target="_blank">Toyota Commissions New Battery Factory And Pledges $10 Billion Investment In US</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">CleanTechnica</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 15, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.30</span>
-                    </div>
+                    <div><span class="metadata-label">Source:</span> CleanTechnica</div>
+                    <div><span class="metadata-label">Published:</span> November 15, 2025</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Toyota has commissioned a new battery factory in North Carolina, the only one outside of Japan, with a capacity of 30 GWh per year. The factory is part of a $10 billion investment pledge by Toyota to support its electric vehicle (EV) production in the US. This move marks a significant step towards expanding EV capabilities in the country.
+                        Toyota has commissioned a new battery factory in North Carolina, the only one outside of Japan with a capacity of 30 GWh per year. This move marks a significant investment by the company, with a pledge of $10 billion to support the US electric vehicle market. The factory's presence is expected to contribute to the growth of the country's battery production capabilities.
                     </div>
                 </div>
 
                 <a href="https://cleantechnica.com/2025/11/14/toyota-commissions-new-battery-factory-and-pledges-10-billion-investment-in-us/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-            </div>
 
-            <div class="sources">
-                <h2>Sources</h2>
-                <p style="margin-bottom: 15px; color: #666;">This summary aggregated content from:</p>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #667eea; margin-bottom: 10px;">📰 News & Articles</h3>
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
                     <ul>
-                        <li><strong>CleanTechnica</strong> (2 articles)</li>
-                        <li><strong>Energy Storage News</strong> (3 articles)</li>
-                        <li><strong>PV Magazine</strong> (1 article)</li>
-                        <li><strong>RTO Insider</strong> (1 article)</li>
-                        <li><strong>Utility Dive</strong> (1 article)</li>
+                        <li>Toyota has established a new battery factory in North Carolina, which will serve as the only facility outside of Japan.</li>
+                        <li>The factory has a capacity of 30 GWh per year and is part of a $10 billion investment by Toyota in the US electric vehicle market.</li>
+                        <li>This move marks a significant increase in Toyota's presence in the US, with the company committing to support the country's growing battery production capabilities.</li>
                     </ul>
                 </div>
+            </article>
+
+            <article class="article" id="906c8a46">
+                <div class="article-header">
+                    <div class="article-number">6</div>
+                    <div class="article-title">
+                        <h2><a href="https://cleantechnica.com/2025/11/14/sunbolt-is-leading-on-solar-power-workstations-at-educational-campuses/" target="_blank">Sunbolt Is Leading On Solar Power Workstations At Educational Campuses</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> CleanTechnica</div>
+                    <div><span class="metadata-label">Published:</span> November 14, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Sunbolt, a leader in solar-powered workstations and charging stations, has successfully installed its technology at several educational campuses, including UC Riverside, Southern New Hampshire University, and Montgomery County Public Schools. This move demonstrates the growing trend of incorporating renewable energy sources into campus infrastructure. The use of solar power for workstations and charging stations is becoming increasingly popular due to its efficiency and sustainability.
+                    </div>
+                </div>
+
+                <a href="https://cleantechnica.com/2025/11/14/sunbolt-is-leading-on-solar-power-workstations-at-educational-campuses/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Sunbolt's solar-powered workstations and charging stations are being adopted by educational institutions, highlighting the growing demand for sustainable campus solutions.</li>
+                        <li>The integration of solar power into outdoor tables and canopies on campuses provides a convenient and eco-friendly way to charge devices while utilizing natural sunlight.</li>
+                        <li>This trend suggests that educational institutions are prioritizing environmental sustainability and energy efficiency in their infrastructure development.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="f15267bc">
+                <div class="article-header">
+                    <div class="article-number">7</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/14/us-orders-recall-of-10500-tesla-powerwall-2-battery-systems/" target="_blank">US orders recall of 10,500 Tesla Powerwall 2 battery systems</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 14, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Tesla has issued a recall notice for approximately 10,500 Powerwall 2 battery energy storage systems in the US due to a third-party battery cell defect that has raised safety concerns. The recall is related to overheating incidents, including six cases of smoking and five instances of fire resulting in minor property damage. No injuries have been reported.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/14/us-orders-recall-of-10500-tesla-powerwall-2-battery-systems/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Tesla has recalled around 10,500 Powerwall 2 battery systems in the US due to a third-party battery cell defect that poses safety concerns.</li>
+                        <li>The recall is related to overheating incidents, including six cases of smoking and five instances of fire resulting in minor property damage.</li>
+                        <li>No injuries have been reported as a result of the recalled powerwall 2 battery systems.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="dbbd9c17">
+                <div class="article-header">
+                    <div class="article-number">8</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.utilitydive.com/news/data-center-volatility-flow-batteries-grid/805197/" target="_blank">Data center volatility, batteries and the electric grid’s new reality</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Utility Dive</div>
+                    <div><span class="metadata-label">Published:</span> November 14, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the growing impact of data centers on grid stability, particularly in terms of energy storage through batteries. As data centers increase in number and size, they are becoming a crucial factor in maintaining grid balance. This shift is driven by the growing demand for cloud computing and digital services.
+                    </div>
+                </div>
+
+                <a href="https://www.utilitydive.com/news/data-center-volatility-flow-batteries-grid/805197/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Data centers are becoming a significant contributor to grid stability, with their energy storage capabilities playing a key role.</li>
+                        <li>The increasing number of data centers is placing pressure on the electric grid to manage fluctuations in energy supply and demand.</li>
+                        <li>Batteries will play a crucial role in mitigating these volatility issues, enabling more efficient and reliable energy management.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+
+            <div class="empty-state">
+                <p>No research papers found for this period.</p>
             </div>
         </div>
 
         <footer>
-            <p>Generated by Power News Aggregator</p>
+            <p>Published by Energy Digest</p>
             <p style="margin-top: 10px; font-size: 0.85em;">
-                Automated daily summary of power and energy systems news and research
+                Daily summary of power and energy systems news and research
             </p>
         </footer>
     </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
 </body>
 </html>

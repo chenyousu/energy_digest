@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power & Energy Systems Daily Summary - November 16, 2025</title>
+    <title>Energy Digest - November 16, 2025</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -21,7 +25,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
@@ -39,34 +43,168 @@
         header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            font-weight: 700;
         }
 
         header .subtitle {
             font-size: 1.1em;
             opacity: 0.95;
-            margin-bottom: 5px;
         }
 
         header .meta {
             font-size: 0.95em;
             opacity: 0.85;
+            margin-top: 10px;
         }
 
-        .content {
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
             padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .article {
             margin-bottom: 40px;
             padding-bottom: 40px;
             border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
         }
 
         .article:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
 
         .article-header {
@@ -90,15 +228,10 @@
             margin-right: 20px;
         }
 
-        .article-title {
-            flex: 1;
-        }
-
         .article-title h2 {
             font-size: 1.75em;
             color: #2c3e50;
             margin-bottom: 10px;
-            line-height: 1.3;
         }
 
         .article-title a {
@@ -119,29 +252,10 @@
             font-size: 0.95em;
         }
 
-        .metadata-item {
-            display: flex;
-            align-items: center;
-        }
-
         .metadata-label {
             font-weight: 600;
             color: #667eea;
             margin-right: 5px;
-        }
-
-        .metadata-value {
-            color: #666;
-        }
-
-        .relevance-score {
-            display: inline-block;
-            background: #f0f4ff;
-            color: #667eea;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9em;
         }
 
         .summary {
@@ -165,6 +279,7 @@
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #667eea;
+            margin-top: 15px;
         }
 
         .takeaways h3 {
@@ -175,7 +290,6 @@
 
         .takeaways ul {
             list-style: none;
-            padding-left: 0;
         }
 
         .takeaways li {
@@ -183,25 +297,23 @@
             padding-left: 25px;
             position: relative;
             color: #555;
-            line-height: 1.6;
         }
 
         .takeaways li:before {
-            content: "⚡";
+            content: "•";
             position: absolute;
             left: 0;
             color: #667eea;
-            font-size: 1.2em;
         }
 
         .btn-link {
             display: inline-block;
             color: #667eea;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 2px solid #667eea;
             border-radius: 6px;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: all 0.3s;
             font-weight: 500;
         }
@@ -211,31 +323,15 @@
             color: white;
         }
 
-        .sources {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 40px;
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
         }
 
-        .sources h2 {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .sources ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .sources li {
-            padding: 5px 0;
-            color: #666;
-        }
-
-        .sources strong {
-            color: #667eea;
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
         }
 
         footer {
@@ -247,24 +343,17 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            header h1 {
-                font-size: 2em;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
             .article-header {
                 flex-direction: column;
             }
 
-            .article-number {
-                margin-bottom: 15px;
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
@@ -272,331 +361,405 @@
 <body>
     <div class="container">
         <header>
-            <h1>⚡ Power & Energy Systems Daily Summary</h1>
-            <div class="subtitle">Latest News and Research in Power Systems</div>
-            <div class="meta">Generated: November 16, 2025 at 12:00 AM</div>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: November 16, 2025 at 09:46 PM</div>
         </header>
 
-        <div class="content">
-            <p style="font-size: 1.1em; color: #666; margin-bottom: 30px; text-align: center;">
-                This report summarizes the top <strong>8</strong> most relevant articles
-                in power and energy systems from the past <strong>7</strong> days.
-            </p>
-
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 40px; text-align: center;">
-                <div style="display: inline-block; margin: 0 20px;">
-                    <div style="font-size: 2em; font-weight: bold; color: #667eea;">📰 5</div>
-                    <div style="color: #666;">News & Articles</div>
-                </div>
-                <div style="display: inline-block; margin: 0 20px;">
-                    <div style="font-size: 2em; font-weight: bold; color: #667eea;">🔬 3</div>
-                    <div style="color: #666;">Research Papers</div>
-                </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
             </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
 
-            <div style="margin-bottom: 60px;">
-                <h2 style="color: #667eea; font-size: 2em; margin-bottom: 10px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">
-                    📰 News & Industry Articles
-                </h2>
-                <p style="color: #888; margin-bottom: 30px; font-style: italic;">Latest updates from the power and energy industry</p>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">1</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.renewableenergyworld.com/energy-business/policy-and-regulation/ohio-manufacturers-association-challenges-new-utility-billing-for-data-centers/" target="_blank">Ohio Manufacturers’ Association challenges new utility billing for data centers</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">Renewable Energy World</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.60</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        The Ohio Manufacturers' Association is challenging a state supreme court decision that allows American Electric Power to charge data centers at different rates than traditional industrial customers. The association argues that this decision creates an unfair and unequal system for data centers, which could lead to increased costs for businesses in the state. The dispute highlights the growing importance of data centers in the energy landscape.
-                    </div>
-                </div>
-
-                <a href="https://www.renewableenergyworld.com/energy-business/policy-and-regulation/ohio-manufacturers-association-challenges-new-utility-billing-for-data-centers/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">2</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.pv-magazine.com/2025/11/13/south-korea-mandates-solar-systems-at-public-parking-lots-from-late-november/" target="_blank">South Korea mandates solar systems at public parking lots from late November</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">PV Magazine</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.60</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        The South Korean government has mandated the installation of solar power systems at public parking lots larger than 1,000 square meters starting from late November. This policy aims to accelerate renewable energy adoption in urban areas and promote sustainable development. The move is part of a broader effort to reduce carbon emissions and increase the use of clean energy sources.
-                    </div>
-                </div>
-
-                <a href="https://www.pv-magazine.com/2025/11/13/south-korea-mandates-solar-systems-at-public-parking-lots-from-late-november/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">3</div>
-                    <div class="article-title">
-                        <h2><a href="https://cleantechnica.com/2025/11/15/one-of-the-largest-solar-power-installations-in-colombia-launched/" target="_blank">One Of The Largest Solar Power Installations In Colombia Just Launched</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">CleanTechnica</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 15, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.50</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        Here is the analysis of the power and energy systems article:
-
- The Shangri-La solar project, launched by Atlas Renewable Energy in Ibagué, Tolima, Colombia, is one of the largest solar power installations in the country, with a capacity of 201 MW. This milestone marks a significant step towards increasing renewable energy adoption in Colombia. The project demonstrates the growing importance of solar energy in the region's energy mix.
-                    </div>
-                </div>
-
-                <a href="https://cleantechnica.com/2025/11/15/one-of-the-largest-solar-power-installations-in-colombia-launched/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">4</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.energy-storage.news/us-epa-appoints-abtc-to-recycle-up-to-100000-li-ion-battery-modules-from-moss-landing-bess/" target="_blank">US EPA appoints ABTC to recycle up to 100,000 Li-ion battery modules from Moss Landing BESS</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">Energy Storage News</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.50</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        The US Environmental Protection Agency (EPA) has appointed American Battery Technology Company (ABTC) to recycle up to 100,000 lithium-ion battery modules from the Moss Landing Energy Storage Facility in California. This partnership aims to reduce the environmental impact of large-scale energy storage systems. ABTC will utilize its expertise in recycling critical minerals and lithium-ion batteries.
-                    </div>
-                </div>
-
-                <a href="https://www.energy-storage.news/us-epa-appoints-abtc-to-recycle-up-to-100000-li-ion-battery-modules-from-moss-landing-bess/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number">5</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.energy-storage.news/acciona-energia-retrofits-1gwh-battery-storage-project-to-solar-pv-plant-in-chile/" target="_blank">Acciona Energia retrofits 1GWh battery storage project to solar PV plant in Chile</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">Energy Storage News</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.50</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        Acciona Energia is retrofitting a 1GWh battery energy storage system (BESS) at an existing solar PV plant in Chile, enhancing the plant's efficiency and stability. This upgrade aims to improve the overall performance of the solar power generation facility. The addition of the BESS will also enable the plant to operate during periods of low sunlight.
-                    </div>
-                </div>
-
-                <a href="https://www.energy-storage.news/acciona-energia-retrofits-1gwh-battery-storage-project-to-solar-pv-plant-in-chile/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">5</div>
+                <div class="stat-label">News & Articles</div>
             </div>
-
-            <div style="margin-bottom: 40px;">
-                <h2 style="color: #764ba2; font-size: 2em; margin-bottom: 10px; border-bottom: 3px solid #764ba2; padding-bottom: 10px;">
-                    🔬 Research Papers
-                </h2>
-                <p style="color: #888; margin-bottom: 20px; font-style: italic;">
-                    Technical papers from ArXiv - for readers interested in academic research
-                </p>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
-                    <div class="article-title">
-                        <h2><a href="http://arxiv.org/abs/2511.10467v1" target="_blank">Motivations and Actions of Human-Building Interactions from Environmental Momentary Assessments</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">ArXiv</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.60</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        This article explores the motivations behind human-building interactions in the context of demand response programs (DRPs) for residential sectors. A study of 20 households in Colorado and Massachusetts found that occupants often override DRPs due to discomfort or other personal preferences, highlighting a need for better understanding of these factors. The research aims to inform strategies to improve the effectiveness of DRPs and address the increasing demands on the electric supply and distribution grid.
-                    </div>
-                </div>
-
-                <a href="http://arxiv.org/abs/2511.10467v1" class="btn-link" target="_blank">Read Full Paper →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">2</div>
-                    <div class="article-title">
-                        <h2><a href="http://arxiv.org/abs/2511.10401v1" target="_blank">Stability Analysis of a Nonlinear Distributed Control Framework for Current Sharing and Voltage Containment in DC Microgrids: The Fast Communication Scenario</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">ArXiv</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.50</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        This article analyzes the stability of a nonlinear distributed control framework for DC microgrids, which aims to achieve proportional current sharing and voltage containment while ensuring safe and scalable operations. The study employs singular perturbation theory to prove global exponential stability and verifies the effectiveness of the method through a time-domain simulation case study.
-                    </div>
-                </div>
-
-                <a href="http://arxiv.org/abs/2511.10401v1" class="btn-link" target="_blank">Read Full Paper →</a>
-            </article>
-
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">3</div>
-                    <div class="article-title">
-                        <h2><a href="http://arxiv.org/abs/2511.10380v1" target="_blank">Large-Signal Stability Guarantees for a Scalable DC Microgrid with Nonlinear Distributed Control: The Slow Communication Scenario</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Source:</span>
-                        <span class="metadata-value">ArXiv</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Published:</span>
-                        <span class="metadata-value">November 13, 2025</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="relevance-score">Relevance: 0.50</span>
-                    </div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        The article presents a study on the large-signal stability guarantees of a scalable DC microgrid with nonlinear distributed control. The proposed framework uses nested control loops to achieve proportional current sharing and voltage containment within pre-specified limits, ensuring safe and stable operations. The scalability of the result relies on singular perturbation theory, providing global exponential stability.
-                    </div>
-                </div>
-
-                <a href="http://arxiv.org/abs/2511.10380v1" class="btn-link" target="_blank">Read Full Paper →</a>
-            </article>
-            </div>
-
-            <div class="sources">
-                <h2>Sources</h2>
-                <p style="margin-bottom: 15px; color: #666;">This summary aggregated content from:</p>
-
-                <div style="margin-bottom: 20px;">
-                    <h3 style="color: #667eea; margin-bottom: 10px;">📰 News & Articles</h3>
-                    <ul>
-                        <li><strong>CleanTechnica</strong> (1 article)</li>
-                        <li><strong>Energy Storage News</strong> (2 articles)</li>
-                        <li><strong>PV Magazine</strong> (1 article)</li>
-                        <li><strong>Renewable Energy World</strong> (1 article)</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 style="color: #764ba2; margin-bottom: 10px;">🔬 Research</h3>
-                    <ul>
-                        <li><strong>ArXiv</strong> (3 papers)</li>
-                    </ul>
-                </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">1</div>
+                <div class="stat-label">Research Papers</div>
             </div>
         </div>
 
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (5)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (1)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="cd929319">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://electrek.co/2025/11/12/peak-energy-500m-deal-will-deploy-the-worlds-largest-sodium-ion-battery-system/" target="_blank">Peak Energy’s $500M deal will deploy the world’s largest sodium-ion battery system</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Electrek</div>
+                    <div><span class="metadata-label">Published:</span> November 12, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Peak Energy has secured a $500M deal with Jupiter Power to supply up to 4.75 GWh of sodium-ion battery systems between 2027 and 2030, marking the deployment of what is expected to be the world's largest sodium-ion battery system.
+                    </div>
+                </div>
+
+                <a href="https://electrek.co/2025/11/12/peak-energy-500m-deal-will-deploy-the-worlds-largest-sodium-ion-battery-system/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The deal will see the deployment of sodium-ion batteries on a utility-scale level, indicating growing interest in this technology for large-scale energy storage applications.</li>
+                        <li>Peak Energy's partnership with Jupiter Power represents a significant milestone for the company and highlights its potential as a major player in the sodium-ion battery market.</li>
+                        <li>The project's timeline spans from 2027 to 2030, suggesting that it is part of a larger strategic effort to integrate renewable energy sources into the grid.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="99c4a532">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://electrek.co/2025/11/12/toyota-opens-first-ev-battery-plant-in-the-us/" target="_blank">Toyota opens the doors to its first EV battery plant in the US, but that’s not all</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Electrek</div>
+                    <div><span class="metadata-label">Published:</span> November 12, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Toyota has opened its first electric vehicle (EV) battery plant in the US, marking a significant investment by the company. The $13.9 billion facility is located in North Carolina and will support the production of EV batteries for Toyota's expanding EV lineup.
+                    </div>
+                </div>
+
+                <a href="https://electrek.co/2025/11/12/toyota-opens-first-ev-battery-plant-in-the-us/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Toyota has made a substantial commitment to electric vehicles with the opening of its first EV battery plant in the US, indicating a growing focus on sustainable energy solutions.</li>
+                        <li>The $13.9 billion investment suggests that Toyota is planning to ramp up its production of EV batteries and vehicles in the country, potentially expanding its market share in the EV segment.</li>
+                        <li>This move may also contribute to reducing reliance on imported materials and supporting local economies through the creation of new jobs and economic growth opportunities.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="9de06146">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://electrek.co/2025/11/11/this-is-the-first-ever-semi-solid-state-battery-going-into-a-production-e-bike/" target="_blank">This is the first ever semi-solid-state battery going into a production e-bike</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Electrek</div>
+                    <div><span class="metadata-label">Published:</span> November 12, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        A company has announced the production of the first-ever semi-solid-state battery for an electric bicycle, offering improved safety and energy density over traditional lithium-ion batteries. This innovation is particularly beneficial for light EVs like e-bikes that are often charged indoors. The development holds promise for the future of electric vehicles.
+                    </div>
+                </div>
+
+                <a href="https://electrek.co/2025/11/11/this-is-the-first-ever-semi-solid-state-battery-going-into-a-production-e-bike/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Solid-state batteries offer significant safety benefits compared to traditional lithium-ion batteries, making them a more desirable option for electric bicycles and other applications.</li>
+                        <li>Semi-solid-state batteries can achieve better energy density than traditional batteries, allowing for smaller or more compact battery packs.</li>
+                        <li>The development of semi-solid-state batteries like this one could potentially lead to the widespread adoption of solid-state batteries in various electric vehicle applications.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="2233af7d">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://electrek.co/2025/11/10/europes-largest-battery-storage-project-is-being-built-in-germany/" target="_blank">Europe’s largest battery storage project is being built in Germany</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Electrek</div>
+                    <div><span class="metadata-label">Published:</span> November 10, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        A 1 gigawatt (GW) / 4 gigawatt-hour (GWh) battery storage project is being built in Jänschwalde, Brandenburg, Germany, marking Europe's largest battery storage system. The project aims to support the region's energy grid and provide backup power during peak hours or in case of outages. The exact details about the project's timeline and expected benefits are not provided.
+                    </div>
+                </div>
+
+                <a href="https://electrek.co/2025/11/10/europes-largest-battery-storage-project-is-being-built-in-germany/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The project is being built in Jänschwalde, Brandenburg, Germany, making it Europe's largest battery storage system.</li>
+                        <li>The 1 GW / 4 GWh capacity aims to support the regional energy grid and provide backup power during peak hours or outages.</li>
+                        <li>The details about the project's timeline and expected benefits are not explicitly mentioned in the article.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="a7ea8737">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://electrek.co/2025/11/09/mercedes-benz-tops-28500-car-hybrid-battery-test-this-brand-came-in-last/" target="_blank">Mercedes-Benz tops 28,500 car hybrid battery test — THIS brand came in last</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Electrek</div>
+                    <div><span class="metadata-label">Published:</span> November 09, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article reports on a study by Germany's ADAC that compares the longevity of hybrid batteries from various car manufacturers. Mercedes-Benz comes out on top, with its batteries lasting 28,500 miles before degrading to an unacceptable level, while Mitsubishi's batteries trail behind.
+                    </div>
+                </div>
+
+                <a href="https://electrek.co/2025/11/09/mercedes-benz-tops-28500-car-hybrid-battery-test-this-brand-came-in-last/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Mercedes-Benz has the longest-lasting hybrid battery among tested brands, with a lifespan of up to 28,500 miles.</li>
+                        <li>The study suggests that brand matters when it comes to battery longevity in PHEVs (plug-in hybrid electric vehicles).</li>
+                        <li>A comparison was not made between other brands besides Mercedes-Benz and Mitsubishi, but this highlights the potential for differences in battery quality across manufacturers.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+            <p style="margin-bottom: 30px; color: #666; font-style: italic;">
+                Technical papers from ArXiv - for readers interested in academic research
+            </p>
+
+            <article class="article" id="5d655d01">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.11453v1" target="_blank">Translation-Symmetric Market: Enabling Incentive Compatibility For DER Aggregation</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 14, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the challenges of maintaining incentive compatibility in virtual power plants (VPPs) that aggregate distributed energy resources (DERs). It proposes a new framework called translation-symmetric market (TSM), which aims to ensure consistent market-clearing processes across all hierarchical levels. The TSM framework promotes transparent valuation of resource contributions and secures competitive conditions.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.11453v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The enlarged DER market power within each VPP makes it challenging to maintain incentive compatibility, leading to difficulties in profit allocation procedures.</li>
+                        <li>The proposed translation-symmetric market (TSM) framework aims to address this issue by maintaining identical structural forms across all hierarchical levels of the market.</li>
+                        <li>TSM preserves service prices across levels and ensures competitive conditions, enabling transparent valuation of resource contributions from DERs.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
         <footer>
-            <p>Generated by Power News Aggregator</p>
+            <p>Published by Energy Digest</p>
             <p style="margin-top: 10px; font-size: 0.85em;">
-                Automated daily summary of power and energy systems news and research
+                Daily summary of power and energy systems news and research
             </p>
         </footer>
     </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
 </body>
 </html>
