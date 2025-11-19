@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest - November 19, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .takeaways li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: November 19, 2025 at 08:00 AM</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">4</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">3</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (4)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (3)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="d2b6742f">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/19/atlas-renewable-energy-energizes-201-mw-solar-park-in-colombia/" target="_blank">Atlas Renewable Energy energizes 201 MW solar park in Colombia</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 19, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Atlas Renewable Energy has inaugurated a 201 MW solar park in Colombia, marking the company's first utility-scale installation in the country. The project was financed with $113 million from a funding package led by IDB Invest and Bancolombia, and is part of a partnership to develop 1,000 MW of solar capacity in Colombia. The solar park, known as Shangri-La, was initially developed by Rayo Energía and Black Orchid Solar.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/19/atlas-renewable-energy-energizes-201-mw-solar-park-in-colombia/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Atlas Renewable Energy has completed its first utility-scale solar project in Colombia, the 201 MW Shangri-La solar park.</li>
+                        <li>The project received funding of $113 million from a package led by IDB Invest and Bancolombia, marking a significant investment in renewable energy in the country.</li>
+                        <li>The inauguration of Shangri-La marks a key milestone in Atlas Renewable Energy's plans to develop 1,000 MW of solar capacity in Colombia as part of its partnership with Isagen.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="775e08f9">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/19/paraguay-set-to-host-autonomous-solar-powered-data-center/" target="_blank">Paraguay set to host autonomous solar-powered data center</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 19, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Sollar Machine, a Rio de Janeiro-based company, plans to build a $9 million off-grid solar-powered data center in Paraguay that will operate independently of the national power grid and supply high-performance computing services to international clients, primarily in the artificial intelligence sector. The facility is part of Paraguay's growing trend of attracting energy-intensive infrastructure investment. The project has received institutional backing and is currently in the installation and formalization phase.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/19/paraguay-set-to-host-autonomous-solar-powered-data-center/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>A $9 million off-grid solar-powered data center is being built in Paraguay to supply high-performance computing services to international clients, primarily in the artificial intelligence sector.</li>
+                        <li>The facility will operate independently of the national power grid and rely fully on solar power and battery systems for autonomous data processing.</li>
+                        <li>The project is part of a growing trend of renewable energy-based infrastructure investments in Paraguay, with other examples including a planned cryptocurrency data center powered by hydroelectric generation.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="ffadbbbc">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/19/us-utility-scale-solar-delays-ease-as-market-stabilizes/" target="_blank">US utility-scale solar delays ease as market stabilizes</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 19, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The US Energy Information Administration (EIA) reports that the number of delayed utility-scale solar projects has decreased, indicating stability in the US solar pipeline. The share of delayed projects fell from 25% to 20% of planned capacity between 2024 and the third quarter of 2025. This decline suggests improvements in project timelines, permitting, supply chains, and financing.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/19/us-utility-scale-solar-delays-ease-as-market-stabilizes/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The number of delayed utility-scale solar projects has decreased, with the share falling from 25% to 20% of planned capacity between 2024 and the third quarter of 2025.</li>
+                        <li>Despite a high number of delays in 2024, the year still saw a significant increase in installed capacity, with 31 GW of new utility-scale solar brought online, representing a 34% increase in cumulative US installed capacity.</li>
+                        <li>Most delayed projects occur during late construction or testing phases, often resulting in postponements of one or two months, but are less common than cancellations, which typically account for less than 1% of planned capacity.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="1bcd420f">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.canarymedia.com/articles/solar/wisconsin-community-energy-bill-utility-pushback" target="_blank">Wisconsin lawmakers look to break utility grip on community solar</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Canary Media</div>
+                    <div><span class="metadata-label">Published:</span> November 19, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Wisconsin lawmakers are exploring ways to break the grip of traditional utilities on community solar projects, aiming to increase access and value for landowners like Dave Klevesahl. The current state system limits the ability of farmers and landowners to profit from community solar arrays. This proposal seeks to reform the regulatory framework.
+                    </div>
+                </div>
+
+                <a href="https://www.canarymedia.com/articles/solar/wisconsin-community-energy-bill-utility-pushback" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The existing state system restricts landowners' ability to lease their land for community solar projects, hindering their potential revenue.</li>
+                        <li>Wisconsin lawmakers are proposing reforms to the regulatory framework, potentially allowing for more equitable distribution of benefits between utilities and landowners.</li>
+                        <li>Community solar projects could provide a significant source of renewable energy in the state, but current policies limit access and profitability for landowners.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+            <p style="margin-bottom: 30px; color: #666; font-style: italic;">
+                Technical papers from ArXiv - for readers interested in academic research
+            </p>
+
+            <article class="article" id="01d3c45b">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.14478v1" target="_blank">Agentic AI Systems in Electrical Power Systems Engineering: Current State-of-the-Art and Challenges</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 18, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the emergence of Agentic AI systems in electrical power systems engineering, highlighting their transformative capabilities and need for a clear definition and taxonomy. The paper presents four state-of-the-art use case applications in electrical engineering, demonstrating practical impact and providing recommendations for designing and implementing safe, reliable, and accountable agentic AI systems.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.14478v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Agentic AI systems have diverse applications across various fields of engineering, including electrical power systems.</li>
+                        <li>The article provides a comprehensive review establishing a precise definition and taxonomy for "agentic AI," differentiating it from previous AI paradigms.</li>
+                        <li>Practical impact of agentic AI is demonstrated through four state-of-the-art use case applications in electrical engineering, ranging from streamlining complex power system studies to survival analysis of dynamic pricing strategies.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="4e610bec">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">2</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.14725v1" target="_blank">Towards AC Feasibility of DCOPF Dispatch</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 18, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the development of a unified pipeline to recover AC feasible solutions from DCOPF-based dispatches, which are often infeasible under practical operating scenarios. The pipeline uses four DCOPF variants and employs distributed slack allocation and PV/PQ switching to improve AC feasibility. The results show significant improvements in solution quality compared to conventional methods.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.14725v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The unified pipeline improves AC feasibility by reducing inequality constraint violations, with a factor of 3 to 5 under extreme loading conditions.</li>
+                        <li>The structured ACPF model yields solutions that satisfy both the ACPF equations and engineering inequality constraints, demonstrating improved practical utility over DCOPF-based dispatches.</li>
+                        <li>The pipeline reduces mean absolute error and cost differences between DCOPF and ACOPF by 75% and 93%, respectively, compared to conventional single slack bus methods in a 13,659 bus case.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="6f285b13">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">3</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.14209v1" target="_blank">Entirely Transformerless Universal Direct-Injection Power-Flow Controller</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 18, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses a novel power-flow control circuit that eliminates the need for transformers, addressing stability problems in low-voltage power grids due to increased penetration of renewable energy sources and electric vehicle chargers. The proposed circuit uses silicon and silicon-carbide semiconductors, offering advantages in current-dense direct injection and reducing the number of semiconductors required compared to previous solutions. This compact design aims to improve power management and stability while minimizing cost and size.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.14209v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The proposed circuit eliminates the need for transformers, which is a significant advantage in reducing bulkiness and cost.</li>
+                        <li>The use of silicon and silicon-carbide semiconductors enables efficient current-dense direct injection, addressing challenges in power flow control.</li>
+                        <li>The circuit's compact design and reduced number of semiconductors compared to previous solutions aim to improve power management and stability in low-voltage power grids.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
+</body>
+</html>
