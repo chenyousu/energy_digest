@@ -247,6 +247,66 @@
             display: none;
         }
 
+        .month-section {
+            margin-bottom: 30px;
+        }
+
+        .month-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .month-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .month-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .month-title {
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .month-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+
+        .month-toggle {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .month-section.collapsed .month-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .month-content {
+            margin-top: 15px;
+            display: grid;
+            gap: 15px;
+            padding-left: 10px;
+        }
+
+        .month-section.collapsed .month-content {
+            display: none;
+        }
+
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -387,330 +447,361 @@
                 <div class="archive-title">All Digests</div>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <div class="date-filter">
-                        <span class="date-filter-label">Filter by date:</span>
+                        <span class="date-filter-label">Jump to date:</span>
                         <input type="date" id="dateInput" class="date-input">
                     </div>
                     <div class="archive-count" id="digestCount">16 digests</div>
                 </div>
             </div>
 
-            <div class="summary-grid">
-                <a href="energy_digest_2025-11-25.html" class="summary-card" data-date="november 25, 2025" data-day="tuesday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 25, 2025</div>
-                            <div class="card-date-day">Tuesday</div>
+            <div class="months-container">
+                <div class="month-section " data-month="2025-11">
+                    <div class="month-header" onclick="toggleMonth('2025-11')">
+                        <div class="month-header-left">
+                            <span class="month-title">November 2025</span>
+                            <span class="month-count">16 digests</span>
                         </div>
-                        <span class="latest-badge">Latest</span>
+                        <span class="month-toggle">▼</span>
                     </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">6</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">1</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
+                    <div class="month-content">
+                        <a href="energy_digest_2025-11-25.html" class="summary-card" data-date="november 25, 2025" data-day="tuesday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 25, 2025</div>
+                                    <div class="card-date-day">Tuesday</div>
+                                </div>
+                                <span class="latest-badge">Latest</span>
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">6</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">1</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-24.html" class="summary-card" data-date="november 24, 2025" data-day="monday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 24, 2025</div>
+                                    <div class="card-date-day">Monday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">9</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">3</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-23.html" class="summary-card" data-date="november 23, 2025" data-day="sunday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 23, 2025</div>
+                                    <div class="card-date-day">Sunday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">1</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-22.html" class="summary-card" data-date="november 22, 2025" data-day="saturday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 22, 2025</div>
+                                    <div class="card-date-day">Saturday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">2</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-21.html" class="summary-card" data-date="november 21, 2025" data-day="friday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 21, 2025</div>
+                                    <div class="card-date-day">Friday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">18</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">1</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-20.html" class="summary-card" data-date="november 20, 2025" data-day="thursday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 20, 2025</div>
+                                    <div class="card-date-day">Thursday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">7</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">2</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-19.html" class="summary-card" data-date="november 19, 2025" data-day="wednesday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 19, 2025</div>
+                                    <div class="card-date-day">Wednesday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">38</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">4</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-18.html" class="summary-card" data-date="november 18, 2025" data-day="tuesday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 18, 2025</div>
+                                    <div class="card-date-day">Tuesday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">10</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">3</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-17.html" class="summary-card" data-date="november 17, 2025" data-day="monday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 17, 2025</div>
+                                    <div class="card-date-day">Monday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">5</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-16.html" class="summary-card" data-date="november 16, 2025" data-day="sunday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 16, 2025</div>
+                                    <div class="card-date-day">Sunday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">5</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">1</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-15.html" class="summary-card" data-date="november 15, 2025" data-day="saturday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 15, 2025</div>
+                                    <div class="card-date-day">Saturday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">8</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-14.html" class="summary-card" data-date="november 14, 2025" data-day="friday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 14, 2025</div>
+                                    <div class="card-date-day">Friday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">6</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-13.html" class="summary-card" data-date="november 13, 2025" data-day="thursday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 13, 2025</div>
+                                    <div class="card-date-day">Thursday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">3</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-12.html" class="summary-card" data-date="november 12, 2025" data-day="wednesday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 12, 2025</div>
+                                    <div class="card-date-day">Wednesday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">13</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-11.html" class="summary-card" data-date="november 11, 2025" data-day="tuesday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 11, 2025</div>
+                                    <div class="card-date-day">Tuesday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">13</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_2025-11-10.html" class="summary-card" data-date="november 10, 2025" data-day="monday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">November 10, 2025</div>
+                                    <div class="card-date-day">Monday</div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">45</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">9</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="energy_digest_2025-11-24.html" class="summary-card" data-date="november 24, 2025" data-day="monday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 24, 2025</div>
-                            <div class="card-date-day">Monday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">9</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">3</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-23.html" class="summary-card" data-date="november 23, 2025" data-day="sunday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 23, 2025</div>
-                            <div class="card-date-day">Sunday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">1</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-22.html" class="summary-card" data-date="november 22, 2025" data-day="saturday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 22, 2025</div>
-                            <div class="card-date-day">Saturday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">2</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-21.html" class="summary-card" data-date="november 21, 2025" data-day="friday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 21, 2025</div>
-                            <div class="card-date-day">Friday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">18</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">1</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-20.html" class="summary-card" data-date="november 20, 2025" data-day="thursday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 20, 2025</div>
-                            <div class="card-date-day">Thursday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">7</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">2</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-19.html" class="summary-card" data-date="november 19, 2025" data-day="wednesday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 19, 2025</div>
-                            <div class="card-date-day">Wednesday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">38</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">4</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-18.html" class="summary-card" data-date="november 18, 2025" data-day="tuesday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 18, 2025</div>
-                            <div class="card-date-day">Tuesday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">10</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">3</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-17.html" class="summary-card" data-date="november 17, 2025" data-day="monday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 17, 2025</div>
-                            <div class="card-date-day">Monday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">5</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-16.html" class="summary-card" data-date="november 16, 2025" data-day="sunday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 16, 2025</div>
-                            <div class="card-date-day">Sunday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">5</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">1</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-15.html" class="summary-card" data-date="november 15, 2025" data-day="saturday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 15, 2025</div>
-                            <div class="card-date-day">Saturday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">8</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-14.html" class="summary-card" data-date="november 14, 2025" data-day="friday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 14, 2025</div>
-                            <div class="card-date-day">Friday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">6</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-13.html" class="summary-card" data-date="november 13, 2025" data-day="thursday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 13, 2025</div>
-                            <div class="card-date-day">Thursday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">3</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-12.html" class="summary-card" data-date="november 12, 2025" data-day="wednesday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 12, 2025</div>
-                            <div class="card-date-day">Wednesday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">13</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-11.html" class="summary-card" data-date="november 11, 2025" data-day="tuesday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 11, 2025</div>
-                            <div class="card-date-day">Tuesday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">13</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">0</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="energy_digest_2025-11-10.html" class="summary-card" data-date="november 10, 2025" data-day="monday">
-                    <div class="card-header">
-                        <div class="card-date">
-                            <div class="card-date-main">November 10, 2025</div>
-                            <div class="card-date-day">Monday</div>
-                        </div>
-                        
-                    </div>
-                    <div class="card-stats">
-                        <div class="card-stat">
-                            <span class="card-stat-number">45</span>
-                            <span class="card-stat-label">News</span>
-                        </div>
-                        <div class="card-stat">
-                            <span class="card-stat-number">9</span>
-                            <span class="card-stat-label">Research</span>
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: November 25, 2025 at 08:00 AM</p>
+            <p style="margin-top: 10px;">Last updated: November 25, 2025 at 09:01 AM</p>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+                <p style="font-weight: 600; color: #667eea; margin-bottom: 10px;">Get in Touch</p>
+                <p style="margin: 5px 0;">
+                    📧 Email: <a href="mailto:feedback@energydigest.io" style="color: #667eea; text-decoration: none;">feedback@energydigest.io</a>
+                </p>
+                <p style="margin: 5px 0;">
+                    💡 Suggestions & Feedback: <a href="mailto:feedback@energydigest.io?subject=Energy Digest Feedback" style="color: #667eea; text-decoration: none;">Send us your ideas</a>
+                </p>
+                <p style="margin: 5px 0; font-size: 0.85em; color: #999;">
+                    Have a source to suggest? Want to report an issue? We'd love to hear from you!
+                </p>
+            </div>
         </footer>
     </div>
 
     <script>
         let allArticles = [];
         let searchPanelOpen = false;
+
+        // Toggle month section
+        function toggleMonth(monthKey) {
+            const section = document.querySelector(`.month-section[data-month="${monthKey}"]`);
+            if (section) {
+                section.classList.toggle('collapsed');
+            }
+        }
 
         // Toggle search panel
         function toggleSearch() {
