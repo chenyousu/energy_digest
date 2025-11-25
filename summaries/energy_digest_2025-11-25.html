@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest - November 25, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .takeaways li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: November 25, 2025 at 08:00 AM</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">6</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">1</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (6)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (1)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="9c8bd43a">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/25/indian-utility-seeks-land-for-new-grid-connected-solar-project/" target="_blank">Indian utility seeks land for new grid-connected solar project</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 25, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        NLC India Ltd. has issued a tender for contractors to secure and develop 1,850 acres of land across multiple states in India for an inter-state transmission system-connected solar power project. The project is expected to be connected to India's grid and will require the contractor to arrange and develop the land, design and build the power evacuation package, and provide operation and maintenance support. This project aims to contribute to India's renewable energy goals.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/25/indian-utility-seeks-land-for-new-grid-connected-solar-project/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>NLC India Ltd. has invited bids for a 1,850-acre solar power project connected to India's inter-state transmission system (ISTS), with land requirements spanning multiple states.</li>
+                        <li>The selected contractor will be responsible for arranging and developing the land, designing and building the power evacuation package, and providing operation and maintenance support for three years.</li>
+                        <li>The project aims to contribute to India's renewable energy goals by connecting a solar power plant to the ISTS grid, allowing it to feed electricity into the national grid.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="9b9925e3">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/25/global-grid-scale-bess-deployment-rises-38-through-october/" target="_blank">Global grid-scale BESS deployment rises 38% through October</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 25, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Global grid-scale battery energy storage system (BESS) deployments have reached 156 GWh through October 2025, with a year-over-year increase of 38%. The growth is driven by China's 27% expansion, while Europe and North America also saw significant increases. Meanwhile, the rest of the world experienced a remarkable 242% jump in deployments.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/25/global-grid-scale-bess-deployment-rises-38-through-october/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Global grid-scale BESS deployments have reached 156 GWh through October 2025, with an increase of 38% year-over-year.</li>
+                        <li>The growth is driven by regional expansions, particularly China's 27% increase and Europe and North America's 21% growth, as well as a significant jump in the rest of the world (242%).</li>
+                        <li>Over 153 GWh of BESS deployments are still slated for commissioning in 2025, but delays and cancellations may reduce this total by year-end.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="36e6dac0">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/25/when-solar-meets-next-gen-nuclear/" target="_blank">When solar meets next-gen nuclear</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 25, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Here is the analysis of the article:
+
+
+Scientists in China have proposed a novel scheduling framework for microgrids that integrates solar power with small modular nuclear reactors to improve short-term dispatch capability and long-term economic viability. The framework uses multi-objective distributionally robust optimization with real-time reinforcement learning, resulting in an 18.7% reduction in operational costs. This innovative approach combines multiple energy sources under a single optimization paradigm.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/25/when-solar-meets-next-gen-nuclear/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The proposed system utilizes a hybrid energy management framework that integrates solar power and small modular nuclear reactors to provide complementary power sources.</li>
+                        <li>A multi-objective distributionally robust optimization (DRO) is employed, combined with real-time reinforcement learning (RL), to generate baseline scheduling strategies and continuously adjust control signals for improved adaptability.</li>
+                        <li>The system also incorporates auxiliary resources such as generators, batteries, electrolyzers, and an energy management system (EMS) to manage short-term and long-term storage dynamics and optimize hydrogen production and utilization.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="40a507a0">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/25/us-energy-offices-folded-into-new-structure-at-department-of-energy/" target="_blank">US energy offices folded into new structure at Department of Energy</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 25, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The US Department of Energy (DoE) has removed various energy-focused offices, including those focused on renewable energy, grid modernization, and carbon management, from its organizational chart. These offices will be consolidated into a new structure within the Office of Critical Minerals and Energy Innovation. The move is part of an effort to align operations with "commonsense" energy policy, as stated by Energy Secretary Chris Wright.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/25/us-energy-offices-folded-into-new-structure-at-department-of-energy/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The US Department of Energy has removed several key energy-focused offices, including those focused on renewable energy, grid modernization, and carbon management.</li>
+                        <li>These offices are being consolidated into a new structure within the Office of Critical Minerals and Energy Innovation, which will absorb functions related to energy efficiency, clean energy demonstrations, fossil energy, and grid deployment.</li>
+                        <li>The move is part of an effort to "restore commonsense" to energy policy, with Secretary Chris Wright stating that it aims to lower costs for American families and businesses, while ensuring responsible stewardship of taxpayer dollars.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="09a19b09">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/energy-storage-significantly-underutilised-in-eu-despite-recent-growth-and-policy-support/" target="_blank">Energy storage ‘significantly underutilised’ in EU despite recent growth and policy support</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 25, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The energy storage sector in the EU has seen recent growth and policy support, but its potential is still not being fully utilized. Despite a "healthy pipeline of projects," energy storage technologies are underutilized, suggesting that there is room for improvement. This underutilization may be due to various factors, including infrastructure limitations and lack of public awareness.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/energy-storage-significantly-underutilised-in-eu-despite-recent-growth-and-policy-support/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The EU's energy storage sector has seen significant growth in recent years, but it still lags behind its potential.</li>
+                        <li>There is a growing pipeline of projects across Europe, indicating increased investment and interest in the sector, but this has yet to translate into widespread adoption.</li>
+                        <li>Energy storage technologies are currently underutilized, suggesting that there may be infrastructure limitations or other barriers to their full utilization.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="c2b0595c">
+                <div class="article-header">
+                    <div class="article-number">6</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/25/finlands-polar-night-to-build-250-mwh-sand-battery-for-district-heating-provider/" target="_blank">Finland’s Polar Night to build 250 MWh sand battery for district heating provider</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 25, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Polar Night Energy is building a sand battery for Lahti Energia's district heating network in Vääksy, Finland. The project will be the world's largest sand-based thermal energy storage system, providing 2 MW of thermal output and 250 MWh of storage capacity. This investment aims to reduce fossil-based emissions by approximately 60% annually.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/25/finlands-polar-night-to-build-250-mwh-sand-battery-for-district-heating-provider/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Polar Night Energy is constructing a massive sand battery with a 250 MWh storage capacity, positioning it as the world's largest sand-based thermal energy storage system.</li>
+                        <li>The project will supply heat to the Vääksy district heating network and reduce natural gas consumption by approximately 80%, resulting in an estimated 60% decrease in fossil-based emissions annually.</li>
+                        <li>The sand battery is expected to contribute to grid balancing markets, helping to balance electricity supply and demand as the share of weather-dependent energy grows.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+            <p style="margin-bottom: 30px; color: #666; font-style: italic;">
+                Technical papers from ArXiv - for readers interested in academic research
+            </p>
+
+            <article class="article" id="8702f963">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.19070v1" target="_blank">Impact Analysis of COVID-19 in Bangladesh Power Sector and Recommendations based on Practical Data and Machine Learning Approach</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 24, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article investigates the impact of COVID-19 on Bangladesh's power sector, analyzing changes in load patterns and system stability. The study uses machine learning techniques to predict load profiles and assess the effectiveness of various measures. It provides recommendations for overcoming future disasters by improving energy efficiency, investing in renewable energy, and developing more resilient power systems.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.19070v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The power demand in Bangladesh decreased by approximately 15.4% and 17.2% in April and May 2020 compared to the same periods in 2019, indicating a significant impact of COVID-19 on the country's power sector.</li>
+                        <li>Machine learning models, such as Long-Short-Term Memory (LSTM) frameworks, were used to predict load profiles and compare them with actual values, revealing an average power demand decrease of approximately 19.5% in April 2020 and 18.3% in May 2020 relative to projected values.</li>
+                        <li>The study highlights the importance of developing more resilient power systems, investing in renewable energy, and improving energy efficiency to mitigate the impact of future disasters on the power sector.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
+</body>
+</html>
