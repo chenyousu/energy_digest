@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest - November 27, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .takeaways li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: November 27, 2025 at 08:16 AM</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">5</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">3</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (5)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (3)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="2cb343d1">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.rtoinsider.com/120630-ferc-approves-peco-amazon-transmission-agreement-data-center/" target="_blank">FERC Approves PECO-Amazon Transmission Agreement for Pa. Data Center</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> RTO Insider</div>
+                    <div><span class="metadata-label">Published:</span> November 27, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Federal Energy Regulatory Commission (FERC) has approved a transmission security agreement between PECO Energy and Amazon for a data center planned in Falls Township, Pennsylvania. The data center is one of the investments Amazon announced, totaling $20 billion across Pennsylvania. The agreement includes provisions to prevent costs associated with the interconnection from being shifted to other customers.
+                    </div>
+                </div>
+
+                <a href="https://www.rtoinsider.com/120630-ferc-approves-peco-amazon-transmission-agreement-data-center/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The FERC-approved agreement includes provisions to prevent cost shifting and ensure a committed revenue contribution from Amazon for the data center's load.</li>
+                        <li>The ramp schedule outlines when the data center's load is expected to come online, with shortfall payments if milestones aren't reached and termination fees if the load is permanently reduced.</li>
+                        <li>The agreement sets a baseline revenue contribution of 80% of what a load-serving entity would pay to serve 80% of the monthly load, subject to a customer shortfall event liability cap.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="c4bc2da9">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/italian-battery-storage-market-pipeline-soars-developers-flock-from-around-europe/" target="_blank">Italian battery storage market pipeline soars, developers flock from around Europe</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 27, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Italian battery storage market is experiencing significant growth, attracting developers from across Europe. The increasing demand for renewable energy and grid stability is driving the development of utility-scale battery storage projects in Italy. This trend is expected to continue, with new projects being announced and existing ones coming online.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/italian-battery-storage-market-pipeline-soars-developers-flock-from-around-europe/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The Italian government's push for greater integration of renewable energy sources is creating a high demand for battery storage solutions, driving growth in the market.</li>
+                        <li>Developers from across Europe are flocking to Italy to capitalize on the country's favorable policies and growing interest in utility-scale battery storage projects.</li>
+                        <li>As the grid becomes increasingly reliant on intermittent renewable energy sources, battery storage will play an essential role in ensuring grid stability and reliability in Italy.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="23e29b6d">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/western-australia-seeks-local-vanadium-for-500mwh-kalgoorlie-battery-storage-project/" target="_blank">Western Australia seeks local vanadium for 500MWh Kalgoorlie battery storage project</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 27, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Western Australian government is seeking local vanadium for a 500MWh battery storage project in Kalgoorlie, with the goal of utilizing a 50MW/500MWh vanadium flow battery energy storage system. The project aims to store renewable energy and provide grid stability. This initiative highlights the importance of securing local materials for critical infrastructure projects.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/western-australia-seeks-local-vanadium-for-500mwh-kalgoorlie-battery-storage-project/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The Western Australian government is launching an Expression of Interest (EOI) process to secure a vanadium flow battery energy storage system in Kalgoorlie, which will have a total capacity of 50MW/500MWh.</li>
+                        <li>The project aims to store renewable energy and provide grid stability, suggesting its role in supporting the integration of intermittent energy sources into the grid.</li>
+                        <li>The focus on utilizing local vanadium for this project underscores the need to secure domestic materials for critical infrastructure, such as battery storage systems.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="2ac4e27f">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/ubs-upgrades-china-bess-installation-forecast-industry-to-ride-policy-tailwinds/" target="_blank">UBS upgrades China BESS installation forecast, industry to ride policy tailwinds</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 27, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The UBS report upgrades China's BESS (Battery Energy Storage System) installation forecast, attributing the growth to policy tailwinds. The Chinese government's removal of mandatory energy storage allocation requirements for renewable energy and new policies governing energy storage are driving changes in the market. These developments indicate a favorable environment for the industry.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/ubs-upgrades-china-bess-installation-forecast-industry-to-ride-policy-tailwinds/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>China's energy storage market is undergoing significant changes due to policy updates, including the scrapping of mandatory energy storage allocation requirements.</li>
+                        <li>The removal of these requirements and introduction of new policies governing energy storage are expected to boost the BESS installation forecast in the country.</li>
+                        <li>The favorable policy environment suggests that the industry will ride on the tailwinds of government support, leading to increased growth prospects.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="cbb507bd">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/27/irena-seeks-consultant-for-solar-feasibility-study-in-ukraine/" target="_blank">IRENA seeks consultant for solar feasibility study in Ukraine</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 27, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The International Renewable Energy Agency (IRENA) is seeking a consultancy to conduct a feasibility study for a utility-scale solar power plant in Ukraine, with the goal of supporting the country's energy transition and decentralization efforts. The project aims to build a 30 MW solar park across multiple sites, and IRENA will provide coordinates and site layout information to the selected consulting firm. The study is expected to take 24 weeks and will assess various aspects of the project.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/27/irena-seeks-consultant-for-solar-feasibility-study-in-ukraine/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>IRENA is conducting a feasibility study for a utility-scale solar power plant in Ukraine as part of its Decentralized Energy Systems to Accelerate the Energy Transition initiative.</li>
+                        <li>The proposed solar park will have a maximum capacity of 30 MW, spread across one or more sites to be selected by the Ukrainian government.</li>
+                        <li>The consulting firm will conduct various analyses and assessments, including technical, legal, environmental, social impact, economic, financial, and risk assessment, as part of the feasibility study.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+            <p style="margin-bottom: 30px; color: #666; font-style: italic;">
+                Technical papers from ArXiv - for readers interested in academic research
+            </p>
+
+            <article class="article" id="1adf99cb">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.21387v1" target="_blank">Understanding Regional Inertia Dynamics in CAISO from Real Grid Disturbances</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 26, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the uneven distribution of power system inertia in California's grid due to the shift from synchronous generators to inverter-based resources. By analyzing real-time frequency data, researchers identified trends in regional inertia and its relationship with renewable generation and battery energy storage systems. The study highlights the importance of monitoring regional inertia to ensure grid reliability amidst growing renewable integration.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.21387v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Regional RoCoF values were significantly higher than interconnection-wide values, indicating uneven distribution of power system inertia across California's grid.</li>
+                        <li>Declining inertia is linked to increasing deployment of battery energy storage systems with synthetic inertia capabilities, which helped mitigate the effects of high rate-of-change frequency.</li>
+                        <li>The study emphasizes the need for strategic resource planning and adaptive operational practices to ensure grid reliability in the face of growing renewable integration.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="6b23318c">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">2</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.21327v1" target="_blank">The Theory of Storage in a Power System with Stochastic Demand</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 26, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the theory of storage in power systems, specifically focusing on balancing supply and demand with energy storage systems. It explores how to determine the optimal volume of storage required and what form of hedge contracts are necessary for storage facilities. The study assumes a scenario where uncertainty in the power system involves successive draws of an independent, identically-distributed random variable.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.21327v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The article provides conditions for the optimal operation and investment in energy storage systems, which can be understood graphically using price-duration curves.</li>
+                        <li>Storage volume is dependent on various factors, including the level of demand uncertainty, prices, and time duration.</li>
+                        <li>The study characterizes optimal hedge contracts for storage units, aiming to provide a framework for balancing supply and demand in power systems with stochastic demand.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="359ac536">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">3</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.21371v1" target="_blank">Evaluation of Large Language Models for Numeric Anomaly Detection in Power Systems</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 26, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        This article evaluates the performance of large language models (LLMs) for numeric anomaly detection in power systems. The study uses a representative model, GPT-OSS-20B, on the IEEE 14-bus system and assesses its detection performance and rationale quality across various learning paradigms. The findings provide insights into the limitations and capabilities of LLM-based AD for cyber-physical power grid applications.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.21371v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The study employs a standardized prompt framework to evaluate LLMs for numeric anomaly detection in power systems, assessing their performance on zero-shot, few-shot, in-context learning, low rank adaptation (LoRA), fine-tuning, and hybrid approaches.</li>
+                        <li>A rule-aware design based on the three-sigma criterion is used to assess detection performance and rationale quality, highlighting the potential of LLMs for accurate and interpretable decisions in grid resilience.</li>
+                        <li>The research aims to lay the groundwork for further investigation into the limitations and capabilities of LLM-based AD and its integration with classical detectors in cyber-physical power grid applications.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
+</body>
+</html>
