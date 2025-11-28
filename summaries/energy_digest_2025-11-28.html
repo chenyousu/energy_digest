@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest - November 28, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .takeaways li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: November 28, 2025 at 08:00 AM</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">6</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">0</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (6)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (0)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="546b65ee">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/28/sodium-ion-battery-cells-could-drop-to-40-kwh-says-irena/" target="_blank">Sodium-ion battery cell cost could drop to $40/kWh, says IRENA</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The International Renewable Energy Agency (IRENA) has released a report stating that sodium-ion battery cell costs could drop to $40/kWh, potentially making them a cheaper alternative to lithium-ion technology. This comes as prices of lithium have increased in recent years, but the cost of sodium remains relatively stable. While it's unclear if sodium-ion batteries will become a widely adopted alternative to lithium-ion technology, they may still offer significant cost-saving opportunities in applications such as electric vehicles and large-scale energy storage.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/28/sodium-ion-battery-cells-could-drop-to-40-kwh-says-irena/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Sodium-ion battery cell costs could drop to $40/kWh, potentially making them a cheaper alternative to lithium-ion technology.</li>
+                        <li>The report suggests that the abundance and accessibility of sodium, which is considerably cheaper than lithium, may hold a potential advantage over lithium-ion batteries.</li>
+                        <li>Despite recent price increases in lithium, the cost of sodium remains relatively stable, which could impact the long-term viability of sodium-ion batteries as an alternative to lithium-ion technology.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="e0c21c5d">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/11/28/china-moves-to-curb-irrational-competion-in-battery-energy-storage-industry/" target="_blank">China moves to curb irrational competion in battery energy storage industry</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Chinese Ministry of Industry and Information Technology has announced plans to curb aggressive low-price competition in the power and battery energy storage industry, which has led to oversupply and eroded margins. The move aims to safeguard quality and ensure long-term stability in the industry. Minister Li Lecheng emphasized the importance of the development of the industry.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/11/28/china-moves-to-curb-irrational-competion-in-battery-energy-storage-industry/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>China is taking measures to curb "irrational competition" in the power and battery energy storage industry, which has been driven by aggressive low-price bidding.</li>
+                        <li>The government's actions aim to prevent oversupply and maintain industry margins, ensuring the long-term viability of businesses.</li>
+                        <li>Higher standards and reforms are expected to be implemented to safeguard quality and promote sustainable growth in the industry.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="afd0e06b">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://cleantechnica.com/2025/11/27/texas-to-host-gigantic-11-gw-solar-energy-storage-nuclear-gas-energy-island/" target="_blank">Texas To Host Gigantic 11-GW Solar, Energy Storage, Nuclear, & Gas Energy Island</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> CleanTechnica</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The US startup Fermi is planning to host a massive energy island in Texas, featuring an 11-gigawatt project with a mix of solar power, energy storage, nuclear energy, and natural gas. This ambitious initiative aims to provide clean and sustainable energy solutions for the region. The project's specifics are still under development.
+                    </div>
+                </div>
+
+                <a href="https://cleantechnica.com/2025/11/27/texas-to-host-gigantic-11-gw-solar-energy-storage-nuclear-gas-energy-island/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The 11-gigawatt Project Matador campus in Texas will feature a combination of solar power, energy storage, nuclear energy, and natural gas.</li>
+                        <li>Fermi has reserved space for solar power and energy storage as part of its plans, indicating a focus on renewable energy sources.</li>
+                        <li>The project's development aims to provide clean and sustainable energy solutions for the region, although specific details are still being finalized.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="ca99ff45">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/battery-storage-fire-safety-sungrow-wartsila-chint-power-products-put-through-lsft/" target="_blank">Battery storage fire safety: Sungrow, Wärtsilä, Chint Power products put through LSFT</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Battery storage products from prominent international providers Sungrow, Wärtsilä, and Chint Power have undergone recent fire safety tests. The results of the LSFT (Large Scale Fire Test) were analyzed to assess the fire safety performance of these products. This analysis aims to provide insights into the fire safety of commercial-scale battery energy storage systems.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/battery-storage-fire-safety-sungrow-wartsila-chint-power-products-put-through-lsft/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The testing revealed that most of the tested batteries from Sungrow, Wärtsilä, and Chint Power showed acceptable fire behavior, with some exceeding international safety standards.</li>
+                        <li>However, one product from each manufacturer exhibited unacceptable fire behavior during the LSFT, indicating potential design or material flaws.</li>
+                        <li>The analysis highlights the importance of rigorous testing and evaluation for commercial-scale battery energy storage systems to ensure their compliance with established safety standards.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="99a27b2b">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/australia-opens-capacity-investment-scheme-tender-8-seeking-16gwh-of-energy-storage-across-nem/" target="_blank">Australia opens Capacity Investment Scheme Tender 8, seeking 16GWh of energy storage across NEM</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The Australian government has officially opened CIS Tender 8, a capacity investment scheme to secure 16GWh of energy storage across the National Electricity Market (NEM). This initiative aims to support the growth of renewable energy and stabilize the grid. The tender is expected to attract significant investments in energy storage projects.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/australia-opens-capacity-investment-scheme-tender-8-seeking-16gwh-of-energy-storage-across-nem/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The Australian government is seeking 16GWh of energy storage capacity across the NEM, a substantial increase from previous tenders.</li>
+                        <li>The Capacity Investment Scheme (CIS) Tender 8 is part of the country's efforts to support the growth of renewable energy and stabilize the grid.</li>
+                        <li>Successful bidders will benefit from a fixed revenue stream over a set period, providing a stable financial return on their investments.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="35136ec9">
+                <div class="article-header">
+                    <div class="article-number">6</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/michigan-township-enacts-one-year-bess-moratorium-after-greenfield-developer-sizes-up-area-for-utility-scale-project/" target="_blank">Michigan Township enacts one-year BESS moratorium after greenfield developer sizes up area for utility-scale project</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        A Michigan township has enacted a one-year moratorium on the approval of new Battery Energy Storage Systems (BESS) facilities, following concerns about potential utility-scale projects in the area. The decision was made by the Township Board of Oshtemo after a greenfield developer expressed interest in building a BESS facility in the region. This move aims to provide time for residents and local authorities to consider the implications of large energy storage projects.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/michigan-township-enacts-one-year-bess-moratorium-after-greenfield-developer-sizes-up-area-for-utility-scale-project/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>A Michigan township has imposed a one-year moratorium on new Battery Energy Storage Systems (BESS) facilities, citing concerns about potential utility-scale projects.</li>
+                        <li>The decision was made following an interest from a greenfield developer in building a BESS facility in the area.</li>
+                        <li>The moratorium aims to provide time for residents and local authorities to consider the implications of large energy storage projects.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+
+            <div class="empty-state">
+                <p>No research papers found for this period.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
+</body>
+</html>
