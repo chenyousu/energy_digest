@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest - December 01, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .takeaways li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: December 01, 2025 at 08:00 AM</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">4</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">4</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (4)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (4)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="6c426d73">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://cleantechnica.com/2025/11/30/youd-really-miss-renewables-this-winter-if-they-werent-available/" target="_blank">You’d Really Miss Renewables This Winter If They Weren’t Available</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> CleanTechnica</div>
+                    <div><span class="metadata-label">Published:</span> November 30, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article highlights the importance of renewable energy sources, such as solar and wind power, in reducing global warming stress and its climate consequences. Renewable energy is also more cost-effective and less harmful to human health compared to fossil fuels. The article emphasizes the significance of renewable energy during winter months when it is particularly crucial.
+                    </div>
+                </div>
+
+                <a href="https://cleantechnica.com/2025/11/30/youd-really-miss-renewables-this-winter-if-they-werent-available/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Solar and wind power provide significant benefits for mitigating global warming stress and its climate consequences.</li>
+                        <li>Renewable energy sources are a cost-effective alternative to fossil fuels, making them more economically viable.</li>
+                        <li>The use of renewable energy can also lead to reduced harm to human health compared to the combustion of fossil fuels.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="71a291a0">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/12/01/morocco-opens-tender-for-1000-km-uhv-transmission-line/" target="_blank">Morocco opens tender for 1,000 km UHV transmission line</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> December 01, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Morocco has opened a tender for the construction of a 1,000 km ultra-high-voltage alternating current power line to transmit approximately 2 GW of renewable energy between Boujdour and Tensift. The pre-qualification round is currently underway, with applications due on January 15, 2026. The project aims to strengthen Morocco's electrical infrastructure and support the growth of renewable energy.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/12/01/morocco-opens-tender-for-1000-km-uhv-transmission-line/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Morocco is investing in a 1,000 km ultra-high-voltage alternating current power line to transmit approximately 2 GW of renewable energy between Boujdour and Tensift.</li>
+                        <li>The project is part of a broader set of major electrical infrastructure projects currently in operation or development by the National Office for Electricity and Potable Water (ONEE).</li>
+                        <li>The chosen contractor will be responsible for designing, constructing, and commissioning the project under a turnkey contract, with a scheduled completion date of December 2028.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="64037950">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/12/01/ntpc-commissions-solar-hydrogen-based-microgrid-in-india/" target="_blank">NTPC commissions solar-hydrogen-based microgrid in India</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> December 01, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        NTPC has commissioned a solar-hydrogen-based microgrid system in Chushul, Ladakh, India, which will provide 200 kW of round-the-clock power to remote Army locations. The system uses hydrogen as a storage medium and is designed to replace diesel gensets, reducing carbon emissions and enhancing energy security. The project was completed in a record eight months despite challenging terrain.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/12/01/ntpc-commissions-solar-hydrogen-based-microgrid-in-india/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The solar-hydrogen-based microgrid system will provide reliable and sustainable power supply even in harsh winter conditions with temperatures as low as –40°C.</li>
+                        <li>The system replaces diesel generator sets at remote Army locations, reducing carbon emissions and improving energy security.</li>
+                        <li>The project supports local production and use of green energy, eliminating the need to transport fuel from the plains and easing logistical burdens.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="146cf2c1">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://cleantechnica.com/2025/11/30/the-strange-time-compression-of-sodium-ion-battery-development/" target="_blank">The Strange Time Compression of Sodium-Ion Battery Development</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> CleanTechnica</div>
+                    <div><span class="metadata-label">Published:</span> December 01, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article discusses the rapid development of sodium-ion battery technology, led by Chinese companies CATL and BYD, which now hold over 50% of the world's EV battery market share. This progress has been unexpected, given the relatively slow pace of development in this field. The sudden acceleration of innovation is a significant trend in the clean energy sector.
+                    </div>
+                </div>
+
+                <a href="https://cleantechnica.com/2025/11/30/the-strange-time-compression-of-sodium-ion-battery-development/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Chinese companies CATL and BYD have dominated the sodium-ion battery market share, accounting for over 50% of the world's EV battery market as of 2025.</li>
+                        <li>Despite the significant progress, the development of sodium-ion batteries has been compressed into a relatively short period, with notable achievements from January to September 2025.</li>
+                        <li>The rapid advancement in this field is notable, especially given its relative slow pace compared to other clean energy technologies.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+            <p style="margin-bottom: 30px; color: #666; font-style: italic;">
+                Technical papers from ArXiv - for readers interested in academic research
+            </p>
+
+            <article class="article" id="f6f94ed3">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.23046v1" target="_blank">Scalable Physics-Informed Neural Networks for Accelerating Electromagnetic Transient Stability Assessment</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article proposes a novel framework for accelerating Electromagnetic Transient (EMT) simulations in power systems by replacing computationally expensive components with Physics-Informed Neural Networks (PINNs). The proposed PINN formulation enables a modular and scalable integration into the simulation algorithm, leading to significant speedups. The authors demonstrate a 4-6x simulation speedup using a type-4 wind turbine EMT model.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.23046v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The article identifies the most computationally expensive components of EMT simulations and proposes replacing them with fast and accurate PINNs to accelerate the simulation process.</li>
+                        <li>The proposed novel PINN formulation enables a modular and scalable integration into the simulation algorithm, making it suitable for various power system applications.</li>
+                        <li>The authors achieve a significant speedup in EMT simulations (4-6x) by capturing complex phenomena such as Phase-Locked Loop behavior with PINNs.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="61356a42">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">2</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.22986v1" target="_blank">The Battle of the Water Futures</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The "Battle of the Water Networks" competition will take place at WDSA/CCWI 2026, where participants will design and operate a water distribution system under deep uncertainty with staged interventions. The challenge incorporates policymaking, artificial intelligence, and an open-source evaluation framework to assess solutions. This competition aims to address the complexities of designing next-generation urban water systems.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.22986v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The competition features a staged-design approach, unobservable and unknown uncertainties, and incorporates elements of policymaking and artificial intelligence.</li>
+                        <li>The solutions will be assessed using a transparent and inspectable open-source evaluation framework, emphasizing transparency and accountability.</li>
+                        <li>The "Battle of the Water Networks" competition is part of the broader theme of WDSA/CCWI 2026, focusing on designing the next generation of urban water systems with a long-term horizon.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="1896ddb5">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">3</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.23326v1" target="_blank">Dynamic Power Allocation For NOMA-Based Transmission in 6G Optical Wireless Networks</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        This article proposes a dynamic power allocation method for NOMA-based transmission in 6G optical wireless networks. The proposed method uses a combination of RF-aided grouping and dynamic power allocation to maximize the sum rate, fairness, and energy efficiency of the network. The results show that the proposed method converges to the optimum solution and outperforms existing schemes.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.23326v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The article proposes a novel dynamic application for NOMA-based transmission in 6G optical wireless networks using RF-aided grouping and dynamic power allocation.</li>
+                        <li>The proposed method aims to maximize sum rate, fairness, and energy efficiency by forming groups of users based on distance-based weight edges and allocating optimal power to each group.</li>
+                        <li>The results demonstrate the convergence of the proposed method to the optimum solution and its superior performance compared to existing schemes.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="75dceeda">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">4</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2511.22957v1" target="_blank">Open-source implementation of distribution network reconfiguration methods: Analysis and comparison</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> November 28, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article presents a comprehensive analysis of distribution network reconfiguration methods, tracing their development from classic heuristic algorithms to contemporary state-of-the-art techniques. The authors review seven methodologies and assess their strengths and limitations through extensive literature review and empirical testing. An open-source repository containing documented implementations of the reviewed algorithms is also provided.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2511.22957v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The article provides a systematic analysis of various distribution network reconfiguration methods, including classical heuristic algorithms, advanced meta-heuristic methodologies, and purely mathematical approaches.</li>
+                        <li>The comparative analysis reveals the strengths and limitations of each approach under different network conditions and operational constraints, providing valuable insights for researchers and practitioners.</li>
+                        <li>An open-source repository is made available, offering comprehensive documentation, test cases, and performance benchmarks to facilitate accessibility and reproducible research in the field.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
+</body>
+</html>
