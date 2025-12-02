@@ -372,7 +372,124 @@
             font-size: 0.9em;
         }
 
+        /* Featured Weekly Summary */
+        .featured-weekly {
+            display: block;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(118, 75, 162, 0.3);
+        }
+
+        .featured-weekly:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(118, 75, 162, 0.4);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .featured-subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .featured-cta {
+            display: inline-block;
+            background: white;
+            color: #764ba2;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .featured-weekly:hover .featured-cta {
+            background: #f8f9fa;
+            transform: scale(1.02);
+        }
+
+        /* Previous Weekly Summaries */
+        .previous-weekly {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .previous-weekly-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            cursor: pointer;
+            color: #666;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .previous-weekly-header:hover {
+            background: #f0f0f0;
+        }
+
+        .previous-toggle {
+            transition: transform 0.3s;
+        }
+
+        .previous-toggle.open {
+            transform: rotate(90deg);
+        }
+
+        .previous-weekly-content {
+            padding: 0 20px 15px;
+        }
+
+        .previous-weekly-item {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 6px;
+            color: #2c3e50;
+            text-decoration: none;
+            border-left: 3px solid #764ba2;
+            transition: all 0.2s;
+        }
+
+        .previous-weekly-item:hover {
+            background: #667eea;
+            color: white;
+            border-left-color: #667eea;
+        }
+
         @media (max-width: 768px) {
+            .featured-weekly {
+                padding: 30px 20px;
+            }
+
+            .featured-title {
+                font-size: 1.4em;
+            }
+
             .archive-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -443,8 +560,29 @@
                 <div class="search-results" id="searchResults"></div>
             </div>
 
+            <div class="weekly-section" style="margin-bottom: 40px;">
+                <!-- Featured: Latest Weekly Summary -->
+                <a href="weekly_summary_2025-11-24.html" class="featured-weekly">
+                    <div class="featured-badge">Latest Weekly Summary</div>
+                    <div class="featured-title">November 24 - November 30, 2025</div>
+                    <div class="featured-subtitle">Weekly roundup of power & energy news</div>
+                    <div class="featured-cta">View Full Summary →</div>
+                </a>
+
+                <!-- Previous Weekly Summaries -->
+                <div class="previous-weekly" style="margin-top: 20px;">
+                    <div class="previous-weekly-header" onclick="togglePreviousWeekly()">
+                        <span>Previous Weekly Summaries (2)</span>
+                        <span class="previous-toggle" id="previousToggle">▶</span>
+                    </div>
+                    <div class="previous-weekly-content" id="previousWeeklyContent" style="display: none;">
+                        <a href="weekly_summary_2025-11-17.html" class="previous-weekly-item">November 17 - November 23, 2025</a><a href="weekly_summary_2025-11-10.html" class="previous-weekly-item">November 10 - November 16, 2025</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="archive-header">
-                <div class="archive-title">All Digests</div>
+                <div class="archive-title">Daily Digests</div>
                 <div style="display: flex; align-items: center; gap: 20px;">
                     <div class="date-filter">
                         <span class="date-filter-label">Jump to date:</span>
@@ -919,7 +1057,7 @@
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: December 02, 2025 at 08:00 AM</p>
+            <p style="margin-top: 10px;">Last updated: December 02, 2025 at 09:49 AM</p>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <p style="margin: 5px 0;">
                     Email: <a href="mailto:feedback@energydigest.io" style="color: #667eea; text-decoration: none;">feedback@energydigest.io</a>
@@ -934,6 +1072,19 @@
     <script>
         let allArticles = [];
         let searchPanelOpen = false;
+
+        // Toggle previous weekly summaries
+        function togglePreviousWeekly() {
+            const content = document.getElementById('previousWeeklyContent');
+            const toggle = document.getElementById('previousToggle');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                toggle.classList.add('open');
+            } else {
+                content.style.display = 'none';
+                toggle.classList.remove('open');
+            }
+        }
 
         // Toggle month section
         function toggleMonth(monthKey) {
