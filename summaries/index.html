@@ -481,6 +481,103 @@
             border-left-color: #667eea;
         }
 
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px 2px 0 0;
+        }
+
+        .tab-btn .tab-count {
+            background: #e0e0e0;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+
+        .tab-btn.active .tab-count {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Weekly grid in tab */
+        .weekly-tab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .weekly-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #764ba2;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .weekly-card:hover {
+            background: white;
+            box-shadow: 0 5px 20px rgba(118, 75, 162, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .weekly-card-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .weekly-card-subtitle {
+            color: #888;
+            font-size: 0.95em;
+        }
+
         @media (max-width: 768px) {
             .featured-weekly {
                 padding: 30px 20px;
@@ -560,39 +657,30 @@
                 <div class="search-results" id="searchResults"></div>
             </div>
 
-            <div class="weekly-section" style="margin-bottom: 40px;">
-                <!-- Featured: Latest Weekly Summary -->
-                <a href="weekly_summary_2025-11-24.html" class="featured-weekly">
-                    <div class="featured-badge">Latest Weekly Summary</div>
-                    <div class="featured-title">November 24 - November 30, 2025</div>
-                    <div class="featured-subtitle">Weekly roundup of power & energy news</div>
-                    <div class="featured-cta">View Full Summary →</div>
-                </a>
-
-                <!-- Previous Weekly Summaries -->
-                <div class="previous-weekly" style="margin-top: 20px;">
-                    <div class="previous-weekly-header" onclick="togglePreviousWeekly()">
-                        <span>Previous Weekly Summaries (2)</span>
-                        <span class="previous-toggle" id="previousToggle">▶</span>
-                    </div>
-                    <div class="previous-weekly-content" id="previousWeeklyContent" style="display: none;">
-                        <a href="weekly_summary_2025-11-17.html" class="previous-weekly-item">November 17 - November 23, 2025</a><a href="weekly_summary_2025-11-10.html" class="previous-weekly-item">November 10 - November 16, 2025</a>
-                    </div>
-                </div>
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('daily')">
+                    Daily Digests<span class="tab-count">23</span>
+                </button>
+                <button class="tab-btn" onclick="switchTab('weekly')">
+                    Weekly Summaries<span class="tab-count">3</span>
+                </button>
             </div>
 
-            <div class="archive-header">
-                <div class="archive-title">Daily Digests</div>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div class="date-filter">
-                        <span class="date-filter-label">Jump to date:</span>
-                        <input type="date" id="dateInput" class="date-input">
+            <!-- Daily Digests Tab -->
+            <div id="daily-tab" class="tab-content active">
+                <div class="archive-header">
+                    <div class="archive-title">Daily Digests</div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div class="date-filter">
+                            <span class="date-filter-label">Jump to date:</span>
+                            <input type="date" id="dateInput" class="date-input">
+                        </div>
+                        <div class="archive-count" id="digestCount">23 digests</div>
                     </div>
-                    <div class="archive-count" id="digestCount">23 digests</div>
                 </div>
-            </div>
 
-            <div class="months-container">
+                <div class="months-container">
                 <div class="month-section " data-month="2025-12">
                     <div class="month-header" onclick="toggleMonth('2025-12')">
                         <div class="month-header-left">
@@ -612,7 +700,7 @@
                             </div>
                             <div class="card-stats">
                                 <div class="card-stat">
-                                    <span class="card-stat-number">9</span>
+                                    <span class="card-stat-number">13</span>
                                     <span class="card-stat-label">News</span>
                                 </div>
                                 <div class="card-stat">
@@ -1052,12 +1140,40 @@
                         </a>
                     </div>
                 </div>
+                </div>
+            </div>
+
+            <!-- Weekly Summaries Tab -->
+            <div id="weekly-tab" class="tab-content">
+                <div class="archive-header">
+                    <div class="archive-title">Weekly Summaries</div>
+                    <div class="archive-count">3 summarys</div>
+                </div>
+                <p style="color: #666; margin-bottom: 20px;">Comprehensive weekly roundups with topic analysis, key numbers, and trends.</p>
+                <div class="weekly-tab-grid">
+                    
+                    <a href="weekly_summary_2025-11-24.html" class="weekly-card">
+                        <div class="weekly-card-title">November 24 - November 30, 2025</div>
+                        <div class="weekly-card-subtitle">Weekly Roundup  •  Latest</div>
+                    </a>
+                    
+                    <a href="weekly_summary_2025-11-17.html" class="weekly-card">
+                        <div class="weekly-card-title">November 17 - November 23, 2025</div>
+                        <div class="weekly-card-subtitle">Weekly Roundup</div>
+                    </a>
+                    
+                    <a href="weekly_summary_2025-11-10.html" class="weekly-card">
+                        <div class="weekly-card-title">November 10 - November 16, 2025</div>
+                        <div class="weekly-card-subtitle">Weekly Roundup</div>
+                    </a>
+                    
+                </div>
             </div>
         </div>
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: December 02, 2025 at 09:49 AM</p>
+            <p style="margin-top: 10px;">Last updated: December 02, 2025 at 10:15 AM</p>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <p style="margin: 5px 0;">
                     Email: <a href="mailto:feedback@energydigest.io" style="color: #667eea; text-decoration: none;">feedback@energydigest.io</a>
@@ -1073,17 +1189,20 @@
         let allArticles = [];
         let searchPanelOpen = false;
 
-        // Toggle previous weekly summaries
-        function togglePreviousWeekly() {
-            const content = document.getElementById('previousWeeklyContent');
-            const toggle = document.getElementById('previousToggle');
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                toggle.classList.add('open');
-            } else {
-                content.style.display = 'none';
-                toggle.classList.remove('open');
-            }
+        // Switch between tabs
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            // Activate button
+            event.target.closest('.tab-btn').classList.add('active');
         }
 
         // Toggle month section
