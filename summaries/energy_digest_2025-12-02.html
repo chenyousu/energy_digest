@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest - December 02, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        header .meta {
+            font-size: 0.95em;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .search-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        .search-results {
+            text-align: center;
+            padding: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            background: white;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            transition: opacity 0.3s;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article.hidden {
+            display: none;
+        }
+
+        .article:target {
+            background: #fffbf0;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            margin-left: -20px;
+            animation: highlightFade 3s ease-out;
+        }
+
+        @keyframes highlightFade {
+            0% {
+                background: #fff3cd;
+            }
+            100% {
+                background: #fffbf0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .article-title h2 {
+            font-size: 1.75em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-title a:hover {
+            color: #667eea;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .metadata-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-right: 5px;
+        }
+
+        .summary {
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .takeaways {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin-top: 15px;
+        }
+
+        .takeaways h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .takeaways ul {
+            list-style: none;
+        }
+
+        .takeaways li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .takeaways li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
+            <div class="meta">Last Updated: December 02, 2025 at 08:00 AM</div>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search articles by keyword..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="newsCount">9</div>
+                <div class="stat-label">News & Articles</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="researchCount">1</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'news')">
+                News & Articles (9)
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'research')">
+                Research Papers (1)
+            </button>
+        </div>
+
+        <div id="news" class="tab-content active">
+
+            <article class="article" id="373f34d5">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/12/02/malaysias-4-gw-5-12-gwh-solar-plus-storage-complex-gets-world-bank-funding/" target="_blank">Malaysia’s 4 GW/5.12 GWh solar-plus-storage complex gets World Bank funding</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Malaysia is receiving funding from the World Bank for a $6 billion renewable energy project, which includes a 4 GW/5.12 GWh solar-plus-storage complex in the Southern Johor Renewable Energy Corridor (SJREC) zone. The project aims to connect South East Asia through a hybrid solar and battery energy storage system zone, with plans to facilitate cross-border electricity trade between Malaysia and Singapore. This initiative is part of several regional and national renewable energy policies.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/12/02/malaysias-4-gw-5-12-gwh-solar-plus-storage-complex-gets-world-bank-funding/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The Southern Johor Renewable Energy Corridor (SJREC) will be a 2,000 square kilometer hybrid solar and battery energy storage system zone, initially set for 10,000 acres.</li>
+                        <li>The project includes up to 4 GW of solar capacity and 5.12 GWh of energy storage capacity in its initial phase.</li>
+                        <li>The initiative is part of several regional and national efforts, including the pan-Southeast Asian grid initiative (ASEAN Power Grid) and Malaysia's Johor Renewable Energy Policy 2030.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="ce910d87">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/12/02/california-lawmakers-urge-cpuc-to-enforce-utility-interconnection-timelines/" target="_blank">California lawmakers urge CPUC to enforce utility interconnection timelines</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        A coalition of 18 California legislators is urging the California Public Utilities Commission (CPUC) to enforce regulations under "Rule 21" regarding the interconnection of customer-sited solar and energy storage systems. The legislators claim that Pacific Gas & Electric (PG&E) and Southern California Edison (SCE) have frequently failed to meet state-mandated timelines, with up to 73% non-compliance over the last five years. This issue centers on "Rule 21," a standardized tariff that establishes the process and deadlines for utilities to approve and activate distributed energy resources.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/12/02/california-lawmakers-urge-cpuc-to-enforce-utility-interconnection-timelines/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>A coalition of California legislators is pushing the CPUC to enforce regulations under "Rule 21" due to frequent failures by PG&E and SCE to meet state-mandated timelines.</li>
+                        <li>The issue stems from a standardized tariff that requires utilities to establish processes and deadlines for approving and activating distributed energy resources, with compliance rates as low as 27%-45%.</li>
+                        <li>Pacific Gas & Electric (PG&E) and Southern California Edison (SCE) have shown up to 73% non-compliance with Rule 21 timelines over the last five years, citing a need for enforcement action from the CPUC.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="1e776034">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/puerto-rico-advances-on-its-delayed-accelerated-bess-deployment-programme/" target="_blank">Puerto Rico advances on its delayed accelerated BESS deployment programme</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Puerto Rico has issued a resolution and order for the Puerto Rico Electric Power Authority (PREPA) to complete its Accelerated Battery Energy Storage Addition Programme (ASAP), marking an advancement in the island's efforts to deploy battery energy storage systems. The initiative aims to improve the grid resilience and stability following Hurricane Maria in 2017. Completion of the ASAP is expected to bring energy security benefits to the island.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/puerto-rico-advances-on-its-delayed-accelerated-bess-deployment-programme/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Puerto Rico has issued a resolution requiring PREPA to complete its Accelerated Battery Energy Storage Addition Programme (ASAP), indicating progress towards deploying battery energy storage systems.</li>
+                        <li>The ASAP aims to improve grid resilience and stability, particularly after Hurricane Maria in 2017, which had a significant impact on the island's power infrastructure.</li>
+                        <li>Completion of the ASAP is expected to bring energy security benefits to Puerto Rico, enhancing its ability to withstand future natural disasters or grid disruptions.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="f144a5fb">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/hdre-brawn-capital-put-100-merchant-bess-into-operation-in-northern-japan/" target="_blank">HDRE, Brawn Capital put ‘100% merchant’ BESS into operation in northern Japan</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        A 50MW/104MWh battery storage project, operated by Manoa Energy and HD Renewable Energy Japan, has been successfully commissioned in Hokkaido, Japan. The project is classified as a '100% merchant' BESS (Battery Energy Storage System), indicating that it will be sold to the market without a long-term power purchase agreement. This marks a significant milestone for energy storage in northern Japan.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/hdre-brawn-capital-put-100-merchant-bess-into-operation-in-northern-japan/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The 50MW/104MWh battery storage project is one of the largest BESS deployments in Japan, highlighting growing interest in energy storage technologies.</li>
+                        <li>The '100% merchant' classification suggests that the project will be sold to the market without a fixed power purchase agreement, which could enable more flexible and cost-effective use of renewable energy sources.</li>
+                        <li>The deployment in Hokkaido underscores the importance of energy storage for stabilizing the grid and ensuring reliable power supply in northern Japan.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="b9d79a73">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/12/02/optimal-solar-plus-storage-sizing-for-heavy-industry-operation/" target="_blank">Optimal solar-plus-storage sizing for heavy industry operation</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Australian researchers developed an energy modeling framework to assess the feasibility of solar-plus-storage systems for heavy industries. The study found that smart grid integration and flexible industrial operations are more effective in reducing electricity costs and enabling 100% renewable energy use than technology cost reductions. The new methodology addresses various factors, including PV intermittency and equipment degradation over time.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/12/02/optimal-solar-plus-storage-sizing-for-heavy-industry-operation/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Smart grid integration and flexible industrial operations are more effective in lowering electricity costs and enabling 100% renewable energy use compared to technology cost reductions.</li>
+                        <li>The study's high-resolution energy modeling framework incorporates lifecycle degradation and production intermittency, addressing operational needs under diverse weather conditions.</li>
+                        <li>Technology cost reductions alone may not be sufficient for heavy industries to switch to 100% renewable energy, highlighting the importance of other strategies such as grid integration and industrial flexibility.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="28729db1">
+                <div class="article-header">
+                    <div class="article-number">6</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/us-battery-manufacturing-could-cover-domestic-bess-demand-within-a-few-years/" target="_blank">US battery manufacturing ‘could cover domestic BESS demand within a few years’</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The US battery manufacturing industry is expected to shift its dynamics, potentially making Chinese batteries obsolete within a few years, according to a local consultant. This shift could be driven by the growing demand for energy storage systems (BESS) in the country. As a result, domestic manufacturers may be able to cover the entire domestic BESS demand.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/us-battery-manufacturing-could-cover-domestic-bess-demand-within-a-few-years/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The US battery manufacturing industry is poised for significant growth and potentially disrupts the global market.</li>
+                        <li>A local consultant believes that Chinese batteries will no longer be needed within a few years if domestic manufacturers can meet the country's increasing energy storage demands.</li>
+                        <li>The shift in dynamics could lead to increased competition and innovation in the US BESS market, with potential benefits for consumers.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="fda53fa3">
+                <div class="article-header">
+                    <div class="article-number">7</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.pv-magazine.com/2025/12/02/pramac-ems-features-special-modes-for-ci-battery-storage-sites/" target="_blank">Pramac EMS features special modes for C&I battery storage sites</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> PV Magazine</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Pramac's EMS (Energy Management System) is a smart solution for commercial and industrial battery storage sites, offering advanced modes such as "Smart Self-Consumption" and "External Control". These modes enable optimized charging and discharging strategies to minimize costs and reduce grid dependency. The EMS integrates with various devices and forecasts to provide real-time optimization.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2025/12/02/pramac-ems-features-special-modes-for-ci-battery-storage-sites/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Pramac's EMS offers two specialized modes: "Smart Self-Consumption", which minimizes residual grid purchase costs by charging the BESS during low-price periods, and "External Control", which enables participation in ancillary service markets.</li>
+                        <li>The system combines data from meters, inverters, batteries, controllable loads, PV production, and load consumption forecasts to calculate optimal setpoints for each device.</li>
+                        <li>Pramac's EMS is designed with a distributed architecture, ensuring local control and security even without connectivity, while the cloud layer handles optimization, historical analysis, and real-time decision-making.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="9166cbf2">
+                <div class="article-header">
+                    <div class="article-number">8</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/world-bank-supports-multi-gigawatt-cross-border-renewable-energy-project-in-malaysia/" target="_blank">World Bank supports multi-gigawatt cross-border renewable energy project in Malaysia</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> December 02, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The World Bank is investing in a massive 4GW, 5.12GWh solar-plus-storage complex in Malaysia as part of a pan-Southeast Asian power grid initiative. This project aims to increase renewable energy production and reduce dependence on fossil fuels in the region. The investment is expected to support the development of a sustainable and reliable energy system in Southeast Asia.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/world-bank-supports-multi-gigawatt-cross-border-renewable-energy-project-in-malaysia/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The 4GW, 5.12GWh solar-plus-storage complex in Malaysia is one of the largest renewable energy projects in the country, highlighting the growing importance of clean energy investments in Southeast Asia.</li>
+                        <li>The project is part of a larger pan-Southeast Asian power grid initiative, indicating a regional effort to integrate and stabilize the region's energy markets through the use of renewable energy sources.</li>
+                        <li>The World Bank's investment in this project suggests a commitment to supporting the transition to a low-carbon economy and promoting sustainable development in Southeast Asia.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="article" id="7cad05d1">
+                <div class="article-header">
+                    <div class="article-number">9</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/fortescue-deploys-250mwh-byd-battery-system-in-western-australia/" target="_blank">Fortescue deploys 250MWh BYD battery system in Western Australia</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> Energy Storage News</div>
+                    <div><span class="metadata-label">Published:</span> December 01, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Fortescue has successfully deployed a 250MWh battery storage system, developed by BYD, at the North Star Junction site in Western Australia. This large-scale energy storage project aims to stabilize the grid and improve renewable energy integration. The deployment marks Fortescue's first major battery storage system.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/fortescue-deploys-250mwh-byd-battery-system-in-western-australia/" class="btn-link" target="_blank">Read Full Article →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Fortescue has partnered with BYD to deliver a 250MWh battery storage system, marking its first large-scale BESS deployment in Western Australia.</li>
+                        <li>The North Star Junction site is likely to play a crucial role in stabilizing the grid and improving the integration of renewable energy sources in the region.</li>
+                        <li>This project demonstrates Fortescue's commitment to adopting clean energy technologies and reducing its carbon footprint.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div id="research" class="tab-content">
+            <p style="margin-bottom: 30px; color: #666; font-style: italic;">
+                Technical papers from ArXiv - for readers interested in academic research
+            </p>
+
+            <article class="article" id="bc1c74a6">
+                <div class="article-header">
+                    <div class="article-number" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">1</div>
+                    <div class="article-title">
+                        <h2><a href="http://arxiv.org/abs/2512.01392v1" target="_blank">RE-LLM: Integrating Large Language Models into Renewable Energy Systems</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <div><span class="metadata-label">Source:</span> ArXiv</div>
+                    <div><span class="metadata-label">Published:</span> December 01, 2025</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The article proposes the Renewable Energy Large Language Model (RE-LLM), a hybrid framework that integrates Large Language Models into energy system modeling to address the communication gap between technical models and non-expert stakeholders. RE-LLM combines optimization-based scenario exploration, machine learning surrogates, and LLM-powered natural language generation to reduce computational burden and enhance interpretability. This framework aims to bridge the gap between data-driven analysis and actionable decision-making for sustainable energy transitions.
+                    </div>
+                </div>
+
+                <a href="http://arxiv.org/abs/2512.01392v1" class="btn-link" target="_blank">Read Full Paper →</a>
+
+                <div class="takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>The proposed framework RE-LLM integrates Large Language Models into energy system modeling to improve interpretability and accessibility of complex results.</li>
+                        <li>By combining optimization-based scenario exploration, machine learning surrogates, and LLM-powered natural language generation, RE-LLM aims to reduce computational burden while enhancing inter-interpretability.</li>
+                        <li>The framework is adaptable across different optimization platforms and energy system models, ensuring broad applicability beyond the case study presented.</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                Daily summary of power and energy systems news and research
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-apply search filter to new tab
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            // Get all articles in the active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            const articles = activeTab.querySelectorAll('.article');
+
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Show all articles
+                articles.forEach(article => {
+                    article.classList.remove('hidden');
+                    // Remove any existing highlights
+                    const highlighted = article.querySelectorAll('.highlight');
+                    highlighted.forEach(span => {
+                        const parent = span.parentNode;
+                        parent.replaceChild(document.createTextNode(span.textContent), span);
+                        parent.normalize();
+                    });
+                });
+                searchResults.textContent = '';
+                visibleCount = articles.length;
+            } else {
+                // Filter articles by search term
+                articles.forEach(article => {
+                    const title = article.querySelector('.article-title').textContent.toLowerCase();
+                    const summary = article.querySelector('.summary-text').textContent.toLowerCase();
+                    const source = article.querySelector('.metadata').textContent.toLowerCase();
+
+                    const matches = title.includes(searchTerm) ||
+                                  summary.includes(searchTerm) ||
+                                  source.includes(searchTerm);
+
+                    if (matches) {
+                        article.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    searchResults.textContent = 'No articles found matching "' + searchInput.value + '"';
+                } else if (visibleCount === 1) {
+                    searchResults.textContent = 'Found 1 article';
+                } else {
+                    searchResults.textContent = 'Found ' + visibleCount + ' articles';
+                }
+            }
+
+            // Update counts
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const newsTab = document.getElementById('news');
+            const researchTab = document.getElementById('research');
+
+            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
+            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
+
+            document.getElementById('newsCount').textContent = visibleNews;
+            document.getElementById('researchCount').textContent = visibleResearch;
+        }
+
+        // Handle direct navigation to article via hash/anchor
+        function navigateToArticle() {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetArticle = document.getElementById(targetId);
+
+                if (targetArticle) {
+                    // Find which tab contains this article
+                    const parentTab = targetArticle.closest('.tab-content');
+                    if (parentTab && !parentTab.classList.contains('active')) {
+                        // Switch to the correct tab
+                        const tabId = parentTab.id;
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        tabButtons.forEach(button => button.classList.remove('active'));
+
+                        parentTab.classList.add('active');
+                        const correspondingButton = tabId === 'news' ?
+                            document.querySelector('.tab-button[onclick*="news"]') :
+                            document.querySelector('.tab-button[onclick*="research"]');
+                        if (correspondingButton) {
+                            correspondingButton.classList.add('active');
+                        }
+                    }
+
+                    // Scroll to article with slight delay to ensure tab switch completes
+                    setTimeout(() => {
+                        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        }
+
+        // Set up search listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+
+            // Search as user types (with slight delay)
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+
+            // Also search on Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    clearTimeout(searchTimeout);
+                    performSearch();
+                }
+            });
+
+            // Handle hash navigation on page load
+            navigateToArticle();
+        });
+
+        // Handle hash changes (e.g., when clicking back button)
+        window.addEventListener('hashchange', navigateToArticle);
+    </script>
+</body>
+</html>
