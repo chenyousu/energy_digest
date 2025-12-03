@@ -654,6 +654,16 @@
     </style>
 </head>
 <body>
+    <!-- Banner for old GitHub URL visitors -->
+    <div id="move-banner" style="display: none; background: #667eea; color: white; padding: 12px 20px; text-align: center; font-size: 0.95em;">
+        We've moved to <a href="https://energydigest.io" style="color: white; font-weight: bold;">energydigest.io</a>! Please update your bookmarks.
+        <button onclick="this.parentElement.style.display='none'" style="background: none; border: none; color: white; cursor: pointer; margin-left: 15px; font-size: 1.2em;">&times;</button>
+    </div>
+    <script>
+        if (window.location.hostname.includes('github.io')) {
+            document.getElementById('move-banner').style.display = 'block';
+        }
+    </script>
     <div class="container">
         <header>
             <h1>Energy Digest</h1>
@@ -1216,7 +1226,7 @@
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: December 02, 2025 at 06:22 PM</p>
+            <p style="margin-top: 10px;">Last updated: December 02, 2025 at 09:06 PM</p>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <p style="margin: 5px 0;">
                     Email: <a href="mailto:feedback@energydigest.io" style="color: #667eea; text-decoration: none;">feedback@energydigest.io</a>
