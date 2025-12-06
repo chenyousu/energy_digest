@@ -673,8 +673,9 @@
                 <a href="feed.xml" style="padding: 8px 16px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 5px; font-size: 0.9em; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
                     RSS Feed
                 </a>
-                <form action="https://buttondown.email/api/emails/embed-subscribe/energy_digest" method="post" target="popupwindow" style="display: flex; gap: 8px;">
+                <form action="https://buttondown.com/api/emails/embed-subscribe/energy_digest" method="post" target="_blank" style="display: flex; gap: 8px;">
                     <input type="email" name="email" placeholder="your@email.com" required style="padding: 8px 12px; border: none; border-radius: 5px; font-size: 0.9em; width: 180px;">
+                    <input type="hidden" value="1" name="embed" />
                     <button type="submit" style="padding: 8px 16px; background: #fff; color: #667eea; border: none; border-radius: 5px; font-size: 0.9em; font-weight: 600; cursor: pointer;">Subscribe</button>
                 </form>
             </div>
@@ -1283,7 +1284,7 @@
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: December 05, 2025 at 06:00 PM</p>
+            <p style="margin-top: 10px;">Last updated: December 06, 2025 at 08:00 AM</p>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <p style="margin: 5px 0;">
                     Email: <a href="mailto:feedback@energydigest.io" style="color: #667eea; text-decoration: none;">feedback@energydigest.io</a>
