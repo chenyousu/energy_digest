@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Rate Tracker | Energy Digest</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; color: white; padding: 40px 20px; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-card .label {
+            color: #666;
+            margin-top: 5px;
+        }
+        .stat-card .sub { font-size: 0.85em; color: #999; margin-top: 5px; }
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .rate-list { list-style: none; }
+        .rate-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+        }
+        .rate-list li:hover { background: #e9ecef; }
+        .rate-list .rank {
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-right: 12px;
+        }
+        .rate-list .state-name { flex: 1; font-weight: 500; }
+        .rate-list .price { font-weight: bold; color: #333; }
+        .rate-list .change {
+            font-size: 0.85em;
+            margin-left: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .change.up { background: #ffebee; color: #c62828; }
+        .change.down { background: #e8f5e9; color: #2e7d32; }
+        .all-states-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .all-states-table th, .all-states-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .all-states-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        .all-states-table tr:hover { background: #f8f9fa; }
+        .bar {
+            height: 8px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+        .subscribe-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        .subscribe-box h2 { color: #333; margin-bottom: 10px; }
+        .subscribe-box p { color: #666; margin-bottom: 20px; }
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .subscribe-form input {
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1em;
+            width: 250px;
+        }
+        .subscribe-form button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        footer { text-align: center; color: white; padding: 30px; opacity: 0.9; }
+        footer a { color: white; }
+        .updated { font-size: 0.85em; opacity: 0.7; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Utility Rate Tracker</h1>
+            <p>Electricity prices across the United States</p>
+            <p class="updated">Data from EIA | September 2025</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="value">19.2¢</div>
+                <div class="label">U.S. Average</div>
+                <div class="sub">cents per kWh (residential)</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">11.9¢</div>
+                <div class="label">Lowest Rate</div>
+                <div class="sub">Nevada</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">39.5¢</div>
+                <div class="label">Highest Rate</div>
+                <div class="sub">Hawaii</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">59</div>
+                <div class="label">States Tracked</div>
+                <div class="sub">Updated monthly</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Cheapest vs Most Expensive States</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: #2e7d32; margin-bottom: 15px;">✅ 10 Cheapest States</h3>
+                    <ul class="rate-list">
+                        <li>
+                            <span class="rank">1</span>
+                            <span class="state-name">Nevada</span>
+                            <span class="price">11.95¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">2</span>
+                            <span class="state-name">Louisiana</span>
+                            <span class="price">12.36¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">3</span>
+                            <span class="state-name">Idaho</span>
+                            <span class="price">12.50¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">4</span>
+                            <span class="state-name">Tennessee</span>
+                            <span class="price">13.29¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">5</span>
+                            <span class="state-name">Kentucky</span>
+                            <span class="price">13.56¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">6</span>
+                            <span class="state-name">North Dakota</span>
+                            <span class="price">13.66¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">7</span>
+                            <span class="state-name">Arkansas</span>
+                            <span class="price">13.79¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">8</span>
+                            <span class="state-name">Washington</span>
+                            <span class="price">13.79¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">9</span>
+                            <span class="state-name">Nebraska</span>
+                            <span class="price">13.85¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">10</span>
+                            <span class="state-name">Mississippi</span>
+                            <span class="price">13.97¢</span>
+                            
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #c62828; margin-bottom: 15px;">💰 10 Most Expensive States</h3>
+                    <ul class="rate-list">
+                        <li>
+                            <span class="rank">1</span>
+                            <span class="state-name">Hawaii</span>
+                            <span class="price">39.54¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">2</span>
+                            <span class="state-name">Pacific Noncontiguous</span>
+                            <span class="price">34.99¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">3</span>
+                            <span class="state-name">California</span>
+                            <span class="price">32.04¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">4</span>
+                            <span class="state-name">Connecticut</span>
+                            <span class="price">30.48¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">5</span>
+                            <span class="state-name">Massachusetts</span>
+                            <span class="price">30.41¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">6</span>
+                            <span class="state-name">New England</span>
+                            <span class="price">29.54¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">7</span>
+                            <span class="state-name">Rhode Island</span>
+                            <span class="price">28.30¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">8</span>
+                            <span class="state-name">Maine</span>
+                            <span class="price">27.98¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">9</span>
+                            <span class="state-name">New Hampshire</span>
+                            <span class="price">27.82¢</span>
+                            
+                        </li>
+                        <li>
+                            <span class="rank">10</span>
+                            <span class="state-name">New York</span>
+                            <span class="price">27.23¢</span>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📈 Biggest Rate Changes (Year-over-Year)</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: #c62828; margin-bottom: 15px;">⬆️ Largest Increases</h3>
+                    <ul class="rate-list">
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #2e7d32; margin-bottom: 15px;">⬇️ Largest Decreases</h3>
+                    <ul class="rate-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 All States</h2>
+            <div style="overflow-x: auto;">
+                <table class="all-states-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>State</th>
+                            <th>Residential</th>
+                            <th>Commercial</th>
+                            <th>Industrial</th>
+                            <th>YoY Change</th>
+                            <th>vs Avg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Nevada</strong></td>
+                            <td>11.95¢</td>
+                            <td>9.86¢</td>
+                            <td>9.83¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-7.3¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Louisiana</strong></td>
+                            <td>12.36¢</td>
+                            <td>10.61¢</td>
+                            <td>6.06¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-6.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Idaho</strong></td>
+                            <td>12.50¢</td>
+                            <td>10.02¢</td>
+                            <td>8.72¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-6.7¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Tennessee</strong></td>
+                            <td>13.29¢</td>
+                            <td>12.98¢</td>
+                            <td>6.70¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>Kentucky</strong></td>
+                            <td>13.56¢</td>
+                            <td>12.26¢</td>
+                            <td>6.75¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.7¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>North Dakota</strong></td>
+                            <td>13.66¢</td>
+                            <td>7.73¢</td>
+                            <td>7.70¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.6¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>Arkansas</strong></td>
+                            <td>13.79¢</td>
+                            <td>11.18¢</td>
+                            <td>7.19¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td><strong>Washington</strong></td>
+                            <td>13.79¢</td>
+                            <td>10.99¢</td>
+                            <td>7.22¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td><strong>Nebraska</strong></td>
+                            <td>13.85¢</td>
+                            <td>9.44¢</td>
+                            <td>8.15¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td><strong>Mississippi</strong></td>
+                            <td>13.97¢</td>
+                            <td>12.89¢</td>
+                            <td>7.57¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.2¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td><strong>Utah</strong></td>
+                            <td>14.12¢</td>
+                            <td>11.10¢</td>
+                            <td>9.91¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-5.1¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td><strong>East South Central</strong></td>
+                            <td>14.33¢</td>
+                            <td>13.17¢</td>
+                            <td>7.21¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td><strong>Montana</strong></td>
+                            <td>14.64¢</td>
+                            <td>12.94¢</td>
+                            <td>7.32¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.6¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td><strong>South Dakota</strong></td>
+                            <td>14.76¢</td>
+                            <td>11.38¢</td>
+                            <td>9.08¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.5¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td><strong>Iowa</strong></td>
+                            <td>14.79¢</td>
+                            <td>11.66¢</td>
+                            <td>8.90¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td><strong>Oklahoma</strong></td>
+                            <td>14.79¢</td>
+                            <td>10.18¢</td>
+                            <td>6.71¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td><strong>Mountain</strong></td>
+                            <td>14.80¢</td>
+                            <td>11.94¢</td>
+                            <td>8.48¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td><strong>North Carolina</strong></td>
+                            <td>15.12¢</td>
+                            <td>10.36¢</td>
+                            <td>7.90¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.1¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td><strong>West South Central</strong></td>
+                            <td>15.14¢</td>
+                            <td>9.50¢</td>
+                            <td>6.67¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.1¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td><strong>Kansas</strong></td>
+                            <td>15.20¢</td>
+                            <td>12.03¢</td>
+                            <td>8.16¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-4.0¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td><strong>Arizona</strong></td>
+                            <td>15.27¢</td>
+                            <td>12.59¢</td>
+                            <td>8.23¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td><strong>Georgia</strong></td>
+                            <td>15.30¢</td>
+                            <td>11.24¢</td>
+                            <td>7.47¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td><strong>South Carolina</strong></td>
+                            <td>15.34¢</td>
+                            <td>10.96¢</td>
+                            <td>7.07¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td><strong>West North Central</strong></td>
+                            <td>15.54¢</td>
+                            <td>11.58¢</td>
+                            <td>8.81¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.7¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td><strong>Florida</strong></td>
+                            <td>15.76¢</td>
+                            <td>11.60¢</td>
+                            <td>9.07¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.5¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td><strong>Missouri</strong></td>
+                            <td>15.84¢</td>
+                            <td>12.53¢</td>
+                            <td>9.44¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td><strong>Texas</strong></td>
+                            <td>15.84¢</td>
+                            <td>9.10¢</td>
+                            <td>6.74¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.4¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td><strong>Oregon</strong></td>
+                            <td>15.96¢</td>
+                            <td>10.62¢</td>
+                            <td>8.56¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.3¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td><strong>South Atlantic</strong></td>
+                            <td>16.05¢</td>
+                            <td>11.38¢</td>
+                            <td>8.11¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-3.2¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td><strong>Alabama</strong></td>
+                            <td>16.43¢</td>
+                            <td>14.42¢</td>
+                            <td>7.81¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-2.8¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td><strong>New Mexico</strong></td>
+                            <td>16.52¢</td>
+                            <td>12.34¢</td>
+                            <td>6.31¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-2.7¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td><strong>Virginia</strong></td>
+                            <td>16.62¢</td>
+                            <td>9.96¢</td>
+                            <td>9.69¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-2.6¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td><strong>Colorado</strong></td>
+                            <td>16.70¢</td>
+                            <td>13.58¢</td>
+                            <td>9.26¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-2.5¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td><strong>Minnesota</strong></td>
+                            <td>17.10¢</td>
+                            <td>13.19¢</td>
+                            <td>9.79¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-2.1¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td><strong>Indiana</strong></td>
+                            <td>17.33¢</td>
+                            <td>14.11¢</td>
+                            <td>9.12¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-1.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td><strong>Ohio</strong></td>
+                            <td>17.61¢</td>
+                            <td>12.00¢</td>
+                            <td>8.75¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-1.6¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td><strong>Delaware</strong></td>
+                            <td>18.12¢</td>
+                            <td>12.57¢</td>
+                            <td>8.70¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-1.1¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td><strong>East North Central</strong></td>
+                            <td>18.69¢</td>
+                            <td>13.42¢</td>
+                            <td>9.33¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-0.5¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                            <td><strong>Wisconsin</strong></td>
+                            <td>18.73¢</td>
+                            <td>13.42¢</td>
+                            <td>9.31¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-0.5¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td><strong>Illinois</strong></td>
+                            <td>19.05¢</td>
+                            <td>14.03¢</td>
+                            <td>10.88¢</td>
+                            <td>—</td>
+                            <td><span class="change down">-0.2¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>41</td>
+                            <td><strong>Pennsylvania</strong></td>
+                            <td>20.46¢</td>
+                            <td>12.75¢</td>
+                            <td>9.12¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+1.2¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td><strong>Maryland</strong></td>
+                            <td>21.05¢</td>
+                            <td>15.13¢</td>
+                            <td>12.46¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+1.8¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>43</td>
+                            <td><strong>Michigan</strong></td>
+                            <td>21.20¢</td>
+                            <td>14.40¢</td>
+                            <td>8.43¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+2.0¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td><strong>New Jersey</strong></td>
+                            <td>23.39¢</td>
+                            <td>17.31¢</td>
+                            <td>13.93¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+4.2¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>45</td>
+                            <td><strong>District of Columbia</strong></td>
+                            <td>23.67¢</td>
+                            <td>19.42¢</td>
+                            <td>11.66¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+4.5¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td><strong>Middle Atlantic</strong></td>
+                            <td>23.84¢</td>
+                            <td>18.76¢</td>
+                            <td>9.47¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+4.6¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>47</td>
+                            <td><strong>Vermont</strong></td>
+                            <td>23.92¢</td>
+                            <td>20.52¢</td>
+                            <td>12.44¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+4.7¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td><strong>Pacific Contiguous</strong></td>
+                            <td>26.76¢</td>
+                            <td>23.88¢</td>
+                            <td>18.03¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+7.5¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>49</td>
+                            <td><strong>Alaska</strong></td>
+                            <td>27.16¢</td>
+                            <td>23.12¢</td>
+                            <td>18.93¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+7.9¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                            <td><strong>New York</strong></td>
+                            <td>27.23¢</td>
+                            <td>22.73¢</td>
+                            <td>8.91¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+8.0¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>51</td>
+                            <td><strong>New Hampshire</strong></td>
+                            <td>27.82¢</td>
+                            <td>20.81¢</td>
+                            <td>16.00¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+8.6¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>52</td>
+                            <td><strong>Maine</strong></td>
+                            <td>27.98¢</td>
+                            <td>21.14¢</td>
+                            <td>15.41¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+8.8¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>53</td>
+                            <td><strong>Rhode Island</strong></td>
+                            <td>28.30¢</td>
+                            <td>22.43¢</td>
+                            <td>19.53¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+9.1¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>54</td>
+                            <td><strong>New England</strong></td>
+                            <td>29.54¢</td>
+                            <td>21.84¢</td>
+                            <td>17.13¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+10.3¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>55</td>
+                            <td><strong>Massachusetts</strong></td>
+                            <td>30.41¢</td>
+                            <td>22.08¢</td>
+                            <td>18.52¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+11.2¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>56</td>
+                            <td><strong>Connecticut</strong></td>
+                            <td>30.48¢</td>
+                            <td>21.95¢</td>
+                            <td>17.99¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+11.3¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>57</td>
+                            <td><strong>California</strong></td>
+                            <td>32.04¢</td>
+                            <td>30.35¢</td>
+                            <td>25.50¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+12.8¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>58</td>
+                            <td><strong>Pacific Noncontiguous</strong></td>
+                            <td>34.99¢</td>
+                            <td>29.48¢</td>
+                            <td>27.24¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+15.8¢</span></td>
+                        </tr>
+                        <tr>
+                            <td>59</td>
+                            <td><strong>Hawaii</strong></td>
+                            <td>39.54¢</td>
+                            <td>35.16¢</td>
+                            <td>30.43¢</td>
+                            <td>—</td>
+                            <td><span class="change up">+20.3¢</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="subscribe-box">
+            <h2>📬 Get Rate Alerts</h2>
+            <p>Subscribe to Energy Digest for electricity rate updates and energy industry news</p>
+            <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/energy_digest" method="post" target="_blank">
+                <input type="email" name="email" placeholder="your@email.com" required>
+                <input type="hidden" value="1" name="embed">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>Part of <a href="index.html">Energy Digest</a> | <a href="events.html">Event Calendar</a></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Data source: U.S. Energy Information Administration (EIA)</p>
+        </footer>
+    </div>
+</body>
+</html>

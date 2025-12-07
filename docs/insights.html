@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy & Data Center Insights | Energy Digest</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; color: white; padding: 40px 20px; }
+        header h1 { font-size: 2.2em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .insight-box {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .correlation {
+            font-size: 3em;
+            font-weight: bold;
+            color: #666;
+        }
+        .correlation-label { color: #666; margin-top: 5px; }
+        .interpretation {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .chart-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .chart-section h2 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-card .label { color: #666; margin-top: 5px; font-size: 0.9em; }
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .state-list { list-style: none; }
+        .state-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+        }
+        .state-list li:hover { background: #e9ecef; }
+        .rank {
+            width: 28px;
+            height: 28px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+        .state-name { flex: 1; font-weight: 500; }
+        .metrics { display: flex; gap: 15px; }
+        .metric {
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .metric.green { background: #e8f5e9; color: #2e7d32; }
+        .metric.blue { background: #e3f2fd; color: #1565c0; }
+        .subscribe-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        .subscribe-box h2 { color: #333; margin-bottom: 10px; }
+        .subscribe-box p { color: #666; margin-bottom: 20px; }
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .subscribe-form input {
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1em;
+            width: 250px;
+        }
+        .subscribe-form button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        footer { text-align: center; color: white; padding: 30px; opacity: 0.9; }
+        footer a { color: white; }
+        .tooltip {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Energy & Data Center Insights</h1>
+            <p>Analyzing electricity prices, renewable energy, and data center distribution across U.S. states</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="value">51</div>
+                <div class="label">States Analyzed</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">27.8%</div>
+                <div class="label">Avg Renewable Share</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">17.06¢</div>
+                <div class="label">Avg Electricity Price</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">3,191</div>
+                <div class="label">Data Centers Tracked</div>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <div class="correlation">-0.046</div>
+            <div class="correlation-label">Correlation Coefficient</div>
+            <div class="interpretation">Weak/No correlation: Renewable penetration doesn't strongly affect electricity prices</div>
+        </div>
+
+        <div class="chart-section">
+            <h2>📊 Interactive Scatter Plot: Price vs Renewable %</h2>
+            <div class="chart-container">
+                <canvas id="scatterChart"></canvas>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <h2 style="color: #333; margin-bottom: 15px;">🏢 Data Center Impact Analysis</h2>
+            <div class="correlation">0.063</div>
+            <div class="correlation-label">Data Centers vs Electricity Price Correlation</div>
+            <div class="interpretation">
+                Weak/No direct correlation between data center concentration and electricity prices - other factors dominate
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h2>🏢 Data Centers vs Electricity Price by State</h2>
+            <div class="chart-container">
+                <canvas id="dcChart"></canvas>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏆 State Rankings</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: #2e7d32; margin-bottom: 15px;">🌱 Top 10 Renewable States</h3>
+                    <ul class="state-list">
+                        <li>
+                            <span class="rank">1</span>
+                            <span class="state-name">Vermont</span>
+                            <div class="metrics">
+                                <span class="metric green">99.8% renewable</span>
+                                <span class="metric blue">21.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">2</span>
+                            <span class="state-name">South Dakota</span>
+                            <div class="metrics">
+                                <span class="metric green">81.6% renewable</span>
+                                <span class="metric blue">12.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">3</span>
+                            <span class="state-name">Washington</span>
+                            <div class="metrics">
+                                <span class="metric green">69.5% renewable</span>
+                                <span class="metric blue">11.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">4</span>
+                            <span class="state-name">Idaho</span>
+                            <div class="metrics">
+                                <span class="metric green">68.3% renewable</span>
+                                <span class="metric blue">11.5¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">5</span>
+                            <span class="state-name">Iowa</span>
+                            <div class="metrics">
+                                <span class="metric green">65.5% renewable</span>
+                                <span class="metric blue">13.4¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">6</span>
+                            <span class="state-name">Oregon</span>
+                            <div class="metrics">
+                                <span class="metric green">61.4% renewable</span>
+                                <span class="metric blue">14.7¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">7</span>
+                            <span class="state-name">Montana</span>
+                            <div class="metrics">
+                                <span class="metric green">57.4% renewable</span>
+                                <span class="metric blue">12.7¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">8</span>
+                            <span class="state-name">Maine</span>
+                            <div class="metrics">
+                                <span class="metric green">53.8% renewable</span>
+                                <span class="metric blue">24.3¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">9</span>
+                            <span class="state-name">Kansas</span>
+                            <div class="metrics">
+                                <span class="metric green">52.0% renewable</span>
+                                <span class="metric blue">14.2¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">10</span>
+                            <span class="state-name">California</span>
+                            <div class="metrics">
+                                <span class="metric green">50.8% renewable</span>
+                                <span class="metric blue">32.0¢/kWh</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #1565c0; margin-bottom: 15px;">💰 Top 10 Cheapest States</h3>
+                    <ul class="state-list">
+                        <li>
+                            <span class="rank">1</span>
+                            <span class="state-name">North Dakota</span>
+                            <div class="metrics">
+                                <span class="metric blue">11.5¢/kWh</span>
+                                <span class="metric green">39.5% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">2</span>
+                            <span class="state-name">Idaho</span>
+                            <div class="metrics">
+                                <span class="metric blue">11.5¢/kWh</span>
+                                <span class="metric green">68.3% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">3</span>
+                            <span class="state-name">Nebraska</span>
+                            <div class="metrics">
+                                <span class="metric blue">11.5¢/kWh</span>
+                                <span class="metric green">35.9% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">4</span>
+                            <span class="state-name">Louisiana</span>
+                            <div class="metrics">
+                                <span class="metric blue">11.7¢/kWh</span>
+                                <span class="metric green">4.1% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">5</span>
+                            <span class="state-name">Washington</span>
+                            <div class="metrics">
+                                <span class="metric blue">11.9¢/kWh</span>
+                                <span class="metric green">69.5% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">6</span>
+                            <span class="state-name">Utah</span>
+                            <div class="metrics">
+                                <span class="metric blue">12.2¢/kWh</span>
+                                <span class="metric green">20.9% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">7</span>
+                            <span class="state-name">Oklahoma</span>
+                            <div class="metrics">
+                                <span class="metric blue">12.2¢/kWh</span>
+                                <span class="metric green">42.7% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">8</span>
+                            <span class="state-name">Arkansas</span>
+                            <div class="metrics">
+                                <span class="metric blue">12.3¢/kWh</span>
+                                <span class="metric green">10.2% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">9</span>
+                            <span class="state-name">Tennessee</span>
+                            <div class="metrics">
+                                <span class="metric blue">12.4¢/kWh</span>
+                                <span class="metric green">13.8% renewable</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank">10</span>
+                            <span class="state-name">Wyoming</span>
+                            <div class="metrics">
+                                <span class="metric blue">12.5¢/kWh</span>
+                                <span class="metric green">25.7% renewable</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏢 Top Data Center States</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: #9c27b0; margin-bottom: 15px;">🏢 Most Data Centers</h3>
+                    <ul class="state-list">
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">1</span>
+                            <span class="state-name">Virginia</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">663 DCs</span>
+                                <span class="metric blue">14.4¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">2</span>
+                            <span class="state-name">Texas</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">384 DCs</span>
+                                <span class="metric blue">14.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">3</span>
+                            <span class="state-name">California</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">318 DCs</span>
+                                <span class="metric blue">32.0¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">4</span>
+                            <span class="state-name">Illinois</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">180 DCs</span>
+                                <span class="metric blue">15.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">5</span>
+                            <span class="state-name">New York</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">165 DCs</span>
+                                <span class="metric blue">24.4¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">6</span>
+                            <span class="state-name">New Jersey</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">145 DCs</span>
+                                <span class="metric blue">19.3¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">7</span>
+                            <span class="state-name">Georgia</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">120 DCs</span>
+                                <span class="metric blue">14.1¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">8</span>
+                            <span class="state-name">Arizona</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">95 DCs</span>
+                                <span class="metric blue">14.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">9</span>
+                            <span class="state-name">Oregon</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">85 DCs</span>
+                                <span class="metric blue">14.7¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #9c27b0;">10</span>
+                            <span class="state-name">Washington</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #f3e5f5; color: #7b1fa2;">80 DCs</span>
+                                <span class="metric blue">11.9¢/kWh</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #ff5722; margin-bottom: 15px;">⚡ Data Centers + Cheap Power</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">States with 20+ data centers AND below-average electricity prices</p>
+                    <ul class="state-list">
+                        <li>
+                            <span class="rank" style="background: #ff5722;">1</span>
+                            <span class="state-name">Virginia</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">663 DCs</span>
+                                <span class="metric blue">14.4¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #ff5722;">2</span>
+                            <span class="state-name">Texas</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">384 DCs</span>
+                                <span class="metric blue">14.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #ff5722;">3</span>
+                            <span class="state-name">Illinois</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">180 DCs</span>
+                                <span class="metric blue">15.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #ff5722;">4</span>
+                            <span class="state-name">Georgia</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">120 DCs</span>
+                                <span class="metric blue">14.1¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #ff5722;">5</span>
+                            <span class="state-name">Arizona</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">95 DCs</span>
+                                <span class="metric blue">14.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #ff5722;">6</span>
+                            <span class="state-name">Oregon</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">85 DCs</span>
+                                <span class="metric blue">14.7¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #ff5722;">7</span>
+                            <span class="state-name">Washington</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">80 DCs</span>
+                                <span class="metric blue">11.9¢/kWh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank" style="background: #ff5722;">8</span>
+                            <span class="state-name">Colorado</span>
+                            <div class="metrics">
+                                <span class="metric" style="background: #fbe9e7; color: #e64a19;">75 DCs</span>
+                                <span class="metric blue">14.9¢/kWh</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💡 Key Insights</h2>
+            <div style="padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                <ul style="line-height: 2; padding-left: 20px;">
+                    <li><strong>Price-Renewable Correlation (-0.046):</strong> Weak/No correlation: Renewable penetration doesn't strongly affect electricity prices</li>
+                    <li><strong>Data Center-Price Correlation (0.063):</strong> Data center concentration doesn't strongly correlate with electricity prices</li>
+                    <li><strong>Top data center state:</strong> Virginia with 663 data centers at 14.4¢/kWh</li>
+                    <li><strong>Top renewable state:</strong> Vermont with 99.8% renewable energy</li>
+                    <li><strong>Cheapest electricity:</strong> North Dakota at 11.51¢/kWh</li>
+                    <li><strong>Sweet spot states (20+ DCs + cheap power):</strong> 18 states combine high data center concentration with below-average prices</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="subscribe-box">
+            <h2>📬 Get Energy Insights</h2>
+            <p>Subscribe for weekly energy analysis and industry news</p>
+            <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/energy_digest" method="post" target="_blank">
+                <input type="email" name="email" placeholder="your@email.com" required>
+                <input type="hidden" value="1" name="embed">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>Part of <a href="index.html">Energy Digest</a> | <a href="rates.html">Rate Tracker</a> | <a href="events.html">Events</a></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Data source: U.S. Energy Information Administration (EIA)</p>
+        </footer>
+    </div>
+
+    <script>
+        const stateData = [{"state": "AK", "name": "Alaska", "price": 24.82, "renewable": 34.2, "clean": 34.2, "solar": 0.1, "wind": 1.8, "hydro": 25.6, "nuclear": 0.0, "dataCenters": 4}, {"state": "AL", "name": "Alabama", "price": 15.18, "renewable": 9.0, "clean": 40.1, "solar": 0.9, "wind": 0.0, "hydro": 5.8, "nuclear": 31.1, "dataCenters": 10}, {"state": "AR", "name": "Arkansas", "price": 12.32, "renewable": 10.2, "clean": 34.2, "solar": 3.8, "wind": 0.0, "hydro": 5.1, "nuclear": 24.0, "dataCenters": 6}, {"state": "AZ", "name": "Arizona", "price": 14.91, "renewable": 16.3, "clean": 44.2, "solar": 9.3, "wind": 2.2, "hydro": 4.6, "nuclear": 27.9, "dataCenters": 95}, {"state": "CA", "name": "California", "price": 31.97, "renewable": 50.8, "clean": 59.4, "solar": 22.6, "wind": 7.3, "hydro": 13.8, "nuclear": 8.6, "dataCenters": 318}, {"state": "CO", "name": "Colorado", "price": 14.92, "renewable": 41.3, "clean": 41.3, "solar": 8.4, "wind": 29.9, "hydro": 2.8, "nuclear": 0.0, "dataCenters": 75}, {"state": "CT", "name": "Connecticut", "price": 28.75, "renewable": 3.2, "clean": 40.9, "solar": 1.1, "wind": 0.0, "hydro": 0.8, "nuclear": 37.7, "dataCenters": 60}, {"state": "DC", "name": "District of Columbia", "price": 17.71, "renewable": 46.8, "clean": 46.8, "solar": 16.9, "wind": 0.0, "hydro": 0.0, "nuclear": 0.0, "dataCenters": 25}, {"state": "DE", "name": "Delaware", "price": 16.57, "renewable": 4.4, "clean": 4.4, "solar": 3.5, "wind": 0.1, "hydro": 0.0, "nuclear": 0.0, "dataCenters": 5}, {"state": "FL", "name": "Florida", "price": 14.14, "renewable": 8.2, "clean": 19.1, "solar": 7.0, "wind": 0.0, "hydro": 0.1, "nuclear": 10.9, "dataCenters": 70}, {"state": "GA", "name": "Georgia", "price": 14.08, "renewable": 12.5, "clean": 46.8, "solar": 6.6, "wind": 0.0, "hydro": 2.1, "nuclear": 34.3, "dataCenters": 120}, {"state": "HI", "name": "Hawaii", "price": 42.86, "renewable": 24.2, "clean": 24.2, "solar": 7.7, "wind": 7.2, "hydro": 1.1, "nuclear": 0.0, "dataCenters": 9}, {"state": "IA", "name": "Iowa", "price": 13.4, "renewable": 65.5, "clean": 65.5, "solar": 0.9, "wind": 62.8, "hydro": 1.5, "nuclear": 0.0, "dataCenters": 25}, {"state": "ID", "name": "Idaho", "price": 11.52, "renewable": 68.3, "clean": 68.3, "solar": 5.1, "wind": 15.1, "hydro": 45.7, "nuclear": 0.0, "dataCenters": 5}, {"state": "IL", "name": "Illinois", "price": 15.87, "renewable": 15.3, "clean": 68.9, "solar": 1.7, "wind": 13.5, "hydro": 0.0, "nuclear": 53.6, "dataCenters": 180}, {"state": "IN", "name": "Indiana", "price": 14.77, "renewable": 14.4, "clean": 14.4, "solar": 3.2, "wind": 10.6, "hydro": 0.4, "nuclear": 0.0, "dataCenters": 20}, {"state": "KS", "name": "Kansas", "price": 14.15, "renewable": 52.0, "clean": 67.9, "solar": 0.2, "wind": 51.6, "hydro": 0.0, "nuclear": 16.0, "dataCenters": 15}, {"state": "KY", "name": "Kentucky", "price": 12.79, "renewable": 7.1, "clean": 7.1, "solar": 0.4, "wind": 0.0, "hydro": 6.1, "nuclear": 0.0, "dataCenters": 10}, {"state": "LA", "name": "Louisiana", "price": 11.73, "renewable": 4.1, "clean": 18.8, "solar": 1.2, "wind": 0.0, "hydro": 0.9, "nuclear": 14.7, "dataCenters": 10}, {"state": "MA", "name": "Massachusetts", "price": 29.35, "renewable": 19.6, "clean": 19.6, "solar": 10.2, "wind": 0.8, "hydro": 4.2, "nuclear": 0.0, "dataCenters": 45}, {"state": "MD", "name": "Maryland", "price": 17.86, "renewable": 10.7, "clean": 52.2, "solar": 2.9, "wind": 1.6, "hydro": 5.2, "nuclear": 41.6, "dataCenters": 35}, {"state": "ME", "name": "Maine", "price": 24.29, "renewable": 53.8, "clean": 53.8, "solar": 6.4, "wind": 16.7, "hydro": 19.5, "nuclear": 0.0, "dataCenters": 6}, {"state": "MI", "name": "Michigan", "price": 19.3, "renewable": 12.0, "clean": 33.1, "solar": 1.5, "wind": 7.9, "hydro": 1.0, "nuclear": 21.2, "dataCenters": 35}, {"state": "MN", "name": "Minnesota", "price": 15.45, "renewable": 32.6, "clean": 52.8, "solar": 3.9, "wind": 25.2, "hydro": 1.5, "nuclear": 20.2, "dataCenters": 40}, {"state": "MO", "name": "Missouri", "price": 12.91, "renewable": 12.2, "clean": 27.9, "solar": 0.3, "wind": 10.2, "hydro": 1.5, "nuclear": 15.7, "dataCenters": 30}, {"state": "MS", "name": "Mississippi", "price": 13.39, "renewable": 4.3, "clean": 18.1, "solar": 2.2, "wind": 0.4, "hydro": 0.0, "nuclear": 13.8, "dataCenters": 5}, {"state": "MT", "name": "Montana", "price": 12.66, "renewable": 57.4, "clean": 57.4, "solar": 1.4, "wind": 21.6, "hydro": 34.3, "nuclear": 0.0, "dataCenters": 4}, {"state": "NC", "name": "North Carolina", "price": 14.13, "renewable": 13.8, "clean": 45.9, "solar": 8.8, "wind": 0.4, "hydro": 3.6, "nuclear": 32.1, "dataCenters": 65}, {"state": "ND", "name": "North Dakota", "price": 11.51, "renewable": 39.5, "clean": 39.5, "solar": 0.0, "wind": 34.7, "hydro": 4.8, "nuclear": 0.0, "dataCenters": 5}, {"state": "NE", "name": "Nebraska", "price": 11.53, "renewable": 35.9, "clean": 52.2, "solar": 0.5, "wind": 31.9, "hydro": 3.2, "nuclear": 16.4, "dataCenters": 12}, {"state": "NH", "name": "New Hampshire", "price": 23.4, "renewable": 14.9, "clean": 72.0, "solar": 0.0, "wind": 2.6, "hydro": 8.3, "nuclear": 57.1, "dataCenters": 8}, {"state": "NJ", "name": "New Jersey", "price": 19.34, "renewable": 3.8, "clean": 49.8, "solar": 2.7, "wind": 0.0, "hydro": 0.0, "nuclear": 46.0, "dataCenters": 145}, {"state": "NM", "name": "New Mexico", "price": 14.2, "renewable": 49.4, "clean": 49.4, "solar": 10.8, "wind": 38.1, "hydro": 0.4, "nuclear": 0.0, "dataCenters": 6}, {"state": "NV", "name": "Nevada", "price": 15.0, "renewable": 40.2, "clean": 40.2, "solar": 27.4, "wind": 0.7, "hydro": 3.5, "nuclear": 0.0, "dataCenters": 48}, {"state": "NY", "name": "New York", "price": 24.43, "renewable": 30.1, "clean": 51.0, "solar": 2.4, "wind": 4.7, "hydro": 21.7, "nuclear": 21.0, "dataCenters": 165}, {"state": "OH", "name": "Ohio", "price": 15.99, "renewable": 5.3, "clean": 17.9, "solar": 2.8, "wind": 2.0, "hydro": 0.3, "nuclear": 12.6, "dataCenters": 55}, {"state": "OK", "name": "Oklahoma", "price": 12.24, "renewable": 42.7, "clean": 42.7, "solar": 0.3, "wind": 40.4, "hydro": 1.7, "nuclear": 0.0, "dataCenters": 8}, {"state": "OR", "name": "Oregon", "price": 14.7, "renewable": 61.4, "clean": 61.4, "solar": 3.1, "wind": 14.7, "hydro": 41.7, "nuclear": 0.0, "dataCenters": 85}, {"state": "PA", "name": "Pennsylvania", "price": 17.77, "renewable": 3.5, "clean": 34.8, "solar": 0.5, "wind": 1.3, "hydro": 1.1, "nuclear": 31.2, "dataCenters": 60}, {"state": "RI", "name": "Rhode Island", "price": 28.65, "renewable": 10.0, "clean": 10.0, "solar": 6.1, "wind": 1.8, "hydro": 0.0, "nuclear": 0.0, "dataCenters": 5}, {"state": "SC", "name": "South Carolina", "price": 14.23, "renewable": 7.1, "clean": 60.7, "solar": 2.9, "wind": 0.0, "hydro": 2.4, "nuclear": 53.5, "dataCenters": 18}, {"state": "SD", "name": "South Dakota", "price": 12.86, "renewable": 81.6, "clean": 81.6, "solar": 1.6, "wind": 57.8, "hydro": 22.0, "nuclear": 0.0, "dataCenters": 3}, {"state": "TN", "name": "Tennessee", "price": 12.42, "renewable": 13.8, "clean": 56.0, "solar": 1.4, "wind": 0.0, "hydro": 11.7, "nuclear": 42.3, "dataCenters": 28}, {"state": "TX", "name": "Texas", "price": 14.94, "renewable": 29.4, "clean": 36.2, "solar": 7.2, "wind": 21.9, "hydro": 0.1, "nuclear": 6.8, "dataCenters": 384}, {"state": "UT", "name": "Utah", "price": 12.22, "renewable": 20.9, "clean": 20.9, "solar": 15.1, "wind": 2.1, "hydro": 2.2, "nuclear": 0.0, "dataCenters": 50}, {"state": "VA", "name": "Virginia", "price": 14.41, "renewable": 11.4, "clean": 39.6, "solar": 6.8, "wind": 0.0, "hydro": 1.2, "nuclear": 28.2, "dataCenters": 663}, {"state": "VT", "name": "Vermont", "price": 21.9, "renewable": 99.8, "clean": 99.8, "solar": 9.6, "wind": 15.7, "hydro": 56.8, "nuclear": 0.0, "dataCenters": 4}, {"state": "WA", "name": "Washington", "price": 11.9, "renewable": 69.5, "clean": 79.2, "solar": 0.4, "wind": 8.7, "hydro": 59.3, "nuclear": 9.7, "dataCenters": 80}, {"state": "WI", "name": "Wisconsin", "price": 17.18, "renewable": 12.3, "clean": 27.8, "solar": 4.4, "wind": 3.1, "hydro": 3.2, "nuclear": 15.5, "dataCenters": 22}, {"state": "WV", "name": "West Virginia", "price": 15.07, "renewable": 7.0, "clean": 7.0, "solar": 0.4, "wind": 4.0, "hydro": 2.7, "nuclear": 0.0, "dataCenters": 7}, {"state": "WY", "name": "Wyoming", "price": 12.47, "renewable": 25.7, "clean": 25.7, "solar": 1.0, "wind": 22.1, "hydro": 2.5, "nuclear": 0.0, "dataCenters": 3}];
+
+        const ctx = document.getElementById('scatterChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'States',
+                    data: stateData.map(s => ({
+                        x: s.renewable,
+                        y: s.price,
+                        state: s.name,
+                        solar: s.solar,
+                        wind: s.wind,
+                        hydro: s.hydro,
+                        nuclear: s.nuclear
+                    })),
+                    backgroundColor: stateData.map(s => {
+                        // Color by renewable %
+                        if (s.renewable > 40) return 'rgba(46, 125, 50, 0.7)';
+                        if (s.renewable > 20) return 'rgba(102, 126, 234, 0.7)';
+                        return 'rgba(198, 40, 40, 0.7)';
+                    }),
+                    pointRadius: 10,
+                    pointHoverRadius: 14,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const d = context.raw;
+                                return [
+                                    d.state,
+                                    `Price: ${d.y.toFixed(1)}¢/kWh`,
+                                    `Renewable: ${d.x.toFixed(1)}%`,
+                                    `Solar: ${d.solar}% | Wind: ${d.wind}%`,
+                                    `Hydro: ${d.hydro}% | Nuclear: ${d.nuclear}%`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Renewable Energy Share (%)',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        min: 0,
+                        max: 100
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Electricity Price (¢/kWh)',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        min: 0
+                    }
+                }
+            }
+        });
+
+        // Data Center Chart
+        const dcCtx = document.getElementById('dcChart').getContext('2d');
+        new Chart(dcCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'States',
+                    data: stateData.filter(s => s.dataCenters > 0).map(s => ({
+                        x: s.dataCenters,
+                        y: s.price,
+                        state: s.name,
+                        renewable: s.renewable,
+                        dataCenters: s.dataCenters
+                    })),
+                    backgroundColor: stateData.filter(s => s.dataCenters > 0).map(s => {
+                        // Color by data center count
+                        if (s.dataCenters > 100) return 'rgba(156, 39, 176, 0.8)';
+                        if (s.dataCenters > 30) return 'rgba(103, 58, 183, 0.7)';
+                        return 'rgba(63, 81, 181, 0.6)';
+                    }),
+                    pointRadius: stateData.filter(s => s.dataCenters > 0).map(s => {
+                        // Size by data center count
+                        if (s.dataCenters > 100) return 18;
+                        if (s.dataCenters > 50) return 14;
+                        if (s.dataCenters > 20) return 10;
+                        return 7;
+                    }),
+                    pointHoverRadius: 20,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const d = context.raw;
+                                return [
+                                    d.state,
+                                    `Data Centers: ${d.dataCenters}`,
+                                    `Price: ${d.y.toFixed(1)}¢/kWh`,
+                                    `Renewable: ${d.renewable.toFixed(1)}%`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Number of Data Centers (log scale)',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        min: 1
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Electricity Price (¢/kWh)',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        min: 0
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
