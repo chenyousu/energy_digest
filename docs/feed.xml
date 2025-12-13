@@ -5,8 +5,15 @@
     <link>https://energydigest.io</link>
     <description>Daily curated summaries of power and energy industry news. Stay informed on renewable energy, grid technology, battery storage, and more.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Dec 2025 18:01:13 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 13 Dec 2025 08:01:06 GMT</lastBuildDate>
     <atom:link href="https://energydigest.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Energy Digest - December 13, 2025</title>
+      <link>https://energydigest.io/energy_digest_2025-12-13.html</link>
+      <description>Energy Digest for December 13, 2025 - 15 articles covering power and energy industry news.</description>
+      <pubDate>Sat, 13 Dec 2025 06:00:00 GMT</pubDate>
+      <guid>https://energydigest.io/energy_digest_2025-12-13.html</guid>
+    </item>
     <item>
       <title>Energy Digest - December 12, 2025</title>
       <link>https://energydigest.io/energy_digest_2025-12-12.html</link>
@@ -139,13 +146,6 @@
       <description>Energy Digest for November 24, 2025 - 12 articles covering power and energy industry news.</description>
       <pubDate>Mon, 24 Nov 2025 06:00:00 GMT</pubDate>
       <guid>https://energydigest.io/energy_digest_2025-11-24.html</guid>
-    </item>
-    <item>
-      <title>Energy Digest - November 23, 2025</title>
-      <link>https://energydigest.io/energy_digest_2025-11-23.html</link>
-      <description>Energy Digest for November 23, 2025 - 1 articles covering power and energy industry news.</description>
-      <pubDate>Sun, 23 Nov 2025 06:00:00 GMT</pubDate>
-      <guid>https://energydigest.io/energy_digest_2025-11-23.html</guid>
     </item>
   </channel>
 </rss>
