@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest Preview - With Market Data</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.1em; opacity: 0.95; }
+        header .meta { font-size: 0.95em; opacity: 0.85; margin-top: 10px; }
+
+        /* Market Data Section */
+        .market-section {
+            background: #f8f9fa;
+            padding: 25px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .market-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .market-header h2 {
+            font-size: 1.3em;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .market-header .data-period {
+            font-size: 0.85em;
+            color: #666;
+        }
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .market-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .market-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .market-card .label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .market-card .sublabel {
+            color: #999;
+            font-size: 0.8em;
+            margin-top: 3px;
+        }
+        .market-card .change {
+            font-size: 0.85em;
+            margin-top: 8px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .market-card .change.up { background: #ffebee; color: #c62828; }
+        .market-card .change.down { background: #e8f5e9; color: #2e7d32; }
+
+        .rate-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .rate-highlight-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 20px;
+        }
+        .rate-highlight-box h4 {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .rate-list-mini {
+            list-style: none;
+        }
+        .rate-list-mini li {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9em;
+        }
+        .rate-list-mini li:last-child { border-bottom: none; }
+        .rate-list-mini .state { color: #333; }
+        .rate-list-mini .price { font-weight: 600; color: #667eea; }
+
+        .view-all-rates {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .view-all-rates a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+        .view-all-rates a:hover { text-decoration: underline; }
+
+        /* Articles Section */
+        .content { padding: 40px; }
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .article {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .article:last-child { border-bottom: none; }
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .article-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .article-title h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            line-height: 1.4;
+        }
+        .article-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .article-title a:hover { color: #667eea; }
+        .article-meta {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 5px;
+        }
+        .article-summary {
+            color: #555;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Digest</h1>
+            <div class="subtitle">Daily Curated Summaries of Power & Energy News</div>
+            <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2 | 25+ Sources | Updated Daily</div>
+            <div class="meta">February 8, 2026</div>
+        </header>
+
+        <!-- NEW: Market Data Section -->
+        <div class="market-section">
+            <div class="market-header">
+                <h2>Electricity Rates</h2>
+                <span class="data-period">Data: September 2025 | Source: EIA</span>
+            </div>
+
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="value">19.2&cent;</div>
+                    <div class="label">U.S. Average</div>
+                    <div class="sublabel">Residential (per kWh)</div>
+                </div>
+                <div class="market-card">
+                    <div class="value">11.9&cent;</div>
+                    <div class="label">Lowest Rate</div>
+                    <div class="sublabel">Nevada</div>
+                </div>
+                <div class="market-card">
+                    <div class="value">39.5&cent;</div>
+                    <div class="label">Highest Rate</div>
+                    <div class="sublabel">Hawaii</div>
+                </div>
+                <div class="market-card">
+                    <div class="value">32.0&cent;</div>
+                    <div class="label">California</div>
+                    <div class="sublabel">Residential</div>
+                    <div class="change up">+4.6% YoY</div>
+                </div>
+            </div>
+
+            <div class="rate-highlights">
+                <div class="rate-highlight-box">
+                    <h4>5 Cheapest States</h4>
+                    <ul class="rate-list-mini">
+                        <li><span class="state">Nevada</span><span class="price">11.95&cent;</span></li>
+                        <li><span class="state">Louisiana</span><span class="price">12.36&cent;</span></li>
+                        <li><span class="state">Idaho</span><span class="price">12.50&cent;</span></li>
+                        <li><span class="state">Tennessee</span><span class="price">13.29&cent;</span></li>
+                        <li><span class="state">Kentucky</span><span class="price">13.56&cent;</span></li>
+                    </ul>
+                </div>
+                <div class="rate-highlight-box">
+                    <h4>5 Most Expensive States</h4>
+                    <ul class="rate-list-mini">
+                        <li><span class="state">Hawaii</span><span class="price">39.54&cent;</span></li>
+                        <li><span class="state">California</span><span class="price">32.04&cent;</span></li>
+                        <li><span class="state">Connecticut</span><span class="price">30.48&cent;</span></li>
+                        <li><span class="state">Massachusetts</span><span class="price">30.41&cent;</span></li>
+                        <li><span class="state">Rhode Island</span><span class="price">28.30&cent;</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="view-all-rates">
+                <a href="rates.html">View Full Rate Tracker &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Articles Section -->
+        <div class="content">
+            <h2 class="section-title">Today's Top Stories</h2>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">1</div>
+                    <div class="article-title">
+                        <h3><a href="#">PG&E will try out SPAN Edge customer meter upgrade device</a></h3>
+                        <div class="article-meta">Solar Power World | February 6, 2026</div>
+                    </div>
+                </div>
+                <p class="article-summary">Pacific Gas and Electric Company (PG&E) has accepted SPAN Edge, an "at-the-meter" grid technology device, for customer use. This allows homes to add new electric appliances or EV charging without costly upgrades, addressing a significant barrier to residential electrification.</p>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">2</div>
+                    <div class="article-title">
+                        <h3><a href="#">Conservative renewables group's poll finds most Virginia voters support solar</a></h3>
+                        <div class="article-meta">Solar Power World | February 5, 2026</div>
+                    </div>
+                </div>
+                <p class="article-summary">A survey conducted by Energy Right, a southeast conservative renewables advocacy group, found that most Virginia voters support solar development in the state. The poll revealed that 50% of respondents supported solar PV as an energy solution to stabilize prices.</p>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">3</div>
+                    <div class="article-title">
+                        <h3><a href="#">Meta procures another 176 MW of solar to support data centers</a></h3>
+                        <div class="article-meta">Solar Power World | February 5, 2026</div>
+                    </div>
+                </div>
+                <p class="article-summary">Meta has signed a power purchase agreement for 176 MW of solar capacity to support its growing data center operations. This adds to the company's substantial renewable energy portfolio as tech companies continue to drive utility-scale solar development.</p>
+            </article>
+
+            <article class="article">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h3><a href="#">SolarEdge inverters pair with Socomec BESS for streamlined C&I solution</a></h3>
+                        <div class="article-meta">Solar Power World | February 4, 2026</div>
+                    </div>
+                </div>
+                <p class="article-summary">SolarEdge is partnering with Socomec to offer a streamlined solar and storage solution for commercial and industrial customers, featuring SolarEdge's inverters, power optimizers, and the ONE energy management system.</p>
+            </article>
+        </div>
+
+        <footer>
+            <p>Published by Energy Digest</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">This is a preview with market data integration</p>
+        </footer>
+    </div>
+</body>
+</html>
