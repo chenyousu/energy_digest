@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic Trends Preview - Energy Digest</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .preview-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2b6cb0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            border-left: 4px solid #2b6cb0;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2b6cb0;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .topic-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .topic-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .topic-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .topic-count {
+            color: #2b6cb0;
+            font-weight: 600;
+        }
+
+        .trend-indicator {
+            font-size: 0.85em;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .trend-up {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .trend-down {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .trend-stable {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .time-range-selector {
+            display: flex;
+            gap: 8px;
+        }
+
+        .range-btn {
+            padding: 8px 16px;
+            border: 1px solid #2b6cb0;
+            background: white;
+            color: #2b6cb0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .range-btn:hover {
+            background: #ebf4ff;
+        }
+
+        .range-btn.active {
+            background: #2b6cb0;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 25px 20px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            .content {
+                padding: 20px;
+            }
+            .chart-container {
+                height: 300px;
+            }
+            .time-range-selector {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .range-btn {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+            .section > div:first-child {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back to Digests</a>
+            <span class="preview-badge">PREVIEW</span>
+            <h1>Topic Trends</h1>
+            <p>Track how energy topics have evolved over time</p>
+        </header>
+
+        <div class="content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalArticles">--</div>
+                    <div class="stat-label">Total Articles</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalDays">--</div>
+                    <div class="stat-label">Days Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="topTopic">--</div>
+                    <div class="stat-label">Top Topic</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="hottestTopic">--</div>
+                    <div class="stat-label">Trending Up</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">Topic Share Over Time</h2>
+                    <div class="time-range-selector">
+                        <button class="range-btn" data-weeks="4">1 Month</button>
+                        <button class="range-btn active" data-weeks="12">3 Months</button>
+                        <button class="range-btn" data-weeks="26">6 Months</button>
+                        <button class="range-btn" data-weeks="0">All Time</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="trendsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Topic Distribution (Last 30 Days)</h2>
+                <div class="chart-container" style="height: 350px;">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>All Topics</h2>
+                <div class="topic-list" id="topicList">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Energy Digest - Topic Trends Preview</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Data from search_index.json</p>
+        </footer>
+    </div>
+
+    <script>
+        // Topic categories and colors
+        const topicConfig = {
+            'Solar': { color: '#f59e0b', keywords: ['solar', 'pv', 'photovoltaic'] },
+            'Wind': { color: '#3b82f6', keywords: ['wind', 'turbine', 'offshore wind'] },
+            'Storage': { color: '#10b981', keywords: ['battery', 'storage', 'bess', 'lithium'] },
+            'Grid': { color: '#6366f1', keywords: ['grid', 'transmission', 'distribution', 'substation'] },
+            'Nuclear': { color: '#ec4899', keywords: ['nuclear', 'reactor', 'smr'] },
+            'Hydrogen': { color: '#06b6d4', keywords: ['hydrogen', 'h2', 'electrolyzer'] },
+            'AI & Data': { color: '#8b5cf6', keywords: ['data center', 'ai', 'artificial intelligence'] },
+            'EV': { color: '#14b8a6', keywords: ['ev', 'electric vehicle', 'charging'] },
+            'Policy': { color: '#ef4444', keywords: ['ferc', 'policy', 'regulation', 'tariff'] },
+            'Markets': { color: '#f97316', keywords: ['market', 'pjm', 'ercot', 'caiso', 'iso'] },
+        };
+
+        function detectTopic(article) {
+            const text = (article.title + ' ' + article.summary).toLowerCase();
+            for (const [topic, config] of Object.entries(topicConfig)) {
+                for (const keyword of config.keywords) {
+                    if (text.includes(keyword)) {
+                        return topic;
+                    }
+                }
+            }
+            return 'Other';
+        }
+
+        function processData(articles) {
+            // Group articles by week and topic
+            const weeklyData = {};
+            const topicCounts = {};
+            const recentTopicCounts = {}; // Last 30 days
+
+            const now = new Date();
+            const thirtyDaysAgo = new Date(now - 30 * 24 * 60 * 60 * 1000);
+
+            articles.forEach(article => {
+                const date = new Date(article.digest_date);
+                const topic = detectTopic(article);
+
+                // Get week start (Monday)
+                const weekStart = new Date(date);
+                weekStart.setDate(date.getDate() - date.getDay() + 1);
+                const weekKey = weekStart.toISOString().split('T')[0];
+
+                // Initialize
+                if (!weeklyData[weekKey]) {
+                    weeklyData[weekKey] = {};
+                }
+                if (!weeklyData[weekKey][topic]) {
+                    weeklyData[weekKey][topic] = 0;
+                }
+                weeklyData[weekKey][topic]++;
+
+                // Total counts
+                topicCounts[topic] = (topicCounts[topic] || 0) + 1;
+
+                // Recent counts (last 30 days)
+                if (date >= thirtyDaysAgo) {
+                    recentTopicCounts[topic] = (recentTopicCounts[topic] || 0) + 1;
+                }
+            });
+
+            return { weeklyData, topicCounts, recentTopicCounts };
+        }
+
+        // Global variables for chart management
+        let trendsChart = null;
+        let allWeeks = [];
+        let globalWeeklyData = {};
+        let globalSortedTopics = [];
+
+        function createLineChart(numWeeks) {
+            // Determine which weeks to show
+            const selectedWeeks = numWeeks === 0 ? allWeeks : allWeeks.slice(-numWeeks);
+
+            // Calculate weekly totals for percentage calculation
+            const weeklyTotals = {};
+            selectedWeeks.forEach(week => {
+                weeklyTotals[week] = Object.values(globalWeeklyData[week] || {}).reduce((a, b) => a + b, 0);
+            });
+
+            // Prepare datasets for line chart (using percentages)
+            const datasets = globalSortedTopics.map(topic => ({
+                label: topic,
+                data: selectedWeeks.map(week => {
+                    const count = globalWeeklyData[week]?.[topic] || 0;
+                    const total = weeklyTotals[week] || 1;
+                    return Math.round((count / total) * 100 * 10) / 10;
+                }),
+                borderColor: topicConfig[topic]?.color || '#6b7280',
+                backgroundColor: topicConfig[topic]?.color || '#6b7280',
+                tension: 0.3,
+                fill: false,
+            }));
+
+            // Destroy existing chart if it exists
+            if (trendsChart) {
+                trendsChart.destroy();
+            }
+
+            // Create new chart
+            trendsChart = new Chart(document.getElementById('trendsChart'), {
+                type: 'line',
+                data: {
+                    labels: selectedWeeks.map(w => {
+                        const d = new Date(w);
+                        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    }),
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 50,
+                            title: {
+                                display: true,
+                                text: 'Share of Weekly Coverage (%)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createCharts(data) {
+            const { weeklyData, topicCounts, recentTopicCounts } = data;
+
+            // Store globally for time range switching
+            allWeeks = Object.keys(weeklyData).sort();
+            globalWeeklyData = weeklyData;
+            globalSortedTopics = Object.entries(topicCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8)
+                .map(([topic]) => topic);
+
+            // Create initial line chart (12 weeks default)
+            createLineChart(12);
+
+            // Set up time range buttons
+            document.querySelectorAll('.range-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const weeks = parseInt(this.dataset.weeks);
+                    createLineChart(weeks);
+                });
+            });
+
+            // Pie chart for recent topics
+            const pieTopics = Object.entries(recentTopicCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            new Chart(document.getElementById('pieChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: pieTopics.map(([t]) => t),
+                    datasets: [{
+                        data: pieTopics.map(([, c]) => c),
+                        backgroundColor: pieTopics.map(([t]) => topicConfig[t]?.color || '#6b7280'),
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+
+            // Populate topic list
+            const topicListEl = document.getElementById('topicList');
+            const sortedAll = Object.entries(topicCounts).sort((a, b) => b[1] - a[1]);
+
+            topicListEl.innerHTML = sortedAll.map(([topic, count]) => {
+                const color = topicConfig[topic]?.color || '#6b7280';
+                // Calculate trend (compare last 2 weeks)
+                const lastWeek = allWeeks[allWeeks.length - 1];
+                const prevWeek = allWeeks[allWeeks.length - 2];
+                const lastCount = weeklyData[lastWeek]?.[topic] || 0;
+                const prevCount = weeklyData[prevWeek]?.[topic] || 0;
+                let trend = 'stable';
+                let trendText = '→';
+                if (lastCount > prevCount * 1.2) {
+                    trend = 'up';
+                    trendText = '↑';
+                } else if (lastCount < prevCount * 0.8) {
+                    trend = 'down';
+                    trendText = '↓';
+                }
+
+                return `
+                    <div class="topic-item">
+                        <div class="topic-color" style="background: ${color};"></div>
+                        <span class="topic-name">${topic}</span>
+                        <span class="topic-count">${count}</span>
+                        <span class="trend-indicator trend-${trend}">${trendText}</span>
+                    </div>
+                `;
+            }).join('');
+
+            // Update stats
+            document.getElementById('totalArticles').textContent = Object.values(topicCounts).reduce((a, b) => a + b, 0);
+            document.getElementById('totalDays').textContent = allWeeks.length * 7;
+            document.getElementById('topTopic').textContent = sortedAll[0]?.[0] || '--';
+
+            // Find trending topic
+            let maxGrowth = 0;
+            let hottestTopic = '--';
+            globalSortedTopics.forEach(topic => {
+                const lastWeek = allWeeks[allWeeks.length - 1];
+                const prevWeek = allWeeks[allWeeks.length - 2];
+                const growth = (weeklyData[lastWeek]?.[topic] || 0) - (weeklyData[prevWeek]?.[topic] || 0);
+                if (growth > maxGrowth) {
+                    maxGrowth = growth;
+                    hottestTopic = topic;
+                }
+            });
+            document.getElementById('hottestTopic').textContent = hottestTopic;
+        }
+
+        // Load and process data
+        fetch('search_index.json')
+            .then(response => response.json())
+            .then(data => {
+                const processed = processData(data.articles || []);
+                createCharts(processed);
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+                document.querySelector('.content').innerHTML = '<p style="text-align:center;padding:40px;color:#666;">Error loading data. Make sure search_index.json exists.</p>';
+            });
+    </script>
+</body>
+</html>
