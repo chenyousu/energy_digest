@@ -120,9 +120,8 @@
         }
 
         .search-container {
-            padding: 30px 40px;
+            padding: 12px 40px;
             background: #f8f9fa;
-            border-bottom: 1px solid #e0e0e0;
         }
 
         .search-box {
@@ -162,30 +161,6 @@
             font-weight: 500;
         }
 
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #2b6cb0;
-        }
-
-        .stat-label {
-            color: #666;
-            margin-top: 5px;
-        }
-
         /* Category badges */
         .category-badge {
             display: inline-block;
@@ -206,14 +181,14 @@
 
         .tab-button {
             flex: 1;
-            padding: 20px;
+            padding: 16px 20px;
             background: transparent;
             border: none;
-            font-size: 1.1em;
+            font-size: 1.05em;
             font-weight: 600;
             color: #666;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             border-bottom: 3px solid transparent;
         }
 
@@ -518,17 +493,8 @@
             .tab-button {
                 white-space: nowrap;
                 flex: none;
-                padding: 15px 20px;
-                font-size: 1em;
-            }
-
-            .stats {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .stat-number {
-                font-size: 2em;
+                padding: 12px 16px;
+                font-size: 0.95em;
             }
 
             .category-badge {
@@ -559,7 +525,7 @@
             <h1>Energy Digest</h1>
             <div class="subtitle">Daily Summaries & Key Takeaways of Power & Energy Updates</div>
             <div class="subtitle" style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Powered by Llama 3.2</div>
-            <div class="meta">Last Updated: February 26, 2026 at 08:02 AM</div>
+            <div class="meta">Last Updated: February 26, 2026 at 08:41 AM</div>
         </header>
 
         <div class="search-container">
@@ -576,17 +542,6 @@
             <div id="searchResults" class="search-results"></div>
         </div>
 
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-number" id="newsCount">10</div>
-                <div class="stat-label">News & Articles</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number" id="researchCount">5</div>
-                <div class="stat-label">Technical Papers</div>
-            </div>
-        </div>
-
         <div class="tabs" role="tablist" aria-label="Content tabs">
             <button class="tab-button active" role="tab" aria-selected="true" aria-controls="news" id="news-tab" onclick="openTab(event, 'news')">
                 News & Articles (10)
@@ -598,11 +553,11 @@
 
         <div id="news" class="tab-content active" role="tabpanel" aria-labelledby="news-tab">
 
-            <article class="article" id="782480b4">
+            <article class="article" id="8fcd5c98">
                 <div class="article-header">
                     <div class="article-number">1</div>
                     <div class="article-title">
-                        <h2><a href="https://www.energy-storage.news/philippines-department-of-energy-instructs-renewable-energy-plants-to-add-energy-storage/" target="_blank">Philippines Department of Energy instructs renewable energy plants to add energy storage</a></h2>
+                        <h2><a href="https://www.energy-storage.news/energy-storage-summit-2026-day-one-reflections-and-takeaways-at-europes-biggest-industry-conference/" target="_blank">Energy Storage Summit 2026 Day One: Reflections and takeaways at Europe’s biggest industry conference</a></h2>
                     </div>
                 </div>
 
@@ -612,105 +567,132 @@
                         <img src='https://www.google.com/s2/favicons?domain=energy-storage.news&sz=16' alt='' class='source-favicon'>
                         <span class="metadata-label">Source:</span> Energy Storage News
                     </div>
-                    <div><span class="metadata-label">Published:</span> February 26, 2026</div>
+                    <div><span class="metadata-label">Published:</span> February 25, 2026</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Large-scale renewable energy power plant developers in the Philippines must integrate energy storage into their proposed facilities. The Department of Energy has issued an instruction requiring such plants to implement energy storage systems, a move aimed at ensuring grid stability and reliability. This development marks a significant shift towards incorporating energy storage solutions in the country's renewable energy landscape.
+                        The Energy Storage Summit 2026 began its 11th year, taking place in London, UK. The conference is Europe's biggest industry event focused on energy storage, now firmly established on the industry calendar.
                     </div>
                 </div>
 
-                <a href="https://www.energy-storage.news/philippines-department-of-energy-instructs-renewable-energy-plants-to-add-energy-storage/" class="btn-link" target="_blank">Read Full Article →</a>
+                <a href="https://www.energy-storage.news/energy-storage-summit-2026-day-one-reflections-and-takeaways-at-europes-biggest-industry-conference/" class="btn-link" target="_blank">Read Full Article →</a>
             </article>
 
-            <article class="article" id="cc1ef941">
+            <article class="article" id="950e1787">
                 <div class="article-header">
                     <div class="article-number">2</div>
                     <div class="article-title">
-                        <h2><a href="https://www.pv-magazine.com/2026/02/26/germanys-battery-sector-calls-for-faster-grid-connections-amid-backlog/" target="_blank">Germany’s battery sector calls for faster grid connections amid backlog</a></h2>
+                        <h2><a href="https://www.energy-storage.news/batteries-provide-flexibility-european-renewable-revenue-stack/" target="_blank">Batteries provide ‘flexibility’ in the European renewable revenue stack</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
                     <span class="category-badge" style="background: #d1fae5; color: #059669;">Storage</span>
                     <div style="display: flex; align-items: center; gap: 4px;">
-                        <img src='https://www.google.com/s2/favicons?domain=pv-magazine.com&sz=16' alt='' class='source-favicon'>
-                        <span class="metadata-label">Source:</span> PV Magazine
+                        <img src='https://www.google.com/s2/favicons?domain=energy-storage.news&sz=16' alt='' class='source-favicon'>
+                        <span class="metadata-label">Source:</span> Energy Storage News
                     </div>
-                    <div><span class="metadata-label">Published:</span> February 26, 2026</div>
+                    <div><span class="metadata-label">Published:</span> February 25, 2026</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Germany's battery industry is urging regulators and grid operators to speed up utility-scale connection approvals due to a backlog of applications exceeding available grid capacity, hindering the growth of large-scale battery storage. The "Large-Scale Battery Storage Cooperation Forum" has identified four action areas to address this issue, involving grid connection requests, flexible agreements, storage grid fees, and co-location. As many as 58 companies from the grid and storage sectors participated in the forum.
+                        Batteries with energy storage systems (BESS) provide "flexibility" in the European renewable revenue stack by allowing for the management of variable renewable energy sources. This is achieved through the ability of BESS to store excess energy generated during periods of high production, releasing it when needed. Speakers at the 2026 Energy Storage Summit emphasized the role of BESS in facilitating flexibility in the revenue stack.
                     </div>
                 </div>
 
-                <a href="https://www.pv-magazine.com/2026/02/26/germanys-battery-sector-calls-for-faster-grid-connections-amid-backlog/" class="btn-link" target="_blank">Read Full Article →</a>
+                <a href="https://www.energy-storage.news/batteries-provide-flexibility-european-renewable-revenue-stack/" class="btn-link" target="_blank">Read Full Article →</a>
             </article>
 
-            <article class="article" id="3f93753b">
+            <article class="article" id="d84ea725">
                 <div class="article-header">
                     <div class="article-number">3</div>
                     <div class="article-title">
-                        <h2><a href="https://www.pv-magazine.com/2026/02/26/industry-alliance-calls-for-100-renewables-for-australian-data-centers/" target="_blank">Industry alliance calls for 100% renewables for Australian data centers</a></h2>
+                        <h2><a href="https://www.solarpowerworldonline.com/2026/02/commerce-suggests-100-tariffs-for-solar-panels-from-india-indonesia-laos/" target="_blank">Commerce suggests 100%+ tariffs for solar panels from India, Indonesia, Laos</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <span class="category-badge" style="background: #fef3c7; color: #d97706;">Solar</span>
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        <img src='https://www.google.com/s2/favicons?domain=solarpowerworldonline.com&sz=16' alt='' class='source-favicon'>
+                        <span class="metadata-label">Source:</span> Solar Power World
+                    </div>
+                    <div><span class="metadata-label">Published:</span> February 24, 2026</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        The US Department of Commerce has proposed tariffs ranging from 80.67% to 125.87% on solar panel imports from India, Indonesia, and Laos due to subsidy rates in the range of 104.38% for Indonesia and 125.87% for India, with Laos receiving an 80.67% rate. The proposed tariffs aim to cancel out subsidies given to producers in these countries. Commerce will finalize its recommendations after a further review of the investigation.
+                    </div>
+                </div>
+
+                <a href="https://www.solarpowerworldonline.com/2026/02/commerce-suggests-100-tariffs-for-solar-panels-from-india-indonesia-laos/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article" id="ad8a4174">
+                <div class="article-header">
+                    <div class="article-number">4</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.energy-storage.news/how-can-batteries-respond-to-energy-price-volatility-in-europe/" target="_blank">How can batteries respond to energy price volatility in Europe?</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <span class="category-badge" style="background: #d1fae5; color: #059669;">Storage</span>
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        <img src='https://www.google.com/s2/favicons?domain=energy-storage.news&sz=16' alt='' class='source-favicon'>
+                        <span class="metadata-label">Source:</span> Energy Storage News
+                    </div>
+                    <div><span class="metadata-label">Published:</span> February 24, 2026</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Fluctuating power prices in Europe present opportunities for battery energy storage systems (BESS) developers. BESS can help mitigate the impact of price volatility by storing excess energy during periods when prices are high and releasing it during times of higher costs, such as peak demand or low prices. This can provide a more stable and cost-effective source of energy.
+                    </div>
+                </div>
+
+                <a href="https://www.energy-storage.news/how-can-batteries-respond-to-energy-price-volatility-in-europe/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article" id="c7d8e17b">
+                <div class="article-header">
+                    <div class="article-number">5</div>
+                    <div class="article-title">
+                        <h2><a href="https://electrek.co/2026/02/24/rivian-just-unlocked-a-new-way-for-drivers-to-get-paid-to-charge/" target="_blank">Rivian just unlocked a new way for drivers to get paid to charge</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
                     <span class="category-badge" style="background: #e0e7ff; color: #4f46e5;">Grid</span>
                     <div style="display: flex; align-items: center; gap: 4px;">
-                        <img src='https://www.google.com/s2/favicons?domain=pv-magazine.com&sz=16' alt='' class='source-favicon'>
-                        <span class="metadata-label">Source:</span> PV Magazine
+                        <img src='https://www.google.com/s2/favicons?domain=electrek.co&sz=16' alt='' class='source-favicon'>
+                        <span class="metadata-label">Source:</span> Electrek
                     </div>
-                    <div><span class="metadata-label">Published:</span> February 26, 2026</div>
+                    <div><span class="metadata-label">Published:</span> February 24, 2026</div>
                 </div>
 
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        An alliance of 11 industry groups is urging the Australian federal government to require new data centers to secure 100% additional renewable energy and fund workforce training as a condition of approval. The proposal, endorsed by major environmental and union groups, aims to strengthen grid stability and ensure data center investments provide clear community benefits. Data centers are expected to consume 6% of Australia's grid-supplied electricity by 2030, according to the Australian Energy Market Operator (AEMO).
+                        Rivian is partnering with EnergyHub to allow its drivers across North America to join utility-run EV charging programs that reward customers for charging at grid-friendly times, providing a new way for drivers to get paid to charge. The partnership aims to make it easier for Rivian's drivers to participate in these programs, which can help offset the cost of owning an electric vehicle. This new program is part of an effort to encourage more widespread adoption of sustainable transportation options.
                     </div>
                 </div>
 
-                <a href="https://www.pv-magazine.com/2026/02/26/industry-alliance-calls-for-100-renewables-for-australian-data-centers/" class="btn-link" target="_blank">Read Full Article →</a>
+                <a href="https://electrek.co/2026/02/24/rivian-just-unlocked-a-new-way-for-drivers-to-get-paid-to-charge/" class="btn-link" target="_blank">Read Full Article →</a>
             </article>
 
-            <article class="article" id="6e9a832d">
+            <article class="article" id="424372c5">
                 <div class="article-header">
-                    <div class="article-number">4</div>
+                    <div class="article-number">6</div>
                     <div class="article-title">
-                        <h2><a href="https://www.energy-storage.news/google-minnesota-data-centre-energy-deal-includes-30gwh-multi-day-iron-air-batteries-from-form-energy/" target="_blank">Google: Minnesota data centre energy deal includes 30GWh ‘multi-day’ iron-air batteries from Form Energy</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <span class="category-badge" style="background: #f0fdf4; color: #16a34a;">AI & Tech</span>
-                    <div style="display: flex; align-items: center; gap: 4px;">
-                        <img src='https://www.google.com/s2/favicons?domain=energy-storage.news&sz=16' alt='' class='source-favicon'>
-                        <span class="metadata-label">Source:</span> Energy Storage News
-                    </div>
-                    <div><span class="metadata-label">Published:</span> February 26, 2026</div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        Google's data centre in Pine Island, Minnesota, is getting 30GWh of "multi-day" iron-air batteries from US startup Form Energy through an energy deal with Utility Xcel Energy. The batteries are designed to provide long-lasting backup power and reduce the reliance on traditional fossil fuels.
-                    </div>
-                </div>
-
-                <a href="https://www.energy-storage.news/google-minnesota-data-centre-energy-deal-includes-30gwh-multi-day-iron-air-batteries-from-form-energy/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article" id="fde14c89">
-                <div class="article-header">
-                    <div class="article-number">5</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.pv-magazine.com/2026/02/26/solar-storage-to-lead-record-86-gw-of-us-capacity-in-2026/" target="_blank">Solar, storage to lead record 86 GW of US capacity in 2026</a></h2>
+                        <h2><a href="https://www.pv-magazine.com/2026/02/26/morocco-installs-204-mw-of-utility-scale-solar-in-2025/" target="_blank">Morocco installs 204 MW of utility-scale solar in 2025</a></h2>
                     </div>
                 </div>
 
@@ -726,23 +708,50 @@
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Solar power is expected to account for 43.4 GW of new utility-scale capacity, with solar and battery storage combined making up 79% of all planned additions, representing the largest single-year capacity addition in over two decades. The US electric grid will see a historic expansion with 86 GW of new utility-scale generating capacity coming online in 2026. Solar power continues its growth trend as the fastest-growing source of new generation.
+                        Morocco has installed a cumulative utility-scale solar capacity of almost 1.3 GW, with an additional 534 MW of concentrated solar power expected to be added. The country's overall solar capacity is estimated to be around 4 GW, including commercial and industrial segments. In 2025, Morocco deployed 204 MW of new utility-scale solar capacity.
                     </div>
                 </div>
 
-                <a href="https://www.pv-magazine.com/2026/02/26/solar-storage-to-lead-record-86-gw-of-us-capacity-in-2026/" class="btn-link" target="_blank">Read Full Article →</a>
+                <a href="https://www.pv-magazine.com/2026/02/26/morocco-installs-204-mw-of-utility-scale-solar-in-2025/" class="btn-link" target="_blank">Read Full Article →</a>
             </article>
 
-            <article class="article" id="5d1adf12">
+            <article class="article" id="698793f5">
                 <div class="article-header">
-                    <div class="article-number">6</div>
+                    <div class="article-number">7</div>
                     <div class="article-title">
-                        <h2><a href="https://www.rtoinsider.com/126680-la-energy-leads-say-determined-approach-lands-data-center-contracts/" target="_blank">La. Energy Leads Say Determined Approach Lands Data Center Contracts</a></h2>
+                        <h2><a href="https://www.pv-magazine.com/2026/02/26/new-solar-tracking-strategies-aim-to-maximize-crop-yield-in-agrivoltaics/" target="_blank">New solar tracking strategies aim to maximize crop yield in agrivoltaics</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
-                    <span class="category-badge" style="background: #f3e8ff; color: #9333ea;">EV</span>
+                    <span class="category-badge" style="background: #fef3c7; color: #d97706;">Solar</span>
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        <img src='https://www.google.com/s2/favicons?domain=pv-magazine.com&sz=16' alt='' class='source-favicon'>
+                        <span class="metadata-label">Source:</span> PV Magazine
+                    </div>
+                    <div><span class="metadata-label">Published:</span> February 26, 2026</div>
+                </div>
+
+                <div class="summary">
+                    <h3>Summary</h3>
+                    <div class="summary-text">
+                        Swedish researchers developed two novel single-axis solar tracking strategies that dynamically adjust panel tilt based on crop light requirements, balancing photosynthesis and energy production. The strategies, called Daily Light Integral Tracking (DLIT) and Knee-Point Tracking (KPT), prioritize daily light integral targets or use the light-response curve to optimize photosynthesis, offering improved dual-use efficiency compared with conventional tracking methods. These new strategies aim to improve crop yield in agrivoltaic projects by ensuring that crops receive sufficient but not excessive light.
+                    </div>
+                </div>
+
+                <a href="https://www.pv-magazine.com/2026/02/26/new-solar-tracking-strategies-aim-to-maximize-crop-yield-in-agrivoltaics/" class="btn-link" target="_blank">Read Full Article →</a>
+            </article>
+
+            <article class="article" id="15d78bd5">
+                <div class="article-header">
+                    <div class="article-number">8</div>
+                    <div class="article-title">
+                        <h2><a href="https://www.rtoinsider.com/126670-lacerte-ferc-focused-winning-ai-race/" target="_blank">LaCerte: FERC Focused on Winning AI Race</a></h2>
+                    </div>
+                </div>
+
+                <div class="metadata">
+                    <span class="category-badge" style="background: #e0e7ff; color: #4f46e5;">Grid</span>
                     <div style="display: flex; align-items: center; gap: 4px;">
                         <img src='https://www.google.com/s2/favicons?domain=rtoinsider.com&sz=16' alt='' class='source-favicon'>
                         <span class="metadata-label">Source:</span> RTO Insider
@@ -753,80 +762,26 @@
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Louisiana's energy industry leaders attribute their success in landing data center contracts to a determined approach, which prioritizes providing agility and adaptability to attract hyperscalers. The state is set to host multiple multibillion-dollar data centers, including a $12 billion Amazon facility near Shreveport, which will be supplied by Southern Electric Power Company. Utilities are being forced to compete for new load and invest in their infrastructure to remain competitive in the power market.
+                        FERC Commissioner David LaCerte stated that the US needs to win the artificial intelligence race and is focused on ensuring this happens without sacrificing affordability. The commission has taken steps, including approving new transmission service options for data centers, to address AI-related challenges. He emphasized his personal focus on ratepayers, as he did during his first open meeting of FERC.
                     </div>
                 </div>
 
-                <a href="https://www.rtoinsider.com/126680-la-energy-leads-say-determined-approach-lands-data-center-contracts/" class="btn-link" target="_blank">Read Full Article →</a>
+                <a href="https://www.rtoinsider.com/126670-lacerte-ferc-focused-winning-ai-race/" class="btn-link" target="_blank">Read Full Article →</a>
             </article>
 
-            <article class="article" id="0be4a775">
-                <div class="article-header">
-                    <div class="article-number">7</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.solarpowerworldonline.com/2026/02/senators-propose-to-bring-back-5-safe-harbor-to-utility-scale-solar-projects/" target="_blank">Senators propose to bring back 5% safe harbor to utility-scale solar projects</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <span class="category-badge" style="background: #fef3c7; color: #d97706;">Solar</span>
-                    <div style="display: flex; align-items: center; gap: 4px;">
-                        <img src='https://www.google.com/s2/favicons?domain=solarpowerworldonline.com&sz=16' alt='' class='source-favicon'>
-                        <span class="metadata-label">Source:</span> Solar Power World
-                    </div>
-                    <div><span class="metadata-label">Published:</span> February 25, 2026</div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        US senators are proposing to revive a 5% safe harbor for utility-scale solar projects, allowing companies to secure investment tax credits with good-faith efforts in 2026. The guideline was initially released by the Treasury and IRS in August 2025 but has since been proposed for reintroduction. This move aims to provide greater certainty for investors in the solar industry.
-                    </div>
-                </div>
-
-                <a href="https://www.solarpowerworldonline.com/2026/02/senators-propose-to-bring-back-5-safe-harbor-to-utility-scale-solar-projects/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article" id="8d5e3acb">
-                <div class="article-header">
-                    <div class="article-number">8</div>
-                    <div class="article-title">
-                        <h2><a href="https://www.powermag.com/renewable-properties-pathward-bridgepeak-close-280-million-for-clean-energy-projects/" target="_blank">Renewable Properties, Pathward, BridgePeak Close $280 Million for Clean Energy Projects</a></h2>
-                    </div>
-                </div>
-
-                <div class="metadata">
-                    <span class="category-badge" style="background: #fef3c7; color: #d97706;">Solar</span>
-                    <div style="display: flex; align-items: center; gap: 4px;">
-                        <img src='https://www.google.com/s2/favicons?domain=powermag.com&sz=16' alt='' class='source-favicon'>
-                        <span class="metadata-label">Source:</span> Power Magazine
-                    </div>
-                    <div><span class="metadata-label">Published:</span> February 25, 2026</div>
-                </div>
-
-                <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-text">
-                        Renewable Properties, a California-based clean energy developer and investor, has closed over $280 million in capital facilities with Pathward, N.A. and BridgePeak Energy Capital for various renewable energy projects, including small-scale utility, community solar, energy storage, and electric vehicle infrastructure initiatives. The funding will support the development of clean energy projects across multiple states. Renewable Properties now surpasses $280 million in total corporate and project capital raised.
-                    </div>
-                </div>
-
-                <a href="https://www.powermag.com/renewable-properties-pathward-bridgepeak-close-280-million-for-clean-energy-projects/" class="btn-link" target="_blank">Read Full Article →</a>
-            </article>
-
-            <article class="article" id="ed15b690">
+            <article class="article" id="87aaa9d3">
                 <div class="article-header">
                     <div class="article-number">9</div>
                     <div class="article-title">
-                        <h2><a href="https://cleantechnica.com/2026/02/25/the-energy-storage-game-is-afoot-form-energy-faces-off-against-tesla-megapack-3/" target="_blank">The Energy Storage Game Is Afoot: Form Energy Faces Off Against Tesla Megapack 3</a></h2>
+                        <h2><a href="https://electrek.co/2026/02/25/anker-solix-f3000-power-station-bundle-1999-low-aiper-irrisense-2-more/" target="_blank">Anker SOLIX 48-hour flash sale drops 6,144Wh expanded F3000 power station to $1,999 low, first Aiper IrriSense 2 discount, more</a></h2>
                     </div>
                 </div>
 
                 <div class="metadata">
                     <span class="category-badge" style="background: #d1fae5; color: #059669;">Storage</span>
                     <div style="display: flex; align-items: center; gap: 4px;">
-                        <img src='https://www.google.com/s2/favicons?domain=cleantechnica.com&sz=16' alt='' class='source-favicon'>
-                        <span class="metadata-label">Source:</span> CleanTechnica
+                        <img src='https://www.google.com/s2/favicons?domain=electrek.co&sz=16' alt='' class='source-favicon'>
+                        <span class="metadata-label">Source:</span> Electrek
                     </div>
                     <div><span class="metadata-label">Published:</span> February 25, 2026</div>
                 </div>
@@ -834,18 +789,18 @@
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        Form Energy is launching a new 100-hour iron-air battery to challenge Tesla's Megapack 3, with deployments planned in Minnesota and six other states. The startup claims its technology offers significant advantages over Tesla's product. Form Energy has already started deploying its batteries in the US market.
+                        The Anker SOLIX F3000 Power Station can be purchased for $1,999, a 48-hour flash sale price, and the Aiper IrriSense 2 Smart Irrigation System is discounted to $470. The expanded Anker SOLIX F3000 bundle now includes a larger battery for more energy storage, while other deals include a Schumacher Portable Level 1 EV Charger at $88 low.
                     </div>
                 </div>
 
-                <a href="https://cleantechnica.com/2026/02/25/the-energy-storage-game-is-afoot-form-energy-faces-off-against-tesla-megapack-3/" class="btn-link" target="_blank">Read Full Article →</a>
+                <a href="https://electrek.co/2026/02/25/anker-solix-f3000-power-station-bundle-1999-low-aiper-irrisense-2-more/" class="btn-link" target="_blank">Read Full Article →</a>
             </article>
 
-            <article class="article" id="9b2f4c00">
+            <article class="article" id="0e125362">
                 <div class="article-header">
                     <div class="article-number">10</div>
                     <div class="article-title">
-                        <h2><a href="https://www.pv-magazine.com/2026/02/25/solarpower-europe-issues-due-diligence-guide-for-pv-bess/" target="_blank">SolarPower Europe issues due diligence guide for PV-BESS</a></h2>
+                        <h2><a href="https://www.pv-magazine.com/2026/02/25/us-solar-assets-lose-average-5070-per-mw-from-power-losses/" target="_blank">US solar assets lose average $5,070 per MW from power losses</a></h2>
                     </div>
                 </div>
 
@@ -861,11 +816,11 @@
                 <div class="summary">
                     <h3>Summary</h3>
                     <div class="summary-text">
-                        SolarPower Europe has released technical due diligence guidelines for utility-scale solar-plus-storage projects to strengthen best practices for large-scale hybrid projects combining photovoltaics and battery energy storage systems. The guidelines provide a framework for risk management and engineering standards across the full project lifecycle, from feasibility studies to operation and decommissioning. They call for independent technical health reviews at each stage and recommend engaging qualified advisers from the earliest development phase to protect long-term bankability and system reliability.
+                        US solar assets experience an average power loss of 5.08%, resulting in losses of up to $5,070 per MW in annualized revenue, according to a report by Raptor Maps. This power loss is more than double the level five years ago and above the historical average, with equipment issues accounting for approximately 60% of observed power losses. Power loss has decreased slightly due to a decrease in inverter-caused faults, but string and combiner faults have increased.
                     </div>
                 </div>
 
-                <a href="https://www.pv-magazine.com/2026/02/25/solarpower-europe-issues-due-diligence-guide-for-pv-bess/" class="btn-link" target="_blank">Read Full Article →</a>
+                <a href="https://www.pv-magazine.com/2026/02/25/us-solar-assets-lose-average-5070-per-mw-from-power-losses/" class="btn-link" target="_blank">Read Full Article →</a>
             </article>
         </div>
 
@@ -888,7 +843,7 @@
             <div style="margin-bottom: 30px;">
                 <h3 style="font-size: 1.05em; color: #2d3748; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; display: flex; align-items: center; gap: 10px;">
                     Grid Operations & Resilience
-                    <span style="background: #edf2f7; color: #2b6cb0; font-size: 0.8em; padding: 2px 10px; border-radius: 10px;">4 papers</span>
+                    <span style="background: #edf2f7; color: #2b6cb0; font-size: 0.8em; padding: 2px 10px; border-radius: 10px;">5 papers</span>
                 </h3>
 
                 <div class="article" id="f20bf3ba" style="background: #f7fafc; border-radius: 10px; padding: 18px; margin-bottom: 12px; border-left: 4px solid #2b6cb0; border-bottom: none;">
@@ -902,11 +857,11 @@
                         </div>
                     </div>
                     <div class="metadata" style="font-size: 0.8em; color: #718096; margin-bottom: 8px;">Mahsa Ebadat-Parast, Xiaozhe Wang · Feb 25, 2026</div>
-                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">DDSPCE surrogates suffer from ill conditioning and loss of accuracy in tails, which determine system risk. A tempered Christoffel weighted least squares formulation is introduced to balance numerical stability and tail fidelity by varying a tempering exponent as a hyperparameter. The proposed method improves regression stability index and tail prediction accuracy in distribution system load shedding scenarios.</p>
+                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">Tempered Christoffel-weighted polynomial chaos expansion is a method for uncertainty quantification in power systems, which balances numerical stability and tail fidelity. It reduces 95th percentile deviation by 16% and improves regression stability index by over 130%, with controlling weighting intensity directly influencing both stability and tail prediction accuracy. The proposed method outperforms traditional sparse polynomial chaos expansion methods in terms of distributional accuracy.</p>
 
                     <div style="background: #ebf8ff; border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; border-left: 3px solid #3182ce;">
                         <div style="font-size: 0.7em; font-weight: 600; color: #2c5282; text-transform: uppercase; margin-bottom: 3px;">Why This Matters</div>
-                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper matters for power industry professionals as it presents a novel method for improving the accuracy and stability of uncertainty quantification models, which is crucial for resilience assessment in modern power systems. The proposed Tempered Christoffel-Weighted Polynomial Chaos Expansion can be directly applied to grid operations and planning to enhance reliability and reduce risk under high impact and low probability disturbances.</div>
+                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper matters for power industry professionals as it presents a novel approach to accurately and efficiently quantify uncertainty in power systems, enabling resilience assessment under high impact and low probability disturbances, directly applicable to ISO operations and utility planning, which are critical for ensuring grid reliability and stability.</div>
                     </div>
 
                     <div style="display: flex; gap: 15px;">
@@ -921,16 +876,16 @@
                             <a href="https://arxiv.org/abs/2602.21715v1" target="_blank" style="font-size: 1em; font-weight: 600; color: #1a365d; text-decoration: none; line-height: 1.4;">Two-Stage Active Distribution Network Voltage Control via LLM-RL Collaboration: A Hybrid Knowledge-Data-Driven Approach</a>
                         </div>
                         <div style="display: flex; flex-direction: column; align-items: center; background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px 10px; min-width: 50px;">
-                            <span style="font-size: 1.1em; font-weight: bold; color: #2f855a;">0.80</span>
+                            <span style="font-size: 1.1em; font-weight: bold; color: #2f855a;">0.90</span>
                             <span style="font-size: 0.6em; color: #718096; text-transform: uppercase;">Relevance</span>
                         </div>
                     </div>
                     <div class="metadata" style="font-size: 0.8em; color: #718096; margin-bottom: 8px;">Xu Yang, Chenhui Lin, Xiang Ma et al. · Feb 25, 2026</div>
-                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">A hybrid knowledge-data-driven approach leveraging a large language model (LLM) and reinforcement learning (RL) agents is proposed for two-stage active distribution network voltage control in this paper. The LLM generates coarse region-level forecasts, while the RL agent refines terminal voltages using accurate node-level measurements. This collaboration framework improves training efficiency and voltage control performance by effectively utilizing the strengths of both agents.</p>
+                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">The proposed hybrid knowledge-data-driven approach leverages collaboration between a large language model (LLM) agent and a reinforcement learning (RL) agent to achieve two-stage voltage control in active distribution networks, incorporating day-ahead forecasts and semantic-based grid codes. The LLM agent generates scheduling strategies for OLTC and SCs at the region level, while the RL agent refines terminal voltages with reactive power generation strategies for PV inverters based on accurate node-level measurements. This approach enhances training efficiency and improves voltage control performance by effectively utilizing the inherent knowledge and reasoning capabilities of both agents.</p>
 
                     <div style="background: #ebf8ff; border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; border-left: 3px solid #3182ce;">
                         <div style="font-size: 0.7em; font-weight: 600; color: #2c5282; text-transform: uppercase; margin-bottom: 3px;">Why This Matters</div>
-                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper matters for power industry professionals as it proposes a novel hybrid approach to voltage control in active distribution networks, which is crucial for ensuring grid stability and reliability in the face of increasing renewable energy integration. The proposed method's potential to enhance voltage regulation and mitigate operational challenges will be particularly valuable for grid operators and utility planners aiming to optimize their grid operations.</div>
+                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper matters for power system engineers as it proposes a novel approach to mitigate voltage violations and enhance power quality in active distribution networks, which is crucial for the integration of distributed photovoltaics and ensuring the reliability of the grid under the increasing demands of renewable energy sources. The proposed LLM-RL collaboration framework has significant implications for ISO operations and utility planning, particularly in terms of optimizing voltage profiles and reactive power generation strategies to ensure grid stability.</div>
                     </div>
 
                     <div style="display: flex; gap: 15px;">
@@ -950,11 +905,11 @@
                         </div>
                     </div>
                     <div class="metadata" style="font-size: 0.8em; color: #718096; margin-bottom: 8px;">Linhan Fang, Elias Raffoul, Xingpeng Li · Feb 25, 2026</div>
-                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">A novel three-stage diagnosis-driven co-planning (DDCP) framework is proposed to jointly optimize network reinforcement and battery energy storage system installations for distribution grids with high penetration of electric vehicles. The DDCP framework diagnoses critical bottleneck lines, upgrades cables at top-prioritized lines, and executes optimal BESS deployment using a network-enhanced model. The approach achieves techno-economic superiority in addressing high-EV-penetration challenges and resolves the complex joint-optimization hurdle.</p>
+                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">A novel three-stage diagnosis-driven co-planning (DDCP) framework is proposed to optimize network reinforcement and battery energy storage system installations for distribution grids with high penetration of electric vehicles. The framework diagnoses critical bottleneck lines, upgrades cables exclusively at these lines, and then optimizes BESS deployment using a network-enhanced model. The DDCP framework achieves techno-economic superiority in addressing high-EV-penetration challenges.</p>
 
                     <div style="background: #ebf8ff; border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; border-left: 3px solid #3182ce;">
                         <div style="font-size: 0.7em; font-weight: 600; color: #2c5282; text-transform: uppercase; margin-bottom: 3px;">Why This Matters</div>
-                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper matters for power industry professionals as it proposes a novel framework to address the operational challenges posed by high penetration of electric vehicles in distribution grids, specifically focusing on mitigation strategies that can be directly applied in grid operations and resilience planning, such as cable upgrades and BESS deployments. The study's findings have direct implications for utility planners, energy market analysts, and grid operators seeking to integrate renewable energy sources while ensuring grid stability and reliability.</div>
+                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper matters for power industry professionals as it proposes a novel diagnosis-driven co-planning framework to optimize network reinforcement and battery energy storage system installations in distribution grids with high penetration of electric vehicles, addressing operational challenges such as peak loads and voltage violations that impact ISO operations and utility planning.</div>
                     </div>
 
                     <div style="display: flex; gap: 15px;">
@@ -974,16 +929,40 @@
                         </div>
                     </div>
                     <div class="metadata" style="font-size: 0.8em; color: #718096; margin-bottom: 8px;">Sunki Hong, Jisoo Lee, Yuanyuan Shi · Feb 24, 2026</div>
-                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">Benchmarking five deep learning models (PowerMamba, S-Mamba, iTransformer, PatchTST, LSTM) was conducted to select the best model for US grid forecasting across six diverse grids for forecast windows of 24-168 hours. The results showed that no single model performs well in all situations, with different models excelling in specific tasks such as incorporating weather data or handling rhythmic signals like solar generation. Model rankings depend on the forecast task and data environment.</p>
+                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">Selecting the right deep learning model for power grid forecasting is challenging and depends heavily on the available data. The paper benchmarks five models, including state space models, Transformers, and a traditional LSTM, across six US power grids with varying forecast windows, revealing that there is no single best model for all situations. Models perform differently depending on the task, such as patchTST excelling on solar generation forecasting and state space models performing better on wind and wholesale prices forecasting.</p>
 
                     <div style="background: #ebf8ff; border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; border-left: 3px solid #3182ce;">
                         <div style="font-size: 0.7em; font-weight: 600; color: #2c5282; text-transform: uppercase; margin-bottom: 3px;">Why This Matters</div>
-                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper's benchmarking of state space models, transformers, and recurrent networks for US grid forecasting has practical significance for power industry professionals, as it provides actionable guidance on selecting the most accurate model for hourly electricity demand forecasting, which is essential for ISO operations and FERC filings. The results also inform utility planners on how to integrate weather covariates and handle different forecast tasks, ultimately enhancing resilience and reliability of the grid.</div>
+                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper matters for power system engineers as it provides a comprehensive benchmark of different machine learning models for US grid forecasting, which is crucial for utilities to improve their predictive capabilities and make informed decisions on resource management, capacity markets, and energy market analysis. The findings can help grid operators optimize their forecasts, reduce uncertainty, and enhance overall system resilience.</div>
                     </div>
 
                     <div style="display: flex; gap: 15px;">
                         <a href="https://arxiv.org/abs/2602.21415v1" target="_blank" style="font-size: 0.8em; color: #2b6cb0; text-decoration: none; font-weight: 500;">Abstract</a>
                         <a href="https://arxiv.org/pdf/2602.21415v1" target="_blank" style="font-size: 0.8em; color: #2b6cb0; text-decoration: none; font-weight: 500;">PDF</a>
+                    </div>
+                </div>
+
+                <div class="article" id="5ca8b88b" style="background: #f7fafc; border-radius: 10px; padding: 18px; margin-bottom: 12px; border-left: 4px solid #2b6cb0; border-bottom: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px;">
+                        <div class="article-title" style="flex: 1;">
+                            <a href="https://arxiv.org/abs/2602.21928v1" target="_blank" style="font-size: 1em; font-weight: 600; color: #1a365d; text-decoration: none; line-height: 1.4;">Learning Unknown Interdependencies for Decentralized Root Cause Analysis in Nonlinear Dynamical Systems</a>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px 10px; min-width: 50px;">
+                            <span style="font-size: 1.1em; font-weight: bold; color: #2f855a;">0.70</span>
+                            <span style="font-size: 0.6em; color: #718096; text-transform: uppercase;">Relevance</span>
+                        </div>
+                    </div>
+                    <div class="metadata" style="font-size: 0.8em; color: #718096; margin-bottom: 8px;">Ayush Mohanty, Paritosh Ramanan, Nagi Gebraeel · Feb 25, 2026</div>
+                    <p class="summary-text" style="font-size: 0.9em; color: #4a5568; line-height: 1.5; margin-bottom: 10px;">This paper proposes a federated cross-client interdependency learning methodology for decentralized root cause analysis in nonlinear dynamical systems, allowing for the incorporation of diverse feature spaces and proprietary client models without requiring access to raw sensor streams or model modification. The approach uses machine learning models augmented with cross-client interdependencies to learn representation consistency while preserving privacy through calibrated differential privacy noise. The method is validated on extensive simulations and a real-world industrial cybersecurity dataset.</p>
+
+                    <div style="background: #ebf8ff; border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; border-left: 3px solid #3182ce;">
+                        <div style="font-size: 0.7em; font-weight: 600; color: #2c5282; text-transform: uppercase; margin-bottom: 3px;">Why This Matters</div>
+                        <div style="font-size: 0.85em; color: #2c5282; line-height: 1.4;">This paper's focus on decentralized root cause analysis for nonlinear dynamical systems in networked industrial systems is relevant to power system engineers, as it addresses the complexity of analyzing large volumes of IoT data from geographically distributed clients in real-time, which can be applied to improving grid resilience and operability. For example, this methodology could enhance the ability of utility planners to analyze sensor data from renewable energy sources to identify potential root causes of grid instability or anomalies.</div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <a href="https://arxiv.org/abs/2602.21928v1" target="_blank" style="font-size: 0.8em; color: #2b6cb0; text-decoration: none; font-weight: 500;">Abstract</a>
+                        <a href="https://arxiv.org/pdf/2602.21928v1" target="_blank" style="font-size: 0.8em; color: #2b6cb0; text-decoration: none; font-weight: 500;">PDF</a>
                     </div>
                 </div>
             </div>
@@ -1147,11 +1126,6 @@
             const newsTab = document.getElementById('news');
             const researchTab = document.getElementById('research');
 
-            const visibleNews = newsTab.querySelectorAll('.article:not(.hidden)').length;
-            const visibleResearch = researchTab.querySelectorAll('.article:not(.hidden)').length;
-
-            document.getElementById('newsCount').textContent = visibleNews;
-            document.getElementById('researchCount').textContent = visibleResearch;
         }
 
         // Handle direct navigation to article via hash/anchor
