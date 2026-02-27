@@ -5,12 +5,19 @@
     <link>https://energydigest.io</link>
     <description>Daily curated summaries of power and energy industry news. Stay informed on renewable energy, grid technology, battery storage, and more.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Feb 2026 08:02:45 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 27 Feb 2026 08:02:45 GMT</lastBuildDate>
     <atom:link href="https://energydigest.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Energy Digest - February 27, 2026</title>
+      <link>https://energydigest.io/energy_digest_2026-02-27.html</link>
+      <description>Energy Digest for February 27, 2026 - 10 articles covering power and energy industry news.</description>
+      <pubDate>Fri, 27 Feb 2026 06:00:00 GMT</pubDate>
+      <guid>https://energydigest.io/energy_digest_2026-02-27.html</guid>
+    </item>
     <item>
       <title>Energy Digest - February 26, 2026</title>
       <link>https://energydigest.io/energy_digest_2026-02-26.html</link>
-      <description>Energy Digest for February 26, 2026 - 14 articles covering power and energy industry news.</description>
+      <description>Energy Digest for February 26, 2026 - 15 articles covering power and energy industry news.</description>
       <pubDate>Thu, 26 Feb 2026 06:00:00 GMT</pubDate>
       <guid>https://energydigest.io/energy_digest_2026-02-26.html</guid>
     </item>
@@ -139,13 +146,6 @@
       <description>Energy Digest for February 08, 2026 - 23 articles covering power and energy industry news.</description>
       <pubDate>Sun, 08 Feb 2026 06:00:00 GMT</pubDate>
       <guid>https://energydigest.io/energy_digest_2026-02-08.html</guid>
-    </item>
-    <item>
-      <title>Energy Digest - February 07, 2026</title>
-      <link>https://energydigest.io/energy_digest_2026-02-07.html</link>
-      <description>Energy Digest for February 07, 2026 - 10 articles covering power and energy industry news.</description>
-      <pubDate>Sat, 07 Feb 2026 06:00:00 GMT</pubDate>
-      <guid>https://energydigest.io/energy_digest_2026-02-07.html</guid>
     </item>
   </channel>
 </rss>
