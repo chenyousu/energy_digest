@@ -823,7 +823,7 @@
             <!-- Tab Navigation -->
             <div class="tab-nav">
                 <button class="tab-btn active" onclick="switchTab('daily')">
-                    Daily Digests<span class="tab-count">115</span>
+                    Daily Digests<span class="tab-count">116</span>
                 </button>
                 <button class="tab-btn" onclick="switchTab('weekly')">
                     Weekly Summaries<span class="tab-count">11</span>
@@ -842,16 +842,141 @@
                             <span class="date-filter-label">Jump to date:</span>
                             <input type="date" id="dateInput" class="date-input">
                         </div>
-                        <div class="archive-count" id="digestCount">115 digests</div>
+                        <div class="archive-count" id="digestCount">116 digests</div>
                     </div>
                 </div>
 
                 <div class="months-container">
-                <div class="month-section " data-month="2026-02">
+                <div class="month-section " data-month="2026-03">
+                    <div class="month-header" onclick="toggleMonth('2026-03')">
+                        <div class="month-header-left">
+                            <span class="month-title">March 2026</span>
+                            <span class="month-count">6 digests</span>
+                        </div>
+                        <span class="month-toggle">▼</span>
+                    </div>
+                    <div class="month-content">
+                        <a href="energy_digest_2026-03-01.html" class="summary-card" data-date="march 01, 2026" data-day="sunday">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">March 01, 2026</div>
+                                    <div class="card-date-day">Sunday</div>
+                                </div>
+                                <span class="latest-badge">Latest</span>
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">10</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="email_preview.html" class="summary-card" data-date="email_preview" data-day="">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">email_preview</div>
+                                    <div class="card-date-day"></div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">20</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">8</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="energy_digest_preview.html" class="summary-card" data-date="preview" data-day="">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">preview</div>
+                                    <div class="card-date-day"></div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">4</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="rates.html" class="summary-card" data-date="rates" data-day="">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">rates</div>
+                                    <div class="card-date-day"></div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="insights.html" class="summary-card" data-date="insights" data-day="">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">insights</div>
+                                    <div class="card-date-day"></div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="events.html" class="summary-card" data-date="events" data-day="">
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <div class="card-date-main">events</div>
+                                    <div class="card-date-day"></div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-stats">
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">News</span>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="card-stat-number">0</span>
+                                    <span class="card-stat-label">Research</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="month-section collapsed" data-month="2026-02">
                     <div class="month-header" onclick="toggleMonth('2026-02')">
                         <div class="month-header-left">
                             <span class="month-title">February 2026</span>
-                            <span class="month-count">33 digests</span>
+                            <span class="month-count">28 digests</span>
                         </div>
                         <span class="month-toggle">▼</span>
                     </div>
@@ -862,7 +987,7 @@
                                     <div class="card-date-main">February 28, 2026</div>
                                     <div class="card-date-day">Saturday</div>
                                 </div>
-                                <span class="latest-badge">Latest</span>
+                                
                             </div>
                             <div class="card-stats">
                                 <div class="card-stat">
@@ -1160,25 +1285,6 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="email_preview.html" class="summary-card" data-date="email_preview" data-day="">
-                            <div class="card-header">
-                                <div class="card-date">
-                                    <div class="card-date-main">email_preview</div>
-                                    <div class="card-date-day"></div>
-                                </div>
-                                
-                            </div>
-                            <div class="card-stats">
-                                <div class="card-stat">
-                                    <span class="card-stat-number">20</span>
-                                    <span class="card-stat-label">News</span>
-                                </div>
-                                <div class="card-stat">
-                                    <span class="card-stat-number">8</span>
-                                    <span class="card-stat-label">Research</span>
-                                </div>
-                            </div>
-                        </a>
                         <a href="energy_digest_2026-02-12.html" class="summary-card" data-date="february 12, 2026" data-day="thursday">
                             <div class="card-header">
                                 <div class="card-date">
@@ -1247,25 +1353,6 @@
                             <div class="card-stats">
                                 <div class="card-stat">
                                     <span class="card-stat-number">10</span>
-                                    <span class="card-stat-label">News</span>
-                                </div>
-                                <div class="card-stat">
-                                    <span class="card-stat-number">0</span>
-                                    <span class="card-stat-label">Research</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="energy_digest_preview.html" class="summary-card" data-date="preview" data-day="">
-                            <div class="card-header">
-                                <div class="card-date">
-                                    <div class="card-date-main">preview</div>
-                                    <div class="card-date-day"></div>
-                                </div>
-                                
-                            </div>
-                            <div class="card-stats">
-                                <div class="card-stat">
-                                    <span class="card-stat-number">4</span>
                                     <span class="card-stat-label">News</span>
                                 </div>
                                 <div class="card-stat">
@@ -1422,63 +1509,6 @@
                                 </div>
                                 <div class="card-stat">
                                     <span class="card-stat-number">1</span>
-                                    <span class="card-stat-label">Research</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="rates.html" class="summary-card" data-date="rates" data-day="">
-                            <div class="card-header">
-                                <div class="card-date">
-                                    <div class="card-date-main">rates</div>
-                                    <div class="card-date-day"></div>
-                                </div>
-                                
-                            </div>
-                            <div class="card-stats">
-                                <div class="card-stat">
-                                    <span class="card-stat-number">0</span>
-                                    <span class="card-stat-label">News</span>
-                                </div>
-                                <div class="card-stat">
-                                    <span class="card-stat-number">0</span>
-                                    <span class="card-stat-label">Research</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="insights.html" class="summary-card" data-date="insights" data-day="">
-                            <div class="card-header">
-                                <div class="card-date">
-                                    <div class="card-date-main">insights</div>
-                                    <div class="card-date-day"></div>
-                                </div>
-                                
-                            </div>
-                            <div class="card-stats">
-                                <div class="card-stat">
-                                    <span class="card-stat-number">0</span>
-                                    <span class="card-stat-label">News</span>
-                                </div>
-                                <div class="card-stat">
-                                    <span class="card-stat-number">0</span>
-                                    <span class="card-stat-label">Research</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="events.html" class="summary-card" data-date="events" data-day="">
-                            <div class="card-header">
-                                <div class="card-date">
-                                    <div class="card-date-main">events</div>
-                                    <div class="card-date-day"></div>
-                                </div>
-                                
-                            </div>
-                            <div class="card-stats">
-                                <div class="card-stat">
-                                    <span class="card-stat-number">0</span>
-                                    <span class="card-stat-label">News</span>
-                                </div>
-                                <div class="card-stat">
-                                    <span class="card-stat-number">0</span>
                                     <span class="card-stat-label">Research</span>
                                 </div>
                             </div>
@@ -3149,7 +3179,7 @@
 
         <footer>
             <p>Published by Energy Digest</p>
-            <p style="margin-top: 10px;">Last updated: February 28, 2026 at 08:02 AM</p>
+            <p style="margin-top: 10px;">Last updated: March 01, 2026 at 08:00 AM</p>
             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
                 <p style="margin: 5px 0;">
                     Email: <a href="mailto:feedback@energydigest.io" style="color: #2b6cb0; text-decoration: none;">feedback@energydigest.io</a>
