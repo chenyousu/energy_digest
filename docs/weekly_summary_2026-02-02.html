@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Digest Weekly Summary - February 02 to February 08, 2026</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QCXLWD1BYW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QCXLWD1BYW');
+    </script>
+
+    <style>
+        /* Reading Progress Bar */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1a365d, #2b6cb0);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s;
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #1a365d;
+            color: white;
+            padding: 8px 16px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(26, 54, 93, 0.3);
+        }
+
+        header h1 {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header .week-range {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        header .subtitle {
+            font-size: 1em;
+            opacity: 0.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2b6cb0;
+        }
+
+        .executive-summary {
+            font-size: 1.15em;
+            color: #444;
+            line-height: 1.8;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2b6cb0;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .topic-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .topic-header {
+            padding: 15px 20px;
+            background: white;
+            border-left: 5px solid #2b6cb0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-header h3 {
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
+        .article-count {
+            background: #2b6cb0;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .topic-articles {
+            list-style: none;
+            padding: 15px 20px;
+        }
+
+        .topic-articles li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .topic-articles li:last-child {
+            border-bottom: none;
+        }
+
+        .topic-articles a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .topic-articles a:hover {
+            color: #2b6cb0;
+        }
+
+        .source-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            margin-left: 8px;
+        }
+
+        .more-link {
+            color: #2b6cb0;
+            font-style: italic;
+        }
+
+        .more-link:hover {
+            color: #1a365d;
+        }
+
+        .extra-articles {
+            padding-left: 0;
+        }
+
+        .extra-articles li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            list-style: none;
+        }
+
+        /* Pie Chart */
+        .pie-chart-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .pie-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .legend-label {
+            color: #2c3e50;
+            font-weight: 500;
+            min-width: 140px;
+        }
+
+        .legend-value {
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .number-card {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .number-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(26, 54, 93, 0.4);
+        }
+
+        .number-value {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .number-context {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .source-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .source-row:last-child {
+            border-bottom: none;
+        }
+
+        .source-name {
+            width: 180px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .source-bar-container {
+            flex: 1;
+            height: 24px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+
+        .source-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            border-radius: 12px;
+            transition: width 0.5s ease;
+        }
+
+        .source-count {
+            width: 40px;
+            text-align: right;
+            font-weight: 600;
+            color: #2b6cb0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            z-index: 1000;
+        }
+
+        #backToTop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .source-name {
+                width: 120px;
+                font-size: 0.9em;
+            }
+
+            .pie-chart-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .numbers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #backToTop {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+            }
+        }
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div id="progressBar"></div>
+
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <div class="container" id="main-content">
+        <header>
+            <a href="index.html" class="back-link">← Back to All Digests</a>
+            <h1>Energy Digest Weekly</h1>
+            <div class="week-range">February 02 - February 08, 2026</div>
+            <div class="subtitle">Your weekly roundup of power & energy news</div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">183</div>
+                <div class="stat-label">Total Articles</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">164</div>
+                <div class="stat-label">News & Industry</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">19</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Executive Summary</h2>
+            <div class="executive-summary">
+                This week's energy industry news highlights the growing dominance of renewables, with FERC reporting that 88% of new US power generating capacity additions to November 2025 came from renewable sources. The increasing adoption of battery storage (BESS) and solar energy is also evident, with Spain deploying 1.13 GW of solar for self-consumption in 2025 and Europe contracting nearly 24 GWh of BESS under flexibility purchase agreements. Additionally, the integration of data centers and AI is gaining traction, with a survey revealing that majority believe renewables and BESS are the ideal energy mix, and utilities are investing in grid modernization solutions to maintain power during severe weather events. These developments underscore the evolving landscape of the energy industry, driven by growing demand for clean and sustainable energy sources.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Top Topics This Week</h2>
+            
+        <div class="pie-chart-container">
+            <div class="pie-chart" style="background: conic-gradient(#4CAF50 0% 36.0655737704918%, #2196F3 36.0655737704918% 56.830601092896174%, #FF9800 56.830601092896174% 73.77049180327869%, #9C27B0 73.77049180327869% 83.60655737704919%, #E91E63 83.60655737704919% 87.97814207650273%, #00BCD4 87.97814207650273% 91.2568306010929%, #009688 91.2568306010929% 94.53551912568307%, #607D8B 94.53551912568307% 97.81420765027323%, #F44336 97.81420765027323% 98.90710382513662%, #03A9F4 98.90710382513662% 99.45355191256832%, #8BC34A 99.45355191256832% 100.00000000000001%);"></div>
+            <div class="pie-legend">
+                
+            <div class="legend-item">
+                <span class="legend-color" style="background: #4CAF50;"></span>
+                <span class="legend-label">Battery Storage</span>
+                <span class="legend-value">66 (36%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #2196F3;"></span>
+                <span class="legend-label">Grid & Transmission</span>
+                <span class="legend-value">38 (21%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #FF9800;"></span>
+                <span class="legend-label">Solar</span>
+                <span class="legend-value">31 (17%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #9C27B0;"></span>
+                <span class="legend-label">Data Centers & AI</span>
+                <span class="legend-value">18 (10%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #E91E63;"></span>
+                <span class="legend-label">Nuclear</span>
+                <span class="legend-value">8 (4%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #00BCD4;"></span>
+                <span class="legend-label">Hydrogen</span>
+                <span class="legend-value">6 (3%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #009688;"></span>
+                <span class="legend-label">Electric Vehicles</span>
+                <span class="legend-value">6 (3%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #607D8B;"></span>
+                <span class="legend-label">Other</span>
+                <span class="legend-value">6 (3%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #F44336;"></span>
+                <span class="legend-label">Policy & Regulation</span>
+                <span class="legend-value">2 (1%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #03A9F4;"></span>
+                <span class="legend-label">Wind</span>
+                <span class="legend-value">1 (1%)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #8BC34A;"></span>
+                <span class="legend-label">Renewable Integration</span>
+                <span class="legend-value">1 (1%)</span>
+            </div>
+            </div>
+        </div>
+    
+            <div class="topics-grid">
+                
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #4CAF50;">
+                    <h3>Battery Storage</h3>
+                    <span class="article-count">66 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/data-center-survey-reveals-majority-believe-renewables-and-bess-are-the-ideal-energy-mix-power-issues-start-in-2027/" target="_blank">Data center survey reveals majority believe renewables and BESS are the ideal energy mix, power issues start in 2027</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/europe-contracts-nearly-24-gwh-of-bess-under-flexibility-purchase-agreements-in-2025/" target="_blank">Europe contracts nearly 24 GWh of BESS under flexibility purchase agreements in 2025</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/china-added-66-43-gw-of-new-type-energy-storage-in-2025/" target="_blank">China added 66.43 GW of new-type energy storage in 2025</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/us-governors-in-pjm-territory-move-to-unlock-renewable-energy-energy-storage-investment/" target="_blank">US Governors in PJM territory move to unlock renewable energy, energy storage investment</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/solar-plus-storage-for-data-centers-not-a-simple-switch/" target="_blank">Solar-plus-storage for data centers: not a simple switch</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-0')" style="cursor: pointer;">
+                    <span id="topic-0-text">Show 61 more articles ▼</span>
+                </li>
+                <div id="topic-0-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/tesla-chint-power-lead-new-long-duration-storage-leaderboard/" target="_blank">Tesla, Chint Power lead new long-duration storage leaderboard</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/tesla-energy-storage-deployments-jumped-in-crucial-ai-transformation-year-company-expects-margin-compression-in-2026/" target="_blank">Tesla energy storage deployments jumped in ‘crucial AI transformation year’; company expects margin compression in 2026</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/india-renewables-seek-policy-clarity-storage-incentives-in-union-budget-2026/" target="_blank">India renewables seek policy clarity, storage incentives in Union Budget 2026</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/australian-renewables-exceed-50-of-power-supply-in-q4/" target="_blank">Australian renewables exceed 50% of power supply in Q4</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/spons/unleashing-a-solar-plus-storage-tidal-wave/810996/" target="_blank">Unleashing a solar plus storage tidal wave</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/01/new-pumped-hydro-energy-storage-system-needs-no-mountains/" target="_blank">New Pumped Hydro Energy Storage System Needs No Mountains</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/bw-ess-proposes-1-6gwh-battery-energy-storage-facility-for-the-hunter-valley-in-australia/" target="_blank">BW ESS proposes 1.6GWh battery energy storage facility for the Hunter Valley in Australia</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/origin-energy-begins-generating-revenue-from-two-utility-scale-battery-storage-sites-in-australia/" target="_blank">Origin Energy begins generating revenue from two utility-scale battery storage sites in Australia</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2601.22880v1" target="_blank">Reinforcement Learning-Based Co-Design and Operation of Chiller and Thermal Energy Storage for Cost-Optimal HVAC Systems</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2601.22865v1" target="_blank">Degradation-Aware Frequency Regulation of a Heterogeneous Battery Fleet via Reinforcement Learning</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/groups-announce-deal-for-5-gwh-of-energy-storage-products/" target="_blank">Groups Announce Deal for 5 GWh of Energy Storage Products</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/tesla-battery-storage-ev-samsung-lg/811266/" target="_blank">Tesla sets battery storage deployment record in Q4 as EV sales slump</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/03/spain-secures-major-eu-grant-for-1-gw-pumped-storage-project/" target="_blank">Spain secures major EU grant for 1 GW pumped storage project</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/hydrogen-fuel-cells-on-fpsos-modec-eld-energy-delta-electronics-forge-sofc-partnership/8574765/" target="_blank">Hydrogen Fuel Cells on FPSOs: MODEC, Eld Energy & Delta Electronics Forge SOFC Partnership</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/as-data-centre-capacity-surges-merchant-revenue-battery-storage-play-emerges-as-a-consideration-financier-says/" target="_blank">As data centre capacity surges, merchant revenue battery storage play emerges as a consideration, financier says</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/spains-regulatory-landscape-still-incomplete-nuveen-on-bankability-in-southern-europe/" target="_blank">‘Spain’s regulatory landscape still incomplete’: Nuveen on bankability in Southern Europe</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/03/saj-introduces-a-1500-v-ci-hybrid-energy-storage-solution/" target="_blank">SAJ introduces a 1500 V C&I hybrid energy storage solution</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/spons/how-to-unlock-a-tidal-wave-at-the-grid-edge/810996/" target="_blank">How to unlock a tidal wave at the grid edge</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/aypa-power-secures-1-5-billion-facility-to-support-energy-storage/" target="_blank">Aypa Power Secures $1.5-Billion Facility to Support Energy Storage</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/hydrogen-production-meets-solar-at-meridians-ruakaka-energy-park/8574784/" target="_blank">Hydrogen Production Meets Solar at Meridian’s Ruakākā Energy Park</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/sma-releases-new-storage-system-for-ci-solar/" target="_blank">SMA releases new storage system for C&I solar</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/energy-storage-players-great-power-sunwoda-and-deye-technology-file-hong-kong-listing-applications/" target="_blank">Energy storage players Great Power, Sunwoda and Deye Technology file Hong Kong listing applications</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/standalone-solar-no-longer-enough-in-europe-as-storage-takes-centre-stage/" target="_blank">Standalone solar no longer enough in Europe as storage takes centre stage</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/indias-loom-solar-unveils-261-kwh-bess-for-ci-applications/" target="_blank">India’s Loom Solar unveils 261 kWh BESS for C&I applications</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/cornex-secures-11-5-gwh-of-battery-orders-from-saudi-arabia-egypt/" target="_blank">Cornex secures 11.5 GWh of battery orders from Saudi Arabia, Egypt</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.canarymedia.com/articles/climatetech-finance/lunar-energy-lands-232m-home-batteries" target="_blank">Lunar Energy lands $232M to boost smart home batteries</a>
+                    <span class="source-tag" style="background: #fef9c3; color: #713f12;">Canary Media</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/eu-backs-rwes-gronau-epe-hydrogen-storage-project-with-major-funding/8574788/" target="_blank">EU Backs RWE’s Gronau-Epe Hydrogen Storage Project with Major Funding</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/enlight-advances-us3-billion-1-2gw-solar-4gwh-bess-complex-in-arizona/" target="_blank">Enlight advances US$3 billion, 1.2GW solar 4GWh BESS ‘Complex’ in Arizona</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/100-mw-hertz-1-battery-enters-operation-after-estonia-finland-grid-incident/" target="_blank">100 MW Hertz 1 battery enters operation after Estonia–Finland grid incident</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/lg-energy-solution-targets-90gwh-battery-orders-us-energy-storage-market-in-2026/" target="_blank">LG Energy Solution targets 90GWh of battery orders in US energy storage market in 2026</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/u-s-india-trade-deal-reduces-solar-tariffs/" target="_blank">U.S.-India trade deal reduces solar tariffs</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/battery-management-systems-key-to-deploying-batteries-in-data-centers/" target="_blank">Battery management systems key to deploying batteries in data centers</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.03256v1" target="_blank">Impact of Physics-Informed Features on Neural Network Complexity for Li-ion Battery Voltage Prediction in Electric Vertical Takeoff and Landing Aircrafts</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/05/china-sets-capacity-price-floor-for-grid-scale-storage-tying-payments-to-coal-benchmarks/" target="_blank">China sets ‘capacity price’ floor for grid-scale storage, tying payments to coal benchmarks</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/05/photovoltaics-for-salmon-farms/" target="_blank">Photovoltaics for salmon farms</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/most-tsos-are-sitting-on-their-hands-when-it-comes-to-energy-storage-says-nordic-developer/" target="_blank">‘Most TSOs are sitting on their hands’ when it comes to energy storage, says Nordic developer</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/reversible-solid-oxide-fuel-cells-noon-energys-approach-to-100-hour-energy-storage/" target="_blank">‘Reversible solid oxide fuel cells’: Noon Energy’s approach to 100+ hour energy storage</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/aypa-power-closes-us1-5-billion-credit-facility-for-us-bess-projects/" target="_blank">Aypa Power closes US$1.5 billion credit facility for US BESS projects</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/05/worlds-largest-ai-powered-battery-storage-cluster-comes-online-in-china/" target="_blank">World’s largest AI-powered battery storage cluster comes online in China</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/05/latvias-largest-single-site-solar-plant-begins-operating/" target="_blank">Latvia’s largest single-site solar plant begins operating</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/05/made-in-europe-sungrow-builds-first-european-factory-in-poland/" target="_blank">Made in Europe: Sungrow builds first European factory in Poland</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/437mwh-bess-in-australias-highest-city-receives-final-approvals-ahead-of-commissioning/" target="_blank">437MWh BESS in Australia’s highest city receives final approvals ahead of commissioning</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/octopus-australia-acquires-4-8gwh-battery-storage-project-in-new-south-wales/" target="_blank">Octopus Australia acquires 4.8GWh battery storage project in New South Wales</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/australias-biggest-ldes-tender-nsw-contracts-six-battery-storage-projects-totalling-1-17gw-12gwh/" target="_blank">Australia’s biggest LDES tender: NSW contracts six battery storage projects totalling 1.17GW/12GWh</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/hydrogen-storage-umoe-advanced-composites-to-supply-20-foot-containers-for-vilnius-refueling-station/8574814/" target="_blank">Hydrogen storage: UMOE Advanced Composites to supply 20-foot containers for Vilnius refueling station</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/philippines-house-of-representatives-passes-national-energy-storage-framework-legislation/" target="_blank">Philippines House of Representatives passes national energy storage framework legislation</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.04578v1" target="_blank">Reinforcement Learning-based Home Energy Management with Heterogeneous Batteries and Stochastic EV Behaviour</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/lunar-energy-raises-us232-million-to-scale-vpp-software-globally/" target="_blank">Lunar Energy raises US$232 million to scale VPP software globally</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/e-storage-sunraycer-enter-agreements-for-texas-bess-projects-totalling-503mwh/" target="_blank">E-Storage, Sunraycer enter agreements for Texas BESS projects totalling 503MWh</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/06/toyota-daihatsu-roll-out-shared-electric-kei-vans-for-japans-last-mile-logistics/" target="_blank">Toyota & Daihatsu Roll Out Shared Electric Kei Vans for Japan’s Last-Mile Logistics</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/berkshire-hathaway-energy-montana-energises-150mwh-bess/" target="_blank">Berkshire Hathaway Energy Montana energises 150MWh BESS</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/battery-data-analytics-software-specialist-twaice-nets-european-investment-bank-funding/" target="_blank">Battery data analytics software specialist TWAICE nets European Investment Bank funding</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/06/india-wraps-up-1-2-gw-renewables-plus-storage-tender-at-0-069-kwh/" target="_blank">India wraps up 1.2 GW renewables-plus-storage tender at $0.069/kWh</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/06/re-northeast-2026-evolving-solar-and-storage-integration/" target="_blank">RE+ Northeast 2026: Evolving solar and storage integration</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/were-not-stopping-here-reactions-as-australias-new-south-wales-smashes-long-duration-storage-targets-with-12gwh-tender/" target="_blank">‘We’re not stopping here’: Reactions as Australia’s New South Wales smashes long-duration storage targets with 12GWh tender</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/05/global-bess-capacity-tops-250-gw-overtaking-pumped-hydro-for-first-time/" target="_blank">Global BESS capacity tops 250 GW, overtaking pumped hydro for first time</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/13/most-maritime-shipping-battery-propulsion-studies-are-already-obsolete/" target="_blank">Most Maritime Shipping Battery Propulsion Studies Are Already Obsolete</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/rec-solar-building-3-3-mw-solar-project-on-california-cold-storage-facility/" target="_blank">REC Solar building 3.3-MW solar project on California cold storage facility</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/solaredge-inverters-pair-with-socomec-bess-for-streamlined-ci-solar-storage-solution/" target="_blank">SolarEdge inverters pair with Socomec BESS for streamlined C&I solar + storage solution</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/08/us-energy-storage-startup-moves-in-on-the-residential-market-with-another-232-million/" target="_blank">US Energy Storage Startup Moves In On The Residential Market With Another $232 Million</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.rtoinsider.com/125206-miso-members-push-for-modernized-storage-rules/" target="_blank">MISO Members Push for Modernized Storage Rules</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #2196F3;">
+                    <h3>Grid & Transmission</h3>
+                    <span class="article-count">38 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://www.renewableenergyworld.com/power-grid/outage-management/schneider-electric-unveils-new-grid-transmission-solutions-to-maintain-power-during-severe-weather-and-wildfires/" target="_blank">Schneider Electric unveils new grid, transmission solutions to maintain power during severe weather and wildfires</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Renewable Energy World</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/sc-electric-sel-collaborate-on-interoperable-control-solution-for-distribution-grid-modernization/" target="_blank">S&C Electric, SEL Collaborate on Interoperable Control Solution for Distribution Grid Modernization</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/u-s-renewables-outlook-2026-key-risks-and-strategies-for-sustainable-growth/" target="_blank">U.S. Renewables Outlook 2026: Key Risks and Strategies for Sustainable Growth</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/utility-broadband-alliance-marks-five-year-milestone-at-dtech-2026/" target="_blank">Utility Broadband Alliance Marks Five-Year Milestone at DTECH 2026</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/ai-data-center-large-load-tariff/806691/" target="_blank">The AI boom needs power. Tariffs can make it fair.</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-1')" style="cursor: pointer;">
+                    <span id="topic-1-text">Show 33 more articles ▼</span>
+                </li>
+                <div id="topic-1-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="https://www.powermag.com/xylem-advances-grid-intelligence-with-sensus-evolve-platform/" target="_blank">Xylem Advances Grid Intelligence with Sensus Evolve Platform</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2601.23108v1" target="_blank">Energy Management Strategies for Electric Aircraft Charging Leveraging Active Landside Vehicle-to-Grid</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/substation-sited-generation-a-new-frontier-for-utility-resilience-and-flexibility/" target="_blank">Substation-Sited Generation: A New Frontier for Utility Resilience and Flexibility</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/flexibility-as-a-service-gains-u-s-foothold-with-new-voltus-octopus-partnership/" target="_blank">‘Flexibility-as-a-Service’ Gains U.S. Foothold With New Voltus–Octopus Partnership</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/ge-vernova-launches-grid-automation-and-protection-system/" target="_blank">GE Vernova Launches Grid Automation and Protection System</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/empowering-the-grid-how-utilities-can-harness-ai-safely-and-effectively/" target="_blank">Empowering the Grid: How Utilities Can Harness AI Safely and Effectively</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/transmission-planning-development-aseg/811197/" target="_blank">Transmission planning, development improved since 2023 in most US regions: report</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://electrek.co/2026/02/02/most-outages-start-near-homes-smart-meters-could-catch-them-first-sense/" target="_blank">Most outages start near homes – smart meters could catch them first</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Electrek</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/02/why-waiting-on-grid-batteries-will-cost-ontario-more-than-acting-now/" target="_blank">Why Waiting on Grid Batteries Will Cost Ontario More Than Acting Now</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.01508v1" target="_blank">Harnessing Flexible Spatial and Temporal Data Center Workloads for Grid Regulation Services</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.01502v1" target="_blank">Optimal Sizing of Charging Energy Hubs for Heavy-Duty Electric Transport through Co-Optimization</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.rtoinsider.com/124815-eras-tour-hi-its-me-im-the-planning-problem/" target="_blank">ERAS Tour: Hi, It’s Me, I’m the Planning Problem</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.03521v1" target="_blank">Real-world energy data of 200 feeders from low-voltage grids with metadata in Germany over two years</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.03272v1" target="_blank">Power Reserve Procurement Considering Dependent Random Variables with PCE</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/overhead-transmission/news/55355260/great-river-energy-itc-midwest-and-xcel-energy-file-certificate-of-need-application-for-proposed-transmission-project" target="_blank">Great River Energy, ITC Midwest and Xcel Energy File Certificate of Need Application for Proposed Transmission Project</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/utility-business/news/55354064/leidos-to-acquire-entrust-solutions-group-in-24-billion-deal" target="_blank">Leidos to Acquire ENTRUST Solutions Group in $2.4 Billion Deal</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/electric-utility-operations/tools-and-technologies/news/55354899/national-grid-launches-new-digital-twin-and-data-visualization-tool-triton-to-support-network-planning" target="_blank">National Grid Launches New Digital Twin and Data Visualization Tool, Triton, to Support Network Planning</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/smart-utility/article/55354680/cps-energy-plans-to-deploy-900-mhz-private-wireless-broadband" target="_blank">CPS Energy Plans to Deploy 900 MHz Private Wireless Broadband</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://www.renewableenergyworld.com/energy-business/policy-and-regulation/electric-utilities-face-policy-uncertainty-as-large-load-demand-accelerates/" target="_blank">Electric utilities face policy uncertainty as large-load demand accelerates</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Renewable Energy World</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/house-hearing-ferc-affordability-reliability-gas/811328/" target="_blank">House lawmakers press FERC on affordability, reliability and gas</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.04219v1" target="_blank">Sampled-Data Wasserstein Distributionally Robust Control of Multiplicative Systems: A Convex Relaxation with Performance Guarantees</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/transmission-reliability/news/55354889/us-doe-issues-emergency-orders-to-support-floridas-electric-grid-during-extended-cold-weather" target="_blank">U.S. DOE Issues Emergency Orders to Support Florida’s Electric Grid During Extended Cold Weather</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/smart-utility/news/55353699/sensus-introduces-evolve-platform-for-grid-intelligence-at-distributech-2026" target="_blank">Sensus Introduces Evolve Platform for Grid Intelligence at DistribuTECH 2026</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://www.rtoinsider.com/124778-caiso-examines-pulsating-data-center-loads/" target="_blank">CAISO Examines ‘Pulsating’ Data Center Loads</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                <li>
+                    <a href="https://www.rtoinsider.com/125108-pilot-project-site-small-data-centers-near-stranded-power/" target="_blank">Pilot Project will Site Small Data Centers Near Stranded Power</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/utilities-cost-recovery-risk-data-centers-rates/811446/" target="_blank">Utilities face cost-recovery risk as infrastructure costs, demand rise: Morningstar</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://electrek.co/2026/02/05/iea-electricity-demand-is-rising-fast-and-grids-cant-keep-up/" target="_blank">IEA: Electricity demand is rising fast, and grids can’t keep up</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Electrek</span>
+                </li>
+                <li>
+                    <a href="https://www.rtoinsider.com/125607-ny-finalizes-regs-speed-grid-upgrades-reduce-costs/" target="_blank">N.Y. Finalizes Regs to Speed Grid Upgrades, Reduce Costs</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                <li>
+                    <a href="https://insideclimatenews.org/news/15022026/texas-batch-zero-study-data-centers/" target="_blank">Texas to Study ‘Batch Zero’ of Data Centers by Late Summer</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Inside Climate News</span>
+                </li>
+                <li>
+                    <a href="https://www.renewableenergyworld.com/power-grid/grid-modernization/ai-is-a-double-edged-sword-for-utilities-weighing-the-risk-against-the-benefits/" target="_blank">AI is a ‘double-edged sword’ for utilities – weighing the risk against the benefits</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Renewable Energy World</span>
+                </li>
+                <li>
+                    <a href="https://www.renewableenergyworld.com/power-grid/grid-modernization/the-super-bowl-kick-off-for-utilities-meets-the-era-of-data-centers/" target="_blank">The “Super Bowl kick off for utilities” meets the era of data centers</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Renewable Energy World</span>
+                </li>
+                <li>
+                    <a href="https://www.rtoinsider.com/125096-ny-psc-changes-der-interconnection-requirements/" target="_blank">N.Y. PSC Changes DER Interconnection Rules to Meet Tax Credit Deadlines</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.05116v1" target="_blank">GPU-to-Grid: Voltage Regulation via GPU Utilization Control</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #FF9800;">
+                    <h3>Solar</h3>
+                    <span class="article-count">31 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://electrek.co/2026/02/02/ferc-renewables-power-generating-capacity-to-nov-2025/" target="_blank">FERC: Renewables made up 88% of new US power generating capacity to Nov 2025</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Electrek</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/spain-deploys-1-13-gw-of-solar-for-self-consumption-in-2025/" target="_blank">Spain deploys 1.13 GW of solar for self-consumption in 2025</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/brazil-curtails-20-of-solar-and-wind-output-in-2025-with-losses-at-1-2-billion/" target="_blank">Brazil curtails 20% of solar and wind output in 2025, with losses at $1.2 billion</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/02/uncertainty-looms-as-u-s-solar-ppa-prices-climb-for-second-straight-quarter/" target="_blank">Uncertainty looms as U.S. solar PPA prices climb for second straight quarter</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/03/chads-installed-pv-power-reaches-110-mw-enough-to-produce-37-of-its-electricity/" target="_blank">Chad’s installed PV capacity hits 110 MW, supplying 37% of electricity</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-2')" style="cursor: pointer;">
+                    <span id="topic-2-text">Show 26 more articles ▼</span>
+                </li>
+                <div id="topic-2-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/03/germany-france-netherlands-curtail-3-9-twh-of-renewables-in-2025/" target="_blank">Germany, France, Netherlands curtail 3.9 TWh of renewables in 2025</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/03/onyx-solar-bipv-solution-turns-skyscraper-skin-into-power-source/" target="_blank">Onyx Solar BIPV solution turns skyscraper skin into power source</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/03/farm-of-tomorrow-pushes-agrivoltaics-beyond-crop-yields/" target="_blank">‘Farm of tomorrow’ pushes agrivoltaics beyond crop yields</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/03/chile-installs-1-1-gw-of-pv-in-2025/" target="_blank">Chile installs 1.1 GW of PV in 2025</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/versogen-insolare-energy-will-advance-electrolyzer-tech-in-india/" target="_blank">Versogen, InSolare Energy Will Advance Electrolyzer Tech in India</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/saudi-arabia-could-hit-net-zero-emissions-by-2060-with-151-gw-of-solar/" target="_blank">Saudi Arabia could hit net-zero emissions by 2060, with 151 GW of solar</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/philippines-accelerates-permits-for-solar-net-metering/" target="_blank">Philippines accelerates permits for solar net-metering</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/us-solar-capacity-overtakes-wind/" target="_blank">US solar capacity overtakes wind</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.canarymedia.com/articles/clean-energy-manufacturing/california-abundant-solar-power-factories" target="_blank">California has abundant solar power. Here’s how factories can use it.</a>
+                    <span class="source-tag" style="background: #fef9c3; color: #713f12;">Canary Media</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/india-installs-more-than-2-08-million-rooftop-solar-systems-under-pm-scheme/" target="_blank">India installs more than 2.08 million rooftop solar systems under PM scheme</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/04/maxwell-claims-26-92-efficiency-for-heterojunction-solar-cell/" target="_blank">Maxwell claims 26.92% efficiency for heterojunction solar cell</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/05/solar-power-provides-benefits-to-northern-cheyenne-kenyan-communities/" target="_blank">Solar Power Provides Benefits To Northern Cheyenne & Kenyan Communities</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.canarymedia.com/articles/food-and-farms/missouri-bills-halt-solar-development-farmland" target="_blank">Missouri Senate considers bills to halt solar development on farmland</a>
+                    <span class="source-tag" style="background: #fef9c3; color: #713f12;">Canary Media</span>
+                </li>
+                <li>
+                    <a href="https://www.canarymedia.com/articles/solar/poll-trump-voters-support-clean-energy" target="_blank">Trump may not like solar, but lots of his voters do</a>
+                    <span class="source-tag" style="background: #fef9c3; color: #713f12;">Canary Media</span>
+                </li>
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/06/entso-e-outlines-tools-for-spotting-instability-in-renewables-heavy-grids/" target="_blank">Entso-E outlines tools for spotting instability in renewables-heavy grids</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.canarymedia.com/articles/fossil-fuels/whats-driving-up-maines-energy-bills" target="_blank">What’s driving up Maine’s energy bills? Natural gas.</a>
+                    <span class="source-tag" style="background: #fef9c3; color: #713f12;">Canary Media</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/first-solar-survey-republicans-renewable-energy-trump/811504/" target="_blank">First Solar releases poll showing support for solar among GOP voters</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/new-1-2-gw-gas-fired-plant-planned-in-wv-three-solar-projects-also-announced/" target="_blank">New 1.2-GW Gas-Fired Plant Planned in WV; Three Solar Projects Also Announced</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/15/topcon-solar-cells-are-killing-a-key-anti-solar-talking-point/" target="_blank">TOPCon Solar Cells Are Killing A Key Anti-Solar Talking Point</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/disconnected-data-is-draining-your-solar-portfolio/" target="_blank">Disconnected data is draining your solar portfolio</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/conservative-renewables-groups-poll-finds-most-virginia-voters-support-solar/" target="_blank">Conservative renewables group’s poll finds most Virginia voters support solar</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/poll-finds-republicans-support-utility-scale-solar-power-especially-if-its-american-made/" target="_blank">Poll finds Republicans support utility-scale solar power, especially if it’s American-made</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/voltage-energy-opening-new-solar-ebos-plant-in-north-carolina/" target="_blank">Voltage Energy opening new solar eBOS plant in North Carolina</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/meta-procures-another-176-mw-of-solar-to-support-data-centers/" target="_blank">Meta procures another 176 MW of solar to support data centers</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/clean-slate-solar-completes-two-community-solar-projects-in-maryland/" target="_blank">Clean Slate Solar completes two community solar projects in Maryland</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/chemitek-unveils-drone-applied-solar-panel-cleaning-agent-safe-for-agrivoltaic-systems/" target="_blank">Chemitek unveils drone-applied solar panel cleaning agent safe for agrivoltaic systems</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #9C27B0;">
+                    <h3>Data Centers & AI</h3>
+                    <span class="article-count">18 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/02/ibm-advances-quantum-computing-with-nighthawk-for-clean-energy-transformations/" target="_blank">IBM Advances Quantum Computing with Nighthawk for Clean Energy Transformations</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/spons/artificial-intelligence-in-energy-markets-the-case-for-ai-ready-data-and-h/810100/" target="_blank">Artificial intelligence in energy markets: The case for AI-ready data and human expertise</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/03/alternative-truths-about-climate-renewable-energy-hurt-us-all/" target="_blank">Alternative Truths About Climate & Renewable Energy Hurt Us All</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.02376v1" target="_blank">An Efficient Power Management Unit With Continuous MPPT and Energy Recycling for Wireless Millimetric Biomedical Implants</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.02137v1" target="_blank">DCoPilot: Generative AI-Empowered Policy Adaptation for Dynamic Data Center Operations</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-3')" style="cursor: pointer;">
+                    <span id="topic-3-text">Show 13 more articles ▼</span>
+                </li>
+                <div id="topic-3-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="https://www.rtoinsider.com/124923-western-market-seams-complicate-data-center-energy-investments/" target="_blank">Western Market Seams Complicate Data Center, Clean Energy Investments, Panelists Say</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                <li>
+                    <a href="https://www.renewableenergyworld.com/power-grid/a-future-wed-be-proud-to-build-data-ai-and-partnerships-take-center-stage-at-dtech-2026/" target="_blank">‘A future we’d be proud to build’ – Data, AI, and partnerships take center stage at DTECH 2026</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Renewable Energy World</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.03070v1" target="_blank">ProOPF: Benchmarking and Improving LLMs for Professional-Grade Power Systems Optimization Modeling</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/xcel-energy-inks-dual-alliances-with-ge-vernova-nextera-to-support-6-gw-data-center-outlook-generation-expansion/" target="_blank">Xcel Energy Inks Dual Alliances with GE Vernova, NextEra to Support 6-GW Data Center Outlook, Generation Expansion</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/utility-business/podcast/55354109/serving-new-load-without-raising-rates-a-utility-perspective" target="_blank">Serving New Load Without Raising Rates: A Utility Perspective</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/xcel-energy-pursuing-large-load-tariffs-in-4-states-amid-data-center-growth/811518/" target="_blank">Xcel Energy pursuing large load tariffs in 4 states amid data center growth</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/epa-reconsiders-good-neighbor-plan-that-limited-power-plant-emissions/811496/" target="_blank">EPA reconsiders Good Neighbor Plan that limited power plant emissions</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://www.utilitydive.com/news/western-energy-market-electricity-rowe-caiso-california/811589/" target="_blank">Western energy market incorporates, asks CAISO for financing help</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Utility Dive</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/05/michigan-sues-big-oil-for-antitrust-violations/" target="_blank">Michigan Sues Big Oil For Antitrust Violations</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.05644v1" target="_blank">UAV Trajectory Optimization via Improved Noisy Deep Q-Network</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/14/ai-artificial-intelligence-or-always-incorrect/" target="_blank">AI = Artificial Intelligence or Always Incorrect?</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/08/ai-startup-that-does-ev-related-materials-science-discovery-raises-8m/" target="_blank">AI Startup That Does EV-Related Materials Science Discovery Raises $8M</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://insideclimatenews.org/news/06022026/pennsylvania-governor-josh-shapiro-data-center-growth-consumer-protections/" target="_blank">Pennsylvania Governor Courts Data Centers While Seeking Consumer Protections</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Inside Climate News</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #E91E63;">
+                    <h3>Nuclear</h3>
+                    <span class="article-count">8 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://www.powermag.com/new-nuclear-power-generation-proposed-at-closed-wisconsin-site/" target="_blank">New Nuclear Power Generation Proposed at Closed Wisconsin Site</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/01/how-an-influential-energy-book-became-a-drag-on-decarbonization/" target="_blank">How an Influential Energy Book Became a Drag on Decarbonization</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.world-nuclear-news.org//articles/first-unit-at-chinas-taipingling-plant-starts-up" target="_blank">First unit at China's Taipingling plant starts up</a>
+                    <span class="source-tag" style="background: #fce7f3; color: #9d174d;">World Nuclear News</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.02924v1" target="_blank">How Does the Lagrangian Guide Safe Reinforcement Learning through Diffusion Models?</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://www.powermag.com/natura-ngl-move-to-pair-nuclear-molten-salt-reactors-with-large-scale-produced-water-treatment-in-permian/" target="_blank">Natura, NGL Move to Pair Nuclear Molten Salt Reactors with Large-Scale Produced-Water Treatment in Permian</a>
+                    <span class="source-tag" style="background: #fee2e2; color: #991b1b;">Power Magazine</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-4')" style="cursor: pointer;">
+                    <span id="topic-4-text">Show 3 more articles ▼</span>
+                </li>
+                <div id="topic-4-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="https://www.world-nuclear-news.org//articles/india-extends-existing-tax-waivers-for-nuclear-to-2035" target="_blank">India extends existing tax waivers for nuclear to 2035</a>
+                    <span class="source-tag" style="background: #fce7f3; color: #9d174d;">World Nuclear News</span>
+                </li>
+                <li>
+                    <a href="https://www.world-nuclear-news.org//articles/serbia-discusses-new-nuclear-with-french-development-agency" target="_blank">Serbia discusses new nuclear with French development agency</a>
+                    <span class="source-tag" style="background: #fce7f3; color: #9d174d;">World Nuclear News</span>
+                </li>
+                <li>
+                    <a href="https://www.world-nuclear-news.org//articles/nuclear-central-in-frances-latest-energy-strategy" target="_blank">Nuclear central in France's latest energy strategy</a>
+                    <span class="source-tag" style="background: #fce7f3; color: #9d174d;">World Nuclear News</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #00BCD4;">
+                    <h3>Hydrogen</h3>
+                    <span class="article-count">6 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/new-1-mw-ammonia-to-power-system-leverages-hydrogen-fuel-cells-for-zero-emission-shipping/8574691/" target="_blank">New 1 MW Ammonia-to-Power System Leverages Hydrogen Fuel Cells for Zero-Emission Shipping</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/liquid-hydrogen-hub-powers-incheon-international-airports-bus-fleet/8574773/" target="_blank">Liquid Hydrogen Hub Powers Incheon International Airport’s Bus Fleet</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/green-hydrogen-pipeline-brings-rotterdam-closer-to-europes-energy-future/8574777/" target="_blank">Green Hydrogen Pipeline Brings Rotterdam Closer to Europe’s Energy Future</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/hydrogen-production-la-francaise-de-lenergie-secures-natural-hydrogen-permit-in-grand-est/8574763/" target="_blank">Hydrogen production: La Française de l’Énergie secures natural hydrogen permit in Grand Est</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                <li>
+                    <a href="https://www.hydrogenfuelnews.com/hydrogen-fuel-cells-power-cleaner-airport-ground-support-equipment/8574816/" target="_blank">Hydrogen Fuel Cells Power Cleaner Airport Ground Support Equipment</a>
+                    <span class="source-tag" style="background: #cffafe; color: #155e75;">Hydrogen Fuel News</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-5')" style="cursor: pointer;">
+                    <span id="topic-5-text">Show 1 more articles ▼</span>
+                </li>
+                <div id="topic-5-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/06/the-hydrogen-stream-verna-completes-first-two-hydrogen-pilot-wells-in-quebec/" target="_blank">The Hydrogen Stream: Verna completes first two hydrogen pilot wells in Canada</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #009688;">
+                    <h3>Electric Vehicles</h3>
+                    <span class="article-count">6 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="http://arxiv.org/abs/2602.04609v1" target="_blank">Resilient Load Forecasting under Climate Change: Adaptive Conditional Neural Processes for Few-Shot Extreme Load Forecasting</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                <li>
+                    <a href="https://electrek.co/2026/02/06/2x-heybike-alpha-mid-drive-e-bikes-bluetti-power-station-segway-anker-solix-more/" target="_blank">Score 2x Heybike ALPHA mid-drive e-bikes at $999 each, Bluetti Elite 400 power station exclusive $1,221 low, Segway, Anker SOLIX, more</a>
+                    <span class="source-tag" style="background: #dbeafe; color: #1e40af;">Electrek</span>
+                </li>
+                <li>
+                    <a href="https://www.tdworld.com/utility-business/news/55354271/pseg-energy-efficiency-programs-deliver-more-than-900-million-in-annual-utility-bill-savings-for-new-jersey-customers" target="_blank">PSE&G Energy Efficiency Programs Deliver More Than $900 Million in Annual Utility Bill Savings for New Jersey Customers</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Transmission & Distribution World</span>
+                </li>
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/04/europe-is-finally-admitting-electricity-is-overtaxed/" target="_blank">Europe Is Finally Admitting Electricity Is Overtaxed</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/pge-will-try-out-span-edge-customer-meter-upgrade-device/" target="_blank">PG&E will try out SPAN Edge customer meter upgrade device</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-6')" style="cursor: pointer;">
+                    <span id="topic-6-text">Show 1 more articles ▼</span>
+                </li>
+                <div id="topic-6-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="https://www.rtoinsider.com/125210-revolution-wind-weeks-away-generating-power-maybe/" target="_blank">Revolution Wind Weeks Away from Generating Power — Maybe</a>
+                    <span class="source-tag" style="background: #e0e7ff; color: #3730a3;">RTO Insider</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #607D8B;">
+                    <h3>Other</h3>
+                    <span class="article-count">6 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://cleantechnica.com/2026/02/06/our-new-combo-washer-heat-pump-dryer-uses-less-than-1-kwh-of-electricity-per-load/" target="_blank">Our New Combo Washer/Heat Pump Dryer Uses Less Than 1 kWh of Electricity Per Load</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">CleanTechnica</span>
+                </li>
+                <li>
+                    <a href="https://www.energy-storage.news/australias-energy-transition-puts-essential-system-services-in-focus/" target="_blank">Australia’s energy transition puts essential system services in focus</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Energy Storage News</span>
+                </li>
+                <li>
+                    <a href="https://www.solarpowerworldonline.com/2026/02/pr-firm-launches-fieldwise-civic-engagement-community-network/" target="_blank">PR firm launches Fieldwise Civic Engagement community network</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Solar Power World</span>
+                </li>
+                <li>
+                    <a href="https://insideclimatenews.org/news/07022026/colorado-college-geothermal-network/" target="_blank">A Groundbreaking Geothermal Heating and Cooling Network Saves This Colorado College Money and Water</a>
+                    <span class="source-tag" style="background: #f1f5f9; color: #475569;">Inside Climate News</span>
+                </li>
+                <li>
+                    <a href="http://arxiv.org/abs/2602.05974v1" target="_blank">Normalization of ReLU Dual for Cut Generation in Stochastic Mixed-Integer Programs</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                    
+                <li class="more-link" onclick="toggleMoreArticles('topic-7')" style="cursor: pointer;">
+                    <span id="topic-7-text">Show 1 more articles ▼</span>
+                </li>
+                <div id="topic-7-extra" class="extra-articles" style="display: none;">
+                    
+                <li>
+                    <a href="http://arxiv.org/abs/2602.05376v1" target="_blank">Distributed Model Predictive Control for Energy and Comfort Optimization in Large Buildings Using Piecewise Affine Approximation</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">ArXiv</span>
+                </li>
+                </div>
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #F44336;">
+                    <h3>Policy & Regulation</h3>
+                    <span class="article-count">2 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://www.pv-magazine.com/2026/02/05/us-ppa-volumes-down-22-in-2025-amid-policy-shocks/" target="_blank">US PPA volumes down 22% in 2025 amid policy shocks</a>
+                    <span class="source-tag" style="background: #fef3c7; color: #92400e;">PV Magazine</span>
+                </li>
+                <li>
+                    <a href="https://www.renewableenergyworld.com/power-grid/what-does-dtech-mean-to-the-utility-landscape/" target="_blank">What does DTECH mean to the utility landscape?</a>
+                    <span class="source-tag" style="background: #d1fae5; color: #065f46;">Renewable Energy World</span>
+                </li>
+                    
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #03A9F4;">
+                    <h3>Wind</h3>
+                    <span class="article-count">1 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://www.canarymedia.com/articles/wind/how-iowa-turned-against-wind" target="_blank">How Iowa has turned against wind</a>
+                    <span class="source-tag" style="background: #fef9c3; color: #713f12;">Canary Media</span>
+                </li>
+                    
+                </ul>
+            </div>
+        
+            <div class="topic-card">
+                <div class="topic-header" style="border-left-color: #8BC34A;">
+                    <h3>Renewable Integration</h3>
+                    <span class="article-count">1 articles</span>
+                </div>
+                <ul class="topic-articles">
+                    
+                <li>
+                    <a href="https://www.carbonbrief.org/analysis-clean-energy-drove-more-than-a-third-of-chinas-gdp-growth-in-2025/" target="_blank">Analysis: Clean energy drove more than a third of China’s GDP growth in 2025</a>
+                    <span class="source-tag" style="background: #f3e8ff; color: #6b21a8;">Carbon Brief</span>
+                </li>
+                    
+                </ul>
+            </div>
+        
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Key Numbers</h2>
+            <div class="numbers-grid">
+                
+                <a href="https://electrek.co/2026/02/02/ferc-renewables-power-generating-capacity-to-nov-2025/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">88%</div>
+                    <div class="number-context">The number 88% represents the proportion of new US power generating capacity from renewable sources.</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.powermag.com/u-s-renewables-outlook-2026-key-risks-and-strategies-for-sustainable-growth/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">92%</div>
+                    <div class="number-context">The 92% represents the share of new power capacity added to the U.S. grid in 2025 from renewable ...</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.pv-magazine.com/2026/02/02/spain-deploys-1-13-gw-of-solar-for-self-consumption-in-2025/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">1.13 GW</div>
+                    <div class="number-context">Spains solar self-consumption capacity increased to 9.3 GW in 2025 with a 1.13 GW addition.</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.pv-magazine.com/2026/02/02/brazil-curtails-20-of-solar-and-wind-output-in-2025-with-losses-at-1-2-billion/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">1.2 billion</div>
+                    <div class="number-context">Brazils planned reduction of renewable energy production led to a significant financial loss of $...</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.pv-magazine.com/2026/02/02/europe-contracts-nearly-24-gwh-of-bess-under-flexibility-purchase-agreements-in-2025/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">24 GW</div>
+                    <div class="number-context">The number 24 GW represents the total amount of contracted battery energy storage system capacity.</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.hydrogenfuelnews.com/new-1-mw-ammonia-to-power-system-leverages-hydrogen-fuel-cells-for-zero-emission-shipping/8574691/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">1 MW</div>
+                    <div class="number-context">The 1 MW rating signifies the power output of the proposed ammonia-to-power system.</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.pv-magazine.com/2026/02/02/china-added-66-43-gw-of-new-type-energy-storage-in-2025/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">66.43 GW</div>
+                    <div class="number-context">The number represents the additional grid-scale energy storage capacity added to Chinas power sec...</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.pv-magazine.com/2026/02/02/australian-renewables-exceed-50-of-power-supply-in-q4/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">50%</div>
+                    <div class="number-context">Renewable energy now makes up over 50% of Australias power supply during Q4 2025.</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.pv-magazine.com/2026/02/02/uncertainty-looms-as-u-s-solar-ppa-prices-climb-for-second-straight-quarter/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">3.2%</div>
+                    <div class="number-context">This represents a significant quarterly price increase for solar power purchase agreements in Nor...</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+                <a href="https://www.energy-storage.news/bw-ess-proposes-1-6gwh-battery-energy-storage-facility-for-the-hunter-valley-in-australia/" target="_blank" class="number-card" style="text-decoration: none;">
+                    <div class="number-value">1.6GW</div>
+                    <div class="number-context">The proposed battery facility stores approximately 1,600 megawatt-hours (MWh) of electricity.</div>
+                    <div class="number-source" style="margin-top: 8px; font-size: 0.8em; opacity: 0.8;">Click to read article →</div>
+                </a>
+            
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Sources</h2>
+            
+            <div class="source-row">
+                <span class="source-name">PV Magazine</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 100.0%;"></div>
+                </div>
+                <span class="source-count">39</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">Energy Storage News</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 58.97435897435898%;"></div>
+                </div>
+                <span class="source-count">23</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">ArXiv</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 48.717948717948715%;"></div>
+                </div>
+                <span class="source-count">19</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">Power Magazine</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 38.46153846153847%;"></div>
+                </div>
+                <span class="source-count">15</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">CleanTechnica</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 38.46153846153847%;"></div>
+                </div>
+                <span class="source-count">15</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">Utility Dive</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 30.76923076923077%;"></div>
+                </div>
+                <span class="source-count">12</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">Solar Power World</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 28.205128205128204%;"></div>
+                </div>
+                <span class="source-count">11</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">Hydrogen Fuel News</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 23.076923076923077%;"></div>
+                </div>
+                <span class="source-count">9</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">RTO Insider</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 20.51282051282051%;"></div>
+                </div>
+                <span class="source-count">8</span>
+            </div>
+        
+            <div class="source-row">
+                <span class="source-name">Transmission & Distribution World</span>
+                <div class="source-bar-container">
+                    <div class="source-bar" style="width: 20.51282051282051%;"></div>
+                </div>
+                <span class="source-count">8</span>
+            </div>
+        
+        </div>
+
+        <footer>
+            <p><a href="index.html" style="color: #2b6cb0; text-decoration: none; font-weight: 600;">← Back to All Digests</a></p>
+            <p style="margin-top: 15px;">Generated on April 29, 2026 at 08:56 AM</p>
+            <p>Powered by Energy Digest Weekly Summary</p>
+        </footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+
+    <script>
+        function toggleMoreArticles(topicId) {
+            const extra = document.getElementById(topicId + '-extra');
+            const text = document.getElementById(topicId + '-text');
+            if (extra.style.display === 'none') {
+                extra.style.display = 'block';
+                text.innerHTML = text.innerHTML.replace('Show', 'Hide').replace('▼', '▲');
+            } else {
+                extra.style.display = 'none';
+                text.innerHTML = text.innerHTML.replace('Hide', 'Show').replace('▲', '▼');
+            }
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide back to top button and update progress bar
+        function handleScroll() {
+            const backToTop = document.getElementById('backToTop');
+            const progressBar = document.getElementById('progressBar');
+
+            // Back to top button visibility
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+
+            // Reading progress bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+        }
+
+        // Add scroll listener
+        window.addEventListener('scroll', handleScroll);
+    </script>
+</body>
+</html>
