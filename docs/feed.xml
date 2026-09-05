@@ -5,8 +5,15 @@
     <link>https://energydigest.io</link>
     <description>Daily curated summaries of power and energy industry news. Stay informed on renewable energy, grid technology, battery storage, and more.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Sep 2026 08:03:18 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2026 08:02:27 GMT</lastBuildDate>
     <atom:link href="https://energydigest.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Energy Digest - September 05, 2026</title>
+      <link>https://energydigest.io/energy_digest_2026-09-05.html</link>
+      <description>Energy Digest for September 05, 2026 - 10 articles covering power and energy industry news.</description>
+      <pubDate>Sat, 05 Sep 2026 06:00:00 GMT</pubDate>
+      <guid>https://energydigest.io/energy_digest_2026-09-05.html</guid>
+    </item>
     <item>
       <title>Energy Digest - September 04, 2026</title>
       <link>https://energydigest.io/energy_digest_2026-09-04.html</link>
@@ -139,13 +146,6 @@
       <description>Energy Digest for August 16, 2026 - 10 articles covering power and energy industry news.</description>
       <pubDate>Sun, 16 Aug 2026 06:00:00 GMT</pubDate>
       <guid>https://energydigest.io/energy_digest_2026-08-16.html</guid>
-    </item>
-    <item>
-      <title>Energy Digest - August 15, 2026</title>
-      <link>https://energydigest.io/energy_digest_2026-08-15.html</link>
-      <description>Energy Digest for August 15, 2026 - 10 articles covering power and energy industry news.</description>
-      <pubDate>Sat, 15 Aug 2026 06:00:00 GMT</pubDate>
-      <guid>https://energydigest.io/energy_digest_2026-08-15.html</guid>
     </item>
   </channel>
 </rss>
